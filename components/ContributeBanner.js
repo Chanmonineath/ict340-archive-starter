@@ -1,4 +1,4 @@
-const colors = { gold: "#B8893A", teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", sand: "#F5EFE2" };
+const colors = { teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", sand: "#F5EFE2", cream: "#FDF8E9" };
 
 export default function ContributeBanner() {
   const wrap = {
@@ -31,7 +31,7 @@ export default function ContributeBanner() {
     fontFamily: "var(--font-body), sans-serif",
     fontSize: 14,
     fontWeight: 600,
-    color: colors.paper,
+    color: colors.cream,
     backgroundColor: colors.leaf,
     border: "none",
     padding: "14px 36px",
@@ -49,7 +49,7 @@ export default function ContributeBanner() {
         Do you or someone you know keep a traditional Khmer practice at home —
         a plant, a remedy, a way of cooking or caring? Help us preserve it.
       </p>
-      <a href="#" style={btn} aria-label="Submit an entry">
+      <a href="mailto:ict340@aupp.edu.kh?subject=New%20archive%20entry" style={btn} aria-label="Submit an entry">
         Submit an entry
       </a>
     </section>

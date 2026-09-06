@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const colors = { gold: "#B8893A", teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", paper: "#FAF6EC" };
 
 export default function Hero({
@@ -104,12 +106,12 @@ export default function Hero({
       <p style={supportStyle}>{supportCopy}</p>
       <p style={aboutStyle}>{aboutCopy}</p>
       <div style={buttonRow}>
-        <a href="#archive" style={primaryBtn} aria-label="Explore the archive">
+        <Link href="/archive" style={primaryBtn} aria-label="Explore the archive">
           Explore the Archive →
-        </a>
-        <a href="#contribute" style={secondaryBtn} aria-label="Share your knowledge">
+        </Link>
+        <Link href="/contribute" style={secondaryBtn} aria-label="Share your knowledge">
           Share Knowledge
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -1,6 +1,20 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const colors = { gold: "#B8893A", teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC" };
 
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/discover", label: "Discover" },
+  { href: "/archive", label: "Archive" },
+  { href: "/contribute", label: "Contribute" },
+];
+
 export default function NavBar({ brand }) {
+  const pathname = usePathname();
+
   const wrap = {
     position: "sticky",
     top: 0,
@@ -26,22 +40,33 @@ export default function NavBar({ brand }) {
     gap: 28,
     alignItems: "center",
   };
-  const linkStyle = {
+  const linkStyle = (isActive) => ({
     fontFamily: "var(--font-body), sans-serif",
     fontSize: 13,
     fontWeight: 500,
-    color: colors.teak + "CC",
+    color: isActive ? colors.teak : colors.teak + "CC",
     textDecoration: "none",
     textTransform: "uppercase",
     letterSpacing: "0.08em",
-  };
+    paddingBottom: 6,
+    borderBottom: "2px solid " + (isActive ? colors.teak : "transparent"),
+  });
   return (
     <nav style={wrap} aria-label="Primary">
-      <p style={brandStyle}>{brand}</p>
+      <Link href="/" style={{ ...brandStyle, textDecoration: "none" }}>
+        {brand}
+      </Link>
       <div style={nav}>
-        <a href="#discover" style={linkStyle}>Discover</a>
-        <a href="#archive" style={linkStyle}>Archive</a>
-        <a href="#contribute" style={linkStyle}>Contribute</a>
+        {navLinks.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            style={linkStyle(pathname === href)}
+            aria-current={pathname === href ? "page" : undefined}
+          >
+            {label}
+          </Link>
+        ))}
       </div>
     </nav>
   );
