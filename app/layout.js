@@ -1,5 +1,6 @@
 import { Cinzel, Plus_Jakarta_Sans, Kantumruy_Pro } from "next/font/google";
 import collection from "../collection.config.js";
+import "./globals.css";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
