@@ -80,9 +80,9 @@ export default function SearchFilter({
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         <h2
           id="browse-heading"
+          className="browse-heading"
           style={{
             margin: 0,
-            fontSize: 32,
             fontWeight: 700,
             color: colors.teak,
             fontFamily: "var(--font-heading), serif",

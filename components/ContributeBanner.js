@@ -11,7 +11,6 @@ export default function ContributeBanner() {
   };
   const title = {
     fontFamily: "var(--font-heading), serif",
-    fontSize: 32,
     fontWeight: 700,
     color: colors.teak,
     margin: "0 0 12px",
@@ -44,7 +43,7 @@ export default function ContributeBanner() {
   };
   return (
     <section id="contribute" style={wrap} aria-label="Contribute to the archive">
-      <h2 style={title}>Share your knowledge</h2>
+      <h2 style={title} className="contribute-title">Share your knowledge</h2>
       <p style={desc}>
         Do you or someone you know keep a traditional Khmer practice at home —
         a plant, a remedy, a way of cooking or caring? Help us preserve it.

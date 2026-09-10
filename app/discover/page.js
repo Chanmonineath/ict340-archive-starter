@@ -13,7 +13,7 @@ const colors = {
 
 const styles = {
   page: { backgroundColor: colors.paper, minHeight: "100vh" },
-  main: { maxWidth: 800, margin: "0 auto", padding: "64px 24px 80px" },
+  main: { maxWidth: 800, margin: "0 auto" },
   label: {
     fontFamily: "var(--font-body), sans-serif",
     fontSize: 11,
@@ -25,7 +25,6 @@ const styles = {
   },
   title: {
     fontFamily: "var(--font-heading), serif",
-    fontSize: 40,
     fontWeight: 700,
     color: colors.teak,
     margin: "8px 0 20px",
@@ -39,11 +38,7 @@ const styles = {
     margin: "0 0 48px",
     maxWidth: 620,
   },
-  curatorRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: 24,
-  },
+  curatorRow: { display: "grid", gap: 24 },
   curatorCard: {
     padding: 28,
     backgroundColor: colors.sand,
@@ -80,12 +75,12 @@ export default function DiscoverPage() {
   return (
     <div style={styles.page}>
       <NavBar brand="Rooted Khmer" />
-      <main style={styles.main}>
+      <main style={styles.main} className="discover-main">
         <p style={styles.label}>Discover</p>
-        <h1 style={styles.title}>Curated with care</h1>
+        <h1 style={styles.title} className="discover-title">Curated with care</h1>
         <p style={styles.description}>{collection.description}</p>
 
-        <div style={styles.curatorRow}>
+        <div style={styles.curatorRow} className="curator-grid">
           <div style={{ ...styles.curatorCard, ...styles.curatorCardLeaf }}>
             <p style={styles.curatorLabel}>Curated by</p>
             <p style={styles.curatorValue}>{collection.curator}</p>

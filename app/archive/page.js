@@ -44,12 +44,8 @@ function filterEntries(entries, filter) {
 
 const styles = {
   page: { backgroundColor: colors.paper, minHeight: "100vh" },
-  main: { maxWidth: 1100, margin: "0 auto", padding: "48px 24px 80px" },
-  stripRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-    gap: 24,
-  },
+  main: { maxWidth: 1100, margin: "0 auto" },
+  stripRow: { display: "grid", gap: 24 },
 };
 
 export default function ArchivePage() {
@@ -59,7 +55,7 @@ export default function ArchivePage() {
   return (
     <div style={styles.page}>
       <NavBar brand="Rooted Khmer" />
-      <main style={styles.main}>
+      <main style={styles.main} className="archive-main">
         <SearchFilter
           categories={categories}
           initialCategory={filter.category}
@@ -69,7 +65,7 @@ export default function ArchivePage() {
         />
 
         {filteredEntries.length > 0 ? (
-          <div style={styles.stripRow}>
+          <div style={styles.stripRow} className="entries-grid">
             {filteredEntries.map((entry) => (
               <EntryCard key={entry.id} {...entry} />
             ))}

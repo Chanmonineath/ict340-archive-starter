@@ -77,7 +77,7 @@ export default function EntryCard({
 
       <hr style={{ border: "none", borderTop: "1px solid " + colors.silk, margin: 0 }} />
 
-      <div style={{ display: "flex", gap: 24 }}>
+      <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
         <div>
           <p style={label}>Contributor</p>
           <p style={value}>{contributor}</p>
@@ -113,7 +113,7 @@ export default function EntryCard({
 
       <hr style={{ border: "none", borderTop: "1px solid " + colors.silk, margin: 0 }} />
 
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
         <p style={{ fontFamily: "var(--font-body), sans-serif", fontStyle: "italic", fontSize: 13, color: colors.teak + "99", margin: 0 }}>
           Takes {duration}
         </p>

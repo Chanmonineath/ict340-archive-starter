@@ -56,3 +56,125 @@ html {
   width: 0;
   height: 0;
 }
+
+/* ===== Responsive layout ===== */
+/* Breakpoints: desktop (default) > tablet (<=1024px) > mobile (<=640px) > narrow phone (<=480px) */
+
+.hero-wrap {
+  padding: 96px 24px 80px;
+}
+
+.hero-title {
+  font-size: 72px;
+}
+
+.hero-statement {
+  font-size: 34px;
+}
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-wrap {
+    padding: 56px 20px 48px;
+  }
+  .hero-title {
+    font-size: 38px;
+  }
+  .hero-statement {
+    font-size: 26px;
+  }
+}
+
+.archive-main {
+  padding: 48px 24px 80px;
+}
+
+.discover-main {
+  padding: 64px 24px 80px;
+}
+
+.contribute-main {
+  padding: 64px 24px 80px;
+}
+
+@media (max-width: 640px) {
+  .archive-main,
+  .discover-main,
+  .contribute-main {
+    padding: 32px 16px 56px;
+  }
+}
+
+.entries-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.curator-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+@media (max-width: 480px) {
+  .entries-grid,
+  .curator-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.discover-title {
+  font-size: 40px;
+}
+
+@media (max-width: 640px) {
+  .discover-title {
+    font-size: 28px;
+  }
+}
+
+.browse-heading {
+  font-size: 32px;
+}
+
+@media (max-width: 640px) {
+  .browse-heading {
+    font-size: 24px;
+  }
+}
+
+.modal-overlay {
+  padding: 24px;
+}
+
+.modal-scroll {
+  padding: 32px;
+}
+
+.modal-title {
+  font-size: 30px;
+}
+
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+  .modal-scroll {
+    padding: 20px;
+  }
+  .modal-title {
+    font-size: 22px;
+  }
+}
+
+.contribute-title {
+  font-size: 32px;
+}
+
+@media (max-width: 640px) {
+  .contribute-title {
+    font-size: 24px;
+  }
+}

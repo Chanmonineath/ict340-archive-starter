@@ -11,13 +11,11 @@ export default function Hero({
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    padding: "96px 24px 80px",
     backgroundColor: colors.paper,
     position: "relative",
   };
   const brandStyle = {
     fontFamily: "var(--font-heading), serif",
-    fontSize: 72,
     fontWeight: 700,
     color: colors.teak,
     margin: 0,
@@ -35,7 +33,6 @@ export default function Hero({
   };
   const statementStyle = {
     fontFamily: "var(--font-heading), serif",
-    fontSize: 34,
     fontWeight: 700,
     color: colors.teak,
     margin: "0 0 24px",
@@ -99,10 +96,10 @@ export default function Hero({
     gap: 8,
   };
   return (
-    <section style={wrap} role="region" aria-label="Introduction">
-      <h1 style={brandStyle}>{brand}</h1>
+    <section style={wrap} className="hero-wrap" role="region" aria-label="Introduction">
+      <h1 style={brandStyle} className="hero-title">{brand}</h1>
       <p style={subtitleStyle}>{subtitle}</p>
-      <p style={statementStyle}>{statement}</p>
+      <p style={statementStyle} className="hero-statement">{statement}</p>
       <p style={supportStyle}>{supportCopy}</p>
       <p style={aboutStyle}>{aboutCopy}</p>
       <div style={buttonRow}>

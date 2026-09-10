@@ -28,7 +28,6 @@ export default function EntryModal({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: 24,
     zIndex: 50,
   };
   const modal = {
@@ -38,7 +37,6 @@ export default function EntryModal({
     width: "100%",
     maxHeight: "85vh",
     overflowY: "auto",
-    padding: 32,
     display: "flex",
     flexDirection: "column",
     gap: 20,
@@ -72,7 +70,7 @@ export default function EntryModal({
   };
 
   return (
-    <div style={overlay} onClick={onClose}>
+    <div style={overlay} className="modal-overlay" onClick={onClose}>
       <div
         style={modal}
         className="modal-scroll"
@@ -88,7 +86,7 @@ export default function EntryModal({
                 {khmerName}
               </p>
             )}
-            <h2 style={{ fontFamily: "var(--font-heading), serif", fontSize: 30, fontWeight: 700, color: colors.teak, margin: 0 }}>
+            <h2 className="modal-title" style={{ fontFamily: "var(--font-heading), serif", fontWeight: 700, color: colors.teak, margin: 0 }}>
               {title}
             </h2>
           </div>
@@ -108,7 +106,7 @@ export default function EntryModal({
 
         <hr style={{ border: "none", borderTop: "1px solid " + colors.silk, margin: 0 }} />
 
-        <div style={{ display: "flex", gap: 24 }}>
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
           <div>
             <p style={label}>Contributor</p>
             <p style={value}>{contributor}</p>
