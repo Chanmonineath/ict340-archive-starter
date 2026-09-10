@@ -1,7 +1,18 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scrollbar-width: thin;
   scrollbar-color: #2E3B2A #FAF6EC;
   scrollbar-gutter: stable;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
