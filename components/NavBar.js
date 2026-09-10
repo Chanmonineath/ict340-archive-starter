@@ -42,32 +42,27 @@ export default function NavBar({ brand }) {
     letterSpacing: "-0.02em",
   };
   const nav = {
-    display: "flex",
     alignItems: "center",
   };
-  const linkStyle = (isActive) => ({
+  const linkStyle = {
     fontFamily: "var(--font-body), sans-serif",
     fontSize: 13,
     fontWeight: 500,
-    color: isActive ? colors.teak : colors.teak + "CC",
     textDecoration: "none",
     textTransform: "uppercase",
     letterSpacing: "0.08em",
     paddingBottom: 6,
-    borderBottom: "2px solid " + (isActive ? colors.teak : "transparent"),
-  });
-  const mobileLinkStyle = (isActive) => ({
+  };
+  const mobileLinkStyle = {
     fontFamily: "var(--font-body), sans-serif",
     fontSize: 14,
     fontWeight: 600,
-    color: isActive ? "#ffffff" : colors.teak,
     textDecoration: "none",
     textTransform: "uppercase",
     letterSpacing: "0.08em",
     padding: "12px 16px",
     borderRadius: 8,
-    backgroundColor: isActive ? colors.active : "transparent",
-  });
+  };
 
   return (
     <nav style={wrap} className="nav-wrap" aria-label="Primary">
@@ -77,16 +72,20 @@ export default function NavBar({ brand }) {
         </Link>
 
         <div style={nav} className="nav-links">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              style={linkStyle(pathname === href)}
-              aria-current={pathname === href ? "page" : undefined}
-            >
-              {label}
-            </Link>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                style={linkStyle}
+                className={"nav-link" + (isActive ? " nav-link-active" : "")}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </div>
 
         <button
@@ -107,16 +106,20 @@ export default function NavBar({ brand }) {
         id="mobile-nav-panel"
         className={"nav-mobile-panel" + (isMenuOpen ? " nav-mobile-panel-open" : "")}
       >
-        {navLinks.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            style={mobileLinkStyle(pathname === href)}
-            aria-current={pathname === href ? "page" : undefined}
-          >
-            {label}
-          </Link>
-        ))}
+        {navLinks.map(({ href, label }) => {
+          const isActive = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              style={mobileLinkStyle}
+              className={"nav-mobile-link" + (isActive ? " nav-mobile-link-active" : "")}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {label}
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );
