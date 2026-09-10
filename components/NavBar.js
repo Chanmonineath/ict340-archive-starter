@@ -17,10 +17,21 @@ export default function NavBar({ brand }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isHidden, setIsHidden] = React.useState(false);
+  const [navHeight, setNavHeight] = React.useState(0);
+  const navRef = React.useRef(null);
 
   React.useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
+
+  React.useEffect(() => {
+    const updateHeight = () => {
+      if (navRef.current) setNavHeight(navRef.current.offsetHeight);
+    };
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   React.useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -50,8 +61,10 @@ export default function NavBar({ brand }) {
   }, [isMenuOpen]);
 
   const wrap = {
-    position: "sticky",
+    position: "fixed",
     top: 0,
+    left: 0,
+    right: 0,
     zIndex: 10,
     backgroundColor: colors.paper,
     borderBottom: "1px solid " + colors.silk,
@@ -95,7 +108,8 @@ export default function NavBar({ brand }) {
   };
 
   return (
-    <nav style={wrap} className="nav-wrap" aria-label="Primary">
+    <>
+    <nav ref={navRef} style={wrap} className="nav-wrap" aria-label="Primary">
       <div style={topRow} className="nav-top-row">
         <Link href="/" style={{ ...brandStyle, textDecoration: "none" }}>
           {brand}
@@ -160,5 +174,7 @@ export default function NavBar({ brand }) {
         })}
       </div>
     </nav>
+    <div style={{ height: navHeight }} aria-hidden="true" />
+    </>
   );
 }
