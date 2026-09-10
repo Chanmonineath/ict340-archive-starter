@@ -16,10 +16,38 @@ const navLinks = [
 export default function NavBar({ brand }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isHidden, setIsHidden] = React.useState(false);
 
   React.useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
+
+  React.useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+
+      if (isMenuOpen) {
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY <= 80) {
+        setIsHidden(false);
+      } else if (delta > 0) {
+        setIsHidden(true);
+      } else if (delta < 0) {
+        setIsHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen]);
 
   const wrap = {
     position: "sticky",
@@ -27,6 +55,8 @@ export default function NavBar({ brand }) {
     zIndex: 10,
     backgroundColor: colors.paper,
     borderBottom: "1px solid " + colors.silk,
+    transform: isHidden ? "translateY(-100%)" : "none",
+    transition: "transform 0.25s ease",
   };
   const topRow = {
     display: "flex",
