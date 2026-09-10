@@ -15,6 +15,10 @@ body {
   overflow-x: hidden;
 }
 
+.search-suggestion-item:hover {
+  background-color: rgba(46, 91, 58, 0.1);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

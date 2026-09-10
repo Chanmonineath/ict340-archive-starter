@@ -24,21 +24,9 @@ function filterEntries(entries, filter) {
       return matchesCategory;
     }
 
-    const processText = Array.isArray(entry.process) ? entry.process.join(" ") : entry.process;
-    const searchableText = [
-      entry.title,
-      entry.khmerName,
-      entry.contributor,
-      entry.place,
-      entry.ingredients,
-      processText,
-      entry.benefit,
-    ]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
+    const matchesName = entry.title.toLowerCase().includes(query);
 
-    return matchesCategory && searchableText.includes(query);
+    return matchesCategory && matchesName;
   });
 }
 
@@ -58,6 +46,7 @@ export default function ArchivePage() {
       <main style={styles.main} className="archive-main">
         <SearchFilter
           categories={categories}
+          entries={entries}
           initialCategory={filter.category}
           initialQuery={filter.query}
           onFilterChange={setFilter}

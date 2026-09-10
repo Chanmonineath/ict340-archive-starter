@@ -18,6 +18,7 @@ export default function SearchFilter({
   initialQuery,
   resultsCount,
   categories = ["All"],
+  entries = [],
 }) {
   const [selectedCategory, setSelectedCategory] = React.useState(initialCategory || "All");
   const [searchQuery, setSearchQuery] = React.useState(initialQuery || "");
@@ -27,6 +28,19 @@ export default function SearchFilter({
     onFilterChange({ category: selectedCategory, query: searchQuery });
   }, [selectedCategory, searchQuery, onFilterChange]);
 
+  const trimmedQuery = searchQuery.trim();
+  const suggestions =
+    trimmedQuery.length > 2
+      ? entries
+          .filter((entry) => entry.title.toLowerCase().includes(trimmedQuery.toLowerCase()))
+          .slice(0, 6)
+      : [];
+  const showSuggestions = isFocused && suggestions.length > 0;
+
+  const selectSuggestion = (title) => {
+    setSearchQuery(title);
+  };
+
   const styles = {
     filterContainer: { display: "flex", flexDirection: "column", gap: 20, marginBottom: 32 },
     searchContainer: { position: "relative" },
@@ -34,7 +48,7 @@ export default function SearchFilter({
       width: "100%",
       padding: "14px 20px 14px 46px",
       fontSize: 16,
-      fontFamily: "var(--font-heading), serif",
+      fontFamily: "var(--font-body), sans-serif",
       fontWeight: 500,
       color: colors.text,
       backgroundColor: colors.cream,
@@ -52,6 +66,29 @@ export default function SearchFilter({
       width: "18px",
       height: "18px",
       opacity: 0.4,
+    },
+    suggestionsList: {
+      position: "absolute",
+      top: "calc(100% + 6px)",
+      left: 0,
+      right: 0,
+      backgroundColor: colors.cream,
+      border: "1px solid " + colors.silk,
+      borderRadius: 16,
+      boxShadow: "0 8px 24px rgba(46, 59, 42, 0.12)",
+      overflow: "hidden",
+      zIndex: 20,
+      margin: 0,
+      padding: 6,
+      listStyle: "none",
+    },
+    suggestionItem: {
+      padding: "10px 14px",
+      borderRadius: 10,
+      fontFamily: "var(--font-body), sans-serif",
+      fontSize: 14,
+      color: colors.text,
+      cursor: "pointer",
     },
     categoriesContainer: { display: "flex", flexWrap: "wrap", gap: 12, paddingTop: 8 },
     resultsCount: {
@@ -120,13 +157,33 @@ export default function SearchFilter({
         <input
           type="text"
           style={styles.searchInput}
-          placeholder="Search by name, ingredients, or description..."
+          placeholder="Search by name..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           aria-label="Search entries"
+          role="combobox"
+          aria-expanded={showSuggestions}
+          aria-controls="search-suggestions"
+          aria-autocomplete="list"
         />
+        {showSuggestions && (
+          <ul id="search-suggestions" style={styles.suggestionsList} role="listbox">
+            {suggestions.map((entry) => (
+              <li
+                key={entry.id}
+                role="option"
+                aria-selected={false}
+                className="search-suggestion-item"
+                style={styles.suggestionItem}
+                onMouseDown={() => selectSuggestion(entry.title)}
+              >
+                {entry.title}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <div style={styles.categoriesContainer} role="tablist" aria-label="Filter by category">
