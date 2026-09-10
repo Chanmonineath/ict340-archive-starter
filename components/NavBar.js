@@ -102,6 +102,14 @@ export default function NavBar({ brand }) {
         </button>
       </div>
 
+      {isMenuOpen && (
+        <div
+          className="nav-mobile-backdrop"
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       <div
         id="mobile-nav-panel"
         className={"nav-mobile-panel" + (isMenuOpen ? " nav-mobile-panel-open" : "")}
