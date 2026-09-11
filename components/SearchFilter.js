@@ -29,10 +29,14 @@ export default function SearchFilter({
   }, [selectedCategory, searchQuery, onFilterChange]);
 
   const trimmedQuery = searchQuery.trim();
+  const queryTokens = trimmedQuery.toLowerCase().split(/\s+/).filter(Boolean);
   const suggestions =
     trimmedQuery.length > 2
       ? entries
-          .filter((entry) => entry.title.toLowerCase().includes(trimmedQuery.toLowerCase()))
+          .filter((entry) => {
+            const searchableText = (entry.title + " " + (entry.khmerName || "")).toLowerCase();
+            return queryTokens.every((token) => searchableText.includes(token));
+          })
           .slice(0, 6)
       : [];
   const showSuggestions = isFocused && suggestions.length > 0;
@@ -180,6 +184,11 @@ export default function SearchFilter({
                 onMouseDown={() => selectSuggestion(entry.title)}
               >
                 {entry.title}
+                {entry.khmerName && (
+                  <span style={{ color: colors.textInactive, marginLeft: 8 }}>
+                    {entry.khmerName}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

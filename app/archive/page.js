@@ -15,16 +15,17 @@ const colors = {
 const categories = ["All", ...new Set(entries.map((entry) => entry.category))];
 
 function filterEntries(entries, filter) {
-  const query = filter.query.trim().toLowerCase();
+  const queryTokens = filter.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
 
   return entries.filter((entry) => {
     const matchesCategory = filter.category === "All" || entry.category === filter.category;
 
-    if (!query) {
+    if (queryTokens.length === 0) {
       return matchesCategory;
     }
 
-    const matchesName = entry.title.toLowerCase().includes(query);
+    const searchableText = (entry.title + " " + (entry.khmerName || "")).toLowerCase();
+    const matchesName = queryTokens.every((token) => searchableText.includes(token));
 
     return matchesCategory && matchesName;
   });
