@@ -34,9 +34,15 @@ export default function NavBar({ brand }) {
   }, []);
 
   React.useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 640px)");
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
+      if (!mobileQuery.matches) {
+        setIsHidden(false);
+        return;
+      }
+
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY;
 
@@ -56,8 +62,17 @@ export default function NavBar({ brand }) {
       lastScrollY = currentScrollY;
     };
 
+    const handleQueryChange = () => {
+      if (!mobileQuery.matches) setIsHidden(false);
+      lastScrollY = window.scrollY;
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    mobileQuery.addEventListener("change", handleQueryChange);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      mobileQuery.removeEventListener("change", handleQueryChange);
+    };
   }, [isMenuOpen]);
 
   const wrap = {
