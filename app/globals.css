@@ -261,7 +261,13 @@ body {
 }
 
 .entries-grid {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 640px) {
+  .entries-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .curator-grid {
@@ -269,7 +275,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .entries-grid,
   .curator-grid {
     grid-template-columns: 1fr;
   }
