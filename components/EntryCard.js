@@ -2,6 +2,7 @@
 
 import React from "react";
 import EntryModal from "./EntryModal.js";
+import EntryPhoto from "./EntryPhoto.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -12,7 +13,7 @@ const colors = {
 };
 
 export default function EntryCard({
-  title, khmerName, contributor, place, ingredients, process, benefit, duration,
+  title, khmerName, contributor, place, ingredients, process, benefit, duration, imageLabel,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const steps = Array.isArray(process) ? process : [process];
@@ -66,6 +67,8 @@ export default function EntryCard({
         borderRadius: 16,
       }}
     >
+      <EntryPhoto label={imageLabel} />
+
       {khmerName && (
         <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
           {khmerName}
@@ -145,6 +148,7 @@ export default function EntryCard({
           ingredients={ingredients}
           process={steps}
           benefit={benefit}
+          imageLabel={imageLabel}
           onClose={() => setIsOpen(false)}
         />
       )}

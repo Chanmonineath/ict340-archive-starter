@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import EntryPhoto from "./EntryPhoto.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -11,7 +12,7 @@ const colors = {
 };
 
 export default function EntryModal({
-  title, khmerName, contributor, place, ingredients, process, benefit, onClose,
+  title, khmerName, contributor, place, ingredients, process, benefit, imageLabel, onClose,
 }) {
   React.useEffect(() => {
     const handleKeyDown = (e) => {
@@ -79,6 +80,8 @@ export default function EntryModal({
         aria-label={"Full remedy: " + title}
         onClick={(e) => e.stopPropagation()}
       >
+        <EntryPhoto label={imageLabel} />
+
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div>
             {khmerName && (

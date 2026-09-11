@@ -18,6 +18,7 @@ const entries = [
     benefit:
       "Coconut oil may help skin and hair feel softer and smoother because it reduces moisture loss and acts as an oil-based moisturizer. It may also make hair look shinier and help reduce the feeling of dryness or frizz. It is not proven to remove stretch marks, although moisturizing may make dry skin feel more comfortable and may improve its temporary appearance.",
     duration: "~45 mins",
+    imageLabel: "Photo placeholder — coconut oil jar",
   },
   {
     id: "coffee-tamarind-scrub",
@@ -36,6 +37,7 @@ const entries = [
     benefit:
       "The coffee grounds may provide physical exfoliation, which can remove loose surface dead skin cells and leave body skin feeling temporarily smoother. Tamarind contains natural fruit acids, so it may add mild exfoliation, but it can also irritate sensitive skin. This scrub does not permanently whiten skin, erase scars, cure acne, or remove stretch marks.",
     duration: "~15 mins",
+    imageLabel: "Photo placeholder — coffee tamarind scrub",
   },
   {
     id: "ponlai-turmeric-honey-tamarind-scrub",
@@ -55,6 +57,7 @@ const entries = [
     benefit:
       "This behaves like a scrub, and that is the honest version of it. The powders give the gentle scratch and the tamarind does the rest — ripe pulp is full of fruit acids that loosen dead surface cells, which is why skin feels smoother after. Honey keeps it from feeling stripped. Ponlai and រមៀត are old Khmer skin botanicals with real anti-inflammatory activity behind them, though not proven cosmetic actives. It will not whiten your skin for good, erase old acne marks, or take away stretch marks. Turmeric tints skin yellow for a day or two and causes allergic reactions in some people. Patch test your arm first, keep it to once or twice a week.",
     duration: "~20 mins",
+    imageLabel: "Photo placeholder — ponlai turmeric scrub",
   },
   {
     id: "kaffir-lime-hair-mask",
@@ -73,6 +76,7 @@ const entries = [
     benefit:
       "In Cambodia the juice of ក្រូចសើច is traditionally used as a natural hair cleanser and conditioner, and the fruit is commonly made into home-made សាប៊ូកក់សក់. Khmer health writing lists hair care among its main benefits, and small Cambodian producers build natural shampoos around it. It cleans and de-greases the scalp and leaves hair smooth and fragrant.",
     duration: "~15 mins",
+    imageLabel: "Photo placeholder — kaffir lime fruit",
   },
   {
     id: "spanish-thyme-cough-remedy",
@@ -91,6 +95,7 @@ const entries = [
     benefit:
       "This one has more behind it than most home remedies. In Cambodia the plant has long been used to keep colds off children, and crushed leaf juice is the standard way to take it across Southeast Asia. The oil in those thick leaves is heavy in carvacrol and thymol, real expectorants that loosen phlegm, and a double-blind trial found less coughing and easier expectoration within a week. Still, it is relief, not a cure — a cough lasting over two weeks, or with fever or trouble breathing, needs a doctor. No honey for babies under one.",
     duration: "~10 mins",
+    imageLabel: "Photo placeholder — Spanish thyme leaves",
   },
   {
     id: "noni-fruit-tonic",
@@ -109,6 +114,7 @@ const entries = [
     benefit:
       "Khmer families have used ញរ for about two hundred years, and everything on the tree gets used — the young leaves wrap fish amok, and the crushed bark becomes an ointment for sore muscles and joints. The fruit is the medicine part: people take it for immunity, aching joints, skin and signs of ageing, and to help keep blood pressure down. Some of that holds up. A trial in heavy smokers found real drops in cholesterol and inflammation, and a small study of ten people saw blood pressure fall from 144/83 to 132/76 after a month. But these studies are small, and nothing is proven. Elders here already warn it off for pregnant women and anyone with kidney or liver trouble — good advice, because ញរ is heavy in potassium and has been linked to rare liver injury. Expect a foul smell and bad breath, and stop if your eyes or urine turn dark.",
     duration: "~10 mins",
+    imageLabel: "Photo placeholder — noni fruit jar",
   },
 ];
 
