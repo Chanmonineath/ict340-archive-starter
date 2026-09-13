@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const colors = { gold: "#B8893A", teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", paper: "#FAF6EC" };
+const colors = { gold: "#B8893A", teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", paper: "#FAF6EC", button: "#2E5B3A" };
 
 export default function Hero({
   brand, subtitle, statement, supportCopy, aboutCopy,
@@ -66,7 +66,7 @@ export default function Hero({
     fontSize: 14,
     fontWeight: 600,
     color: colors.paper,
-    backgroundColor: colors.leaf,
+    backgroundColor: colors.button,
     border: "none",
     padding: "14px 32px",
     borderRadius: 6,

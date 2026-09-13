@@ -1,4 +1,4 @@
-const colors = { teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", sand: "#F5EFE2", cream: "#FDF8E9" };
+const colors = { teak: "#2E3B2A", silk: "#E8DCC0", sand: "#F5EFE2", cream: "#FDF8E9", button: "#2E5B3A" };
 
 export default function ContributeBanner() {
   const wrap = {
@@ -31,7 +31,7 @@ export default function ContributeBanner() {
     fontSize: 14,
     fontWeight: 600,
     color: colors.cream,
-    backgroundColor: colors.leaf,
+    backgroundColor: colors.button,
     border: "none",
     padding: "14px 36px",
     borderRadius: 6,

@@ -10,6 +10,7 @@ const colors = {
   cream: "#FDF8E9",
   silk: "#E8DCC0",
   box: "#F1E9D8",
+  button: "#2E5B3A",
 };
 
 export default function EntryModal({
@@ -162,7 +163,7 @@ export default function EntryModal({
             fontSize: 13,
             fontWeight: 600,
             color: colors.cream,
-            backgroundColor: colors.teak,
+            backgroundColor: colors.button,
             border: "none",
             padding: "12px 24px",
             borderRadius: 9999,
