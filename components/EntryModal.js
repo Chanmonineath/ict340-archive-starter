@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import EntryPhoto from "./EntryPhoto.js";
+// Re-enable once real photos replace the placeholder text:
+// import EntryPhoto from "./EntryPhoto.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -80,7 +81,7 @@ export default function EntryModal({
         aria-label={"Full remedy: " + title}
         onClick={(e) => e.stopPropagation()}
       >
-        <EntryPhoto label={imageLabel} />
+        {/* <EntryPhoto label={imageLabel} /> */}
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div>

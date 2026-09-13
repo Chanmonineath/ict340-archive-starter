@@ -2,7 +2,8 @@
 
 import React from "react";
 import EntryModal from "./EntryModal.js";
-import EntryPhoto from "./EntryPhoto.js";
+// Re-enable once real photos replace the placeholder text:
+// import EntryPhoto from "./EntryPhoto.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -67,7 +68,7 @@ export default function EntryCard({
         borderRadius: 16,
       }}
     >
-      <EntryPhoto label={imageLabel} />
+      {/* <EntryPhoto label={imageLabel} /> */}
 
       {khmerName && (
         <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
