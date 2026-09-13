@@ -76,7 +76,7 @@ export default function EntryCard({
           {khmerName}
         </p>
       )}
-      <h3 style={{ fontFamily: "var(--font-heading), serif", fontSize: 24, fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
+      <h3 style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 24, fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
         {title}
       </h3>
 

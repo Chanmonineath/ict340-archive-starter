@@ -57,7 +57,7 @@ const styles = {
     margin: 0,
   },
   curatorValue: {
-    fontFamily: "var(--font-heading), serif",
+    fontFamily: "var(--font-body), sans-serif",
     fontSize: 26,
     fontWeight: 700,
     color: colors.teak,
