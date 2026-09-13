@@ -150,7 +150,7 @@ export default function EntryModal({
         {benefit && (
           <div>
             <p style={label}>Benefit &amp; Wellness Notes</p>
-            <p style={{ ...box, fontStyle: "italic" }}>{benefit}</p>
+            <p style={box}>{benefit}</p>
           </div>
         )}
 
