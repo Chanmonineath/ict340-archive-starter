@@ -1,28 +1,17 @@
-# Khmer Living Archive — starter
+# Rooted Khmer
 
-This is the starting point for your ICT 340 capstone: a community archive that preserves a piece of Khmer culture. Right now it's one page. By December it will browse, search, take contributions, and publish reviewed entries. Same skeleton for everyone; the collection is yours.
+A community archive of traditional Khmer home remedies and plant knowledge — coconut oil, kaffir lime hair mask, ponlai and turmeric scrubs, and more — each entry sourced from a real family member or community source, with a Khmer name, ingredients, step-by-step process, and a sourced benefit/caution note.
 
-## Lab 1: get this live
+Built for ICT 340 (American University of Phnom Penh). Sprint 1 covers browsing and search.
 
-Follow the Lab 1 guide on Canvas. The short version:
+## Pages
 
-1. Click **Use this template** (top right) → **Create a new repository**. Name it after your archive.
-2. Go to [vercel.com](https://vercel.com), sign in with GitHub, **Add New → Project**, import your new repository, and click **Deploy**.
-3. Clone your repo, open it in VS Code, edit `collection.config.js` (the only file you touch today), then commit and push:
+- **Home** — introduction and entry points into the archive
+- **Discover** — who curated this archive and where the knowledge comes from
+- **Archive** — every entry, with live search (English and Khmer, case-insensitive, multi-word) and category filtering
+- **Contribute** — how to submit a new entry
 
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-   cd YOUR-REPO-NAME
-   code .
-   # edit collection.config.js, then:
-   git add .
-   git commit -m "make it mine"
-   git push
-   ```
-
-4. Watch Vercel redeploy on its own, then submit your live URL to the Lab 1 assignment on Canvas.
-
-## Running it locally (optional today, needed from week 2)
+## Running it locally
 
 ```bash
 npm install
@@ -30,6 +19,13 @@ npm run dev
 ```
 
 Then open http://localhost:3000.
+
+## Structure
+
+- `data/entries.js` — the archive's entries; each one has a title, Khmer name, category, contributor, place, ingredients, process steps, and a benefit note
+- `collection.config.js` — site-wide identity (name, curator, source)
+- `components/` — shared UI (nav, hero, entry cards, search/filter, modal)
+- `app/` — the four pages (Next.js App Router)
 
 ## Rules of the road
 

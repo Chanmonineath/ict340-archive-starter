@@ -1,13 +1,5 @@
-// ============================================================
-//  YOUR ARCHIVE STARTS HERE
-//
-//  This is the only file you edit in Lab 1.
-//  Change the four values below, commit, and watch your
-//  live site update itself.
-// ============================================================
-
+// Site-wide identity used across the home, discover, and contribute pages.
 const collection = {
-  // What does your archive collect? e.g. "Khmer Proverbs"
   name: "Rooted Khmer",
   subtitle: "Traditional Plant Knowledge & Home Practices",
 
