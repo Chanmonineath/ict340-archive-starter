@@ -112,9 +112,50 @@ const entries = [
       "Drink a small amount before meals, three or four times a day.",
     ],
     benefit:
-      "Khmer families have used ញរ for about two hundred years, and everything on the tree gets used — the young leaves wrap fish amok, and the crushed bark becomes an ointment for sore muscles and joints. The fruit is the medicine part: people take it for immunity, aching joints, skin and signs of ageing, and to help keep blood pressure down. Some of that holds up. A trial in heavy smokers found real drops in cholesterol and inflammation, and a small study of ten people saw blood pressure fall from 144/83 to 132/76 after a month. But these studies are small, and nothing is proven. Elders here already warn it off for pregnant women and anyone with kidney or liver trouble — good advice, because ញរ is heavy in potassium and has been linked to rare liver injury. Expect a foul smell and bad breath, and stop if your eyes or urine turn dark.",
+      "Khmer families have used ញរ for about two hundred years, and everything on the tree gets used, the young leaves wrap fish amok, and the crushed bark becomes an ointment for sore muscles and joints. The fruit is the medicine part: people take it for immunity, aching joints, skin and signs of ageing, and to help keep blood pressure down. Some of that holds up. A trial in heavy smokers found real drops in cholesterol and inflammation, and a small study of ten people saw blood pressure fall from 144/83 to 132/76 after a month. But these studies are small, and nothing is proven. Elders here already warn it off for pregnant women and anyone with kidney or liver trouble, good advice, because ញរ is heavy in potassium and has been linked to rare liver injury. Expect a foul smell and bad breath, and stop if your eyes or urine turn dark.",
     duration: "~10 mins",
     imageLabel: "Photo placeholder — noni fruit jar",
+  },
+  {
+    id: "khmer-ponlai-wine",
+    title: "Khmer Ponlai and Turmeric Body Rub",
+    khmerName: "ស្រាពន្លៃខ្មែរ",
+    category: "Hair & Skin",
+    contributor: "Khmer traditional remedy",
+    place: "Cambodia",
+    ingredients:
+      "Dried ponlai (ពន្លៃ), dried turmeric (រមៀត), and homemade Cambodian rice wine (ស្រាស)",
+    process: [
+      "Wash, slice, and dry the ponlai and turmeric completely.",
+      "Grind them into a fine powder and remove any rough pieces.",
+      "Mix the powder with enough rice wine to make a thin paste.",
+      "After bathing, wipe a small amount gently over the body.",
+      "Leave it during the day, then wash it off before sleeping.",
+      "Traditionally, women repeat this for several days after childbirth or during menstruation.",
+    ],
+    benefit:
+      "Cambodian women traditionally use this body rub after childbirth and during menstruation to feel warm and fresh and to make the skin look brighter. These are traditional beliefs rather than proven medical benefits. Patch test first and keep it away from the face, breasts, intimate areas, wounds, and Caesarean incisions.",
+    duration: "~20 mins to prepare",
+    imageLabel: "Photo placeholder — khmer ponlai and turmeric body rub",
+  },
+  {
+    id: "aloe-vera-skin-gel",
+    title: "Fresh Aloe Vera Skin Gel",
+    khmerName: "ប្រទាលកន្ទុយក្រពើ",
+    category: "Hair & Skin",
+    contributor: "Khmer household remedy",
+    place: "Cambodia",
+    ingredients:
+      "One fresh aloe vera leaf (ប្រទាលកន្ទុយក្រពើ) and clean water",
+    process: [
+      "Wash the leaf, cut off the edges, and peel away the green skin.",
+      "Remove the yellow sap, rinse the clear gel well, then mash it until smooth.",
+      "Apply a thin layer to clean skin, leave for 10–15 minutes, and rinse with water.",
+    ],
+    benefit:
+      "Aloe vera is commonly used in Cambodia to cool, soothe, and moisturize dry or sun-heated skin. It may also help ease minor burns and irritation, but it cannot remove scars or permanently brighten skin. Patch test first and do not use it on deep burns or infected wounds.",
+    duration: "~15 mins",
+    imageLabel: "Photo placeholder — fresh aloe vera leaf and gel",
   },
 ];
 
