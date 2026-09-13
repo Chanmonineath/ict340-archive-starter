@@ -44,7 +44,7 @@ const entries = [
     title: "Ponlai, Turmeric, Honey and Ripe Tamarind Body Scrub",
     khmerName: "ពន្លៃ រមៀត ទឹកឃ្មុំ និងអំពិលទុំ",
     category: "Hair & Skin",
-    contributor: "Aunt",
+    contributor: "My Aunt",
     place: "Phnom Penh",
     ingredients:
       "Dried ponlai powder (ពន្លៃ), dried turmeric powder (រមៀត), raw honey, ripe tamarind pulp, and a splash of clean water if the paste goes too stiff",
@@ -83,7 +83,7 @@ const entries = [
     title: "Spanish Thyme for Cough",
     khmerName: "ជីត្រចៀកជ្រូក",
     category: "Cough & Cold",
-    contributor: "Uncle",
+    contributor: "My Uncle",
     place: "Phnom Penh",
     ingredients:
       "A small handful of fresh ជីត្រចៀកជ្រូក leaves (Plectranthus amboinicus), plus honey if you want to soften the taste",
@@ -102,7 +102,7 @@ const entries = [
     title: "Noni Fruit Tonic",
     khmerName: "ផ្លែញរ",
     category: "Heart & Circulation",
-    contributor: "Family elder",
+    contributor: "My Family elder",
     place: "Phnom Penh",
     ingredients:
       "ផ្លែញរ (Morinda citrifolia) picked when half-ripe, plus honey or palm sugar — enough to coat the fruit",
@@ -121,7 +121,7 @@ const entries = [
     title: "Khmer Ponlai and Turmeric Body Rub",
     khmerName: "ស្រាពន្លៃខ្មែរ",
     category: "Hair & Skin",
-    contributor: "Khmer traditional remedy",
+    contributor: "My Neighbor",
     place: "Cambodia",
     ingredients:
       "Dried ponlai (ពន្លៃ), dried turmeric (រមៀត), and homemade Cambodian rice wine (ស្រាស)",
@@ -143,10 +143,9 @@ const entries = [
     title: "Fresh Aloe Vera Skin Gel",
     khmerName: "ប្រទាលកន្ទុយក្រពើ",
     category: "Hair & Skin",
-    contributor: "Khmer household remedy",
+    contributor: "My Grandmother",
     place: "Cambodia",
-    ingredients:
-      "One fresh aloe vera leaf (ប្រទាលកន្ទុយក្រពើ) and clean water",
+    ingredients: "One fresh aloe vera leaf (ប្រទាលកន្ទុយក្រពើ) and clean water",
     process: [
       "Wash the leaf, cut off the edges, and peel away the green skin.",
       "Remove the yellow sap, rinse the clear gel well, then mash it until smooth.",
