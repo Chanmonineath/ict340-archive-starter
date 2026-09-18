@@ -3,8 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo.js";
+import AuthModal from "./AuthModal.js";
+import collection from "../collection.config.js";
+import useAutoHideHeader from "../hooks/useAutoHideHeader.js";
+import NavLinks from "./nav/NavLinks.js";
+import MobileNavPanel from "./nav/MobileNavPanel.js";
+import NavActions from "./nav/NavActions.js";
 
-const colors = { teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC", active: "#2E5B3A" };
+const colors = { teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC", active: "#24492E" };
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -13,12 +20,14 @@ const navLinks = [
   { href: "/contribute", label: "Contribute" },
 ];
 
-export default function NavBar({ brand }) {
+export default function NavBar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isHidden, setIsHidden] = React.useState(false);
+  const [isAuthOpen, setIsAuthOpen] = React.useState(false);
   const [navHeight, setNavHeight] = React.useState(0);
   const navRef = React.useRef(null);
+
+  const isHidden = useAutoHideHeader({ pauseWhile: isMenuOpen });
 
   React.useEffect(() => {
     setIsMenuOpen(false);
@@ -33,48 +42,6 @@ export default function NavBar({ brand }) {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  React.useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 640px)");
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      if (!mobileQuery.matches) {
-        setIsHidden(false);
-        return;
-      }
-
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-
-      if (isMenuOpen) {
-        lastScrollY = currentScrollY;
-        return;
-      }
-
-      if (currentScrollY <= 80) {
-        setIsHidden(false);
-      } else if (delta > 0) {
-        setIsHidden(true);
-      } else if (delta < 0) {
-        setIsHidden(false);
-      }
-
-      lastScrollY = currentScrollY;
-    };
-
-    const handleQueryChange = () => {
-      if (!mobileQuery.matches) setIsHidden(false);
-      lastScrollY = window.scrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    mobileQuery.addEventListener("change", handleQueryChange);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      mobileQuery.removeEventListener("change", handleQueryChange);
-    };
-  }, [isMenuOpen]);
-
   const wrap = {
     position: "fixed",
     top: 0,
@@ -86,110 +53,34 @@ export default function NavBar({ brand }) {
     transform: isHidden ? "translateY(-100%)" : "none",
     transition: "transform 0.25s ease",
   };
-  const topRow = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  };
-  const brandStyle = {
-    fontFamily: "var(--font-heading), serif",
-    fontSize: 20,
-    fontWeight: 700,
-    color: colors.teak,
-    margin: 0,
-    letterSpacing: "-0.02em",
-  };
-  const nav = {
-    alignItems: "center",
-  };
-  const linkStyle = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 13,
-    fontWeight: 500,
-    textDecoration: "none",
-    textTransform: "uppercase",
-    letterSpacing: "0.08em",
-    paddingBottom: 6,
-  };
-  const mobileLinkStyle = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 14,
-    fontWeight: 600,
-    textDecoration: "none",
-    textTransform: "uppercase",
-    letterSpacing: "0.08em",
-    padding: "12px 16px",
-    borderRadius: 8,
-  };
+  const topRow = { display: "flex", alignItems: "center", justifyContent: "space-between" };
 
   return (
     <>
-    <nav ref={navRef} style={wrap} className="nav-wrap" aria-label="Primary">
-      <div style={topRow} className="nav-top-row">
-        <Link href="/" style={{ ...brandStyle, textDecoration: "none" }}>
-          {brand}
-        </Link>
+      <nav ref={navRef} style={wrap} className="nav-wrap" aria-label="Primary">
+        <div style={topRow} className="nav-top-row">
+          <Link href="/" className="nav-brand" aria-label={`${collection.name} home`}>
+            <Logo height={34} />
+          </Link>
 
-        <div style={nav} className="nav-links">
-          {navLinks.map(({ href, label }) => {
-            const isActive = pathname === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                style={linkStyle}
-                className={"nav-link" + (isActive ? " nav-link-active" : "")}
-                aria-current={isActive ? "page" : undefined}
-              >
-                {label}
-              </Link>
-            );
-          })}
+          <NavLinks navLinks={navLinks} pathname={pathname} />
+
+          <NavActions
+            onLoginClick={() => setIsAuthOpen(true)}
+            isMenuOpen={isMenuOpen}
+            onToggleMenu={() => setIsMenuOpen((open) => !open)}
+          />
         </div>
 
-        <button
-          type="button"
-          className="nav-toggle"
-          onClick={() => setIsMenuOpen((open) => !open)}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-nav-panel"
-        >
-          <span className={"nav-toggle-bar" + (isMenuOpen ? " nav-toggle-bar-1-open" : "")} />
-          <span className={"nav-toggle-bar" + (isMenuOpen ? " nav-toggle-bar-2-open" : "")} />
-          <span className={"nav-toggle-bar" + (isMenuOpen ? " nav-toggle-bar-3-open" : "")} />
-        </button>
-      </div>
-
-      {isMenuOpen && (
-        <div
-          className="nav-mobile-backdrop"
-          onClick={() => setIsMenuOpen(false)}
-          aria-hidden="true"
+        <MobileNavPanel
+          navLinks={navLinks}
+          pathname={pathname}
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
         />
-      )}
-
-      <div
-        id="mobile-nav-panel"
-        className={"nav-mobile-panel" + (isMenuOpen ? " nav-mobile-panel-open" : "")}
-      >
-        {navLinks.map(({ href, label }) => {
-          const isActive = pathname === href;
-          return (
-            <Link
-              key={href}
-              href={href}
-              style={mobileLinkStyle}
-              className={"nav-mobile-link" + (isActive ? " nav-mobile-link-active" : "")}
-              aria-current={isActive ? "page" : undefined}
-            >
-              {label}
-            </Link>
-          );
-        })}
-      </div>
-    </nav>
-    <div style={{ height: navHeight }} aria-hidden="true" />
+      </nav>
+      <div style={{ height: navHeight }} aria-hidden="true" />
+      {isAuthOpen && <AuthModal onClose={() => setIsAuthOpen(false)} />}
     </>
   );
 }
