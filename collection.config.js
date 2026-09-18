@@ -1,11 +1,11 @@
 // Site-wide identity used across the home, discover, and contribute pages.
 const collection = {
-  name: "Rooted Khmer",
-  subtitle: "Traditional Plant Knowledge & Home Practices",
+  name: "PTEAH",
+  subtitle: "Traditional Home Practices",
 
   // One sentence: what is this archive, and why does it matter?
   description:
-    "An archive of Khmer traditional plant knowledge and home practices.",
+    "A living digital collection of traditional Cambodian home practices, natural body care, and kitchen remedies passed down through generation.",
 
   // Who is building this archive? Your name, as you want it shown.
   curator: "Sok Chanmonineath",

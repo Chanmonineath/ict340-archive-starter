@@ -21,7 +21,7 @@ const kantumruyPro = Kantumruy_Pro({
 });
 
 export const metadata = {
-  title: `${collection.name} — Khmer Living Archive`,
+  title: `${collection.name} — ${collection.subtitle}`,
   description: collection.description,
 };
 

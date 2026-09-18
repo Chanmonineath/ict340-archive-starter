@@ -55,7 +55,7 @@ const entries = [
       "Rub onto damp skin, massage lightly, leave 10 to 15 minutes, rinse well with lukewarm water, then moisturize. Once a week, not every day.",
     ],
     benefit:
-      "This behaves like a scrub, and that is the honest version of it. The powders give the gentle scratch and the tamarind does the rest — ripe pulp is full of fruit acids that loosen dead surface cells, which is why skin feels smoother after. Honey keeps it from feeling stripped. Ponlai and រមៀត are old Khmer skin botanicals with real anti-inflammatory activity behind them, though not proven cosmetic actives. It will not whiten your skin for good, erase old acne marks, or take away stretch marks. Turmeric tints skin yellow for a day or two and causes allergic reactions in some people. Patch test your arm first, keep it to once or twice a week.",
+      "It works like a gentle scrub: the powders exfoliate, tamarind fruit acids help smooth dead skin, and honey helps prevent dryness. Ponlai and turmeric may soothe inflammation, but they will not permanently whiten skin, remove acne scars, or erase stretch marks. Turmeric can temporarily stain skin yellow or cause allergies, so patch-test first and use only 1–2 times a week.",
     duration: "~20 mins",
     imageLabel: "Photo placeholder — ponlai turmeric scrub",
   },
@@ -93,7 +93,7 @@ const entries = [
       "Squeeze out the juice, take about a spoonful with honey, and sip slowly.",
     ],
     benefit:
-      "This one has more behind it than most home remedies. In Cambodia the plant has long been used to keep colds off children, and crushed leaf juice is the standard way to take it across Southeast Asia. The oil in those thick leaves is heavy in carvacrol and thymol, real expectorants that loosen phlegm, and a double-blind trial found less coughing and easier expectoration within a week. Still, it is relief, not a cure — a cough lasting over two weeks, or with fever or trouble breathing, needs a doctor. No honey for babies under one.",
+      "In Cambodian tradition, this leaf remedy is commonly used for children’s colds and coughs. Its crushed leaf juice may help loosen phlegm and ease coughing, but it is only for relief—not a cure. Seek medical care for a cough lasting over two weeks or with fever or breathing difficulty, and never give honey to babies under one.",
     duration: "~10 mins",
     imageLabel: "Photo placeholder — Spanish thyme leaves",
   },
@@ -112,7 +112,7 @@ const entries = [
       "Drink a small amount before meals, three or four times a day.",
     ],
     benefit:
-      "Khmer families have used ញរ for about two hundred years, and everything on the tree gets used, the young leaves wrap fish amok, and the crushed bark becomes an ointment for sore muscles and joints. The fruit is the medicine part: people take it for immunity, aching joints, skin and signs of ageing, and to help keep blood pressure down. Elders here already warn it off for pregnant women and anyone with kidney or liver trouble, good advice, because ញរ is heavy in potassium and has been linked to rare liver injury. Expect a foul smell and bad breath, and stop if your eyes or urine turn dark.",
+      "In Khmer tradition, ញរ has been used for generations: young leaves are used in fish amok, bark for sore muscles and joints, and the fruit for general wellness, joint pain, skin, ageing, and blood-pressure support. However, it can cause a strong smell and bad breath, is high in potassium, and has rarely been linked to liver problems. Avoid it during pregnancy or if you have kidney or liver disease, and stop using it if you notice dark urine or yellowing/darkening of the eyes.",
     duration: "~10 mins",
     imageLabel: "Photo placeholder — noni fruit jar",
   },
