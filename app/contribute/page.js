@@ -1,5 +1,6 @@
 import NavBar from "../../components/NavBar.js";
 import ContributeBanner from "../../components/ContributeBanner.js";
+import Footer from "../../components/Footer.js";
 
 const colors = { paper: "#FAF6EC" };
 
@@ -11,10 +12,11 @@ const styles = {
 export default function ContributePage() {
   return (
     <div style={styles.page}>
-      <NavBar brand="Rooted Khmer" />
+      <NavBar />
       <main style={styles.main} className="contribute-main">
         <ContributeBanner />
       </main>
+      <Footer />
     </div>
   );
 }

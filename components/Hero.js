@@ -1,113 +1,71 @@
 import Link from "next/link";
 
-const colors = { gold: "#B8893A", teak: "#2E3B2A", leaf: "#3F5B3A", silk: "#E8DCC0", paper: "#FAF6EC", button: "#2E5B3A" };
+const colors = {
+  gold: "#C49746",
+};
 
-export default function Hero({
-  brand, subtitle, statement, supportCopy, aboutCopy,
-}) {
-  const wrap = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    backgroundColor: colors.paper,
-    position: "relative",
-  };
-  const brandStyle = {
-    fontFamily: "var(--font-heading), serif",
-    fontWeight: 700,
-    color: colors.teak,
-    margin: 0,
-    letterSpacing: "-0.03em",
-    lineHeight: 1,
-  };
-  const subtitleStyle = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 18,
-    fontWeight: 400,
-    color: colors.leaf,
-    margin: "16px 0 24px",
-    textTransform: "uppercase",
-    letterSpacing: "0.15em",
-  };
-  const statementStyle = {
-    fontFamily: "var(--font-heading), serif",
-    fontWeight: 700,
-    color: colors.teak,
-    margin: "0 0 24px",
-    lineHeight: 1.25,
-    maxWidth: 720,
-  };
-  const supportStyle = {
-    fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
-    fontSize: 18,
-    color: colors.teak + "CC",
-    margin: "0 0 40px",
-    lineHeight: 1.6,
-    maxWidth: 620,
-  };
-  const aboutStyle = {
-    fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
-    fontSize: 15,
-    color: colors.teak + "99",
-    margin: "0 0 48px",
-    lineHeight: 1.7,
-    maxWidth: 660,
-  };
-  const buttonRow = {
-    display: "flex",
-    gap: 16,
-    flexWrap: "wrap",
-    justifyContent: "center",
-  };
-  const primaryBtn = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 14,
-    fontWeight: 600,
-    color: colors.paper,
-    backgroundColor: colors.button,
-    border: "none",
-    padding: "14px 32px",
-    borderRadius: 6,
-    cursor: "pointer",
-    textTransform: "uppercase",
-    letterSpacing: "0.1em",
-    textDecoration: "none",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 8,
-  };
-  const secondaryBtn = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 14,
-    fontWeight: 600,
-    color: colors.teak,
-    backgroundColor: "transparent",
-    border: "1px solid " + colors.silk,
-    padding: "14px 32px",
-    borderRadius: 6,
-    cursor: "pointer",
-    textTransform: "uppercase",
-    letterSpacing: "0.1em",
-    textDecoration: "none",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 8,
-  };
+export default function Hero({ eyebrow, statement, supportCopy }) {
   return (
-    <section style={wrap} className="hero-wrap" role="region" aria-label="Introduction">
-      <h1 style={brandStyle} className="hero-title">{brand}</h1>
-      <p style={subtitleStyle}>{subtitle}</p>
-      <p style={statementStyle} className="hero-statement">{statement}</p>
-      <p style={supportStyle}>{supportCopy}</p>
-      <p style={aboutStyle}>{aboutCopy}</p>
-      <div style={buttonRow}>
-        <Link href="/archive" style={primaryBtn} aria-label="Explore the archive">
-          Explore the Archive →
+    <section className="hero-wrap" role="region" aria-label="Introduction">
+      <p className="hero-eyebrow">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke={colors.gold}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+          style={{ width: 14, height: 14, flexShrink: 0 }}
+        >
+          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+          <path d="M20 3v4" />
+          <path d="M22 5h-4" />
+          <path d="M4 17v2" />
+          <path d="M5 18H3" />
+        </svg>
+        {eyebrow}
+      </p>
+
+      <h1 className="hero-title">{statement}</h1>
+
+      <p className="hero-support">{supportCopy}</p>
+
+      <div className="hero-actions">
+        <Link href="/archive" className="hero-btn-primary" aria-label="Explore the archive">
+          Explore the Archive
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            style={{ width: 16, height: 16 }}
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
         </Link>
-        <Link href="/contribute" style={secondaryBtn} aria-label="Share your knowledge">
-          Share Knowledge
+
+        <Link href="/contribute" className="hero-btn-secondary" aria-label="Share a home recipe">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            style={{ width: 16, height: 16 }}
+          >
+            <circle cx="12" cy="12" r="9" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          Share a Home Recipe
         </Link>
       </div>
     </section>

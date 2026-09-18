@@ -1,4 +1,5 @@
 import NavBar from "../../components/NavBar.js";
+import Footer from "../../components/Footer.js";
 import collection from "../../collection.config.js";
 
 const colors = {
@@ -74,7 +75,7 @@ const styles = {
 export default function DiscoverPage() {
   return (
     <div style={styles.page}>
-      <NavBar brand="Rooted Khmer" />
+      <NavBar />
       <main style={styles.main} className="discover-main">
         <p style={styles.label}>Discover</p>
         <h1 style={styles.title} className="discover-title">Curated with care</h1>
@@ -97,6 +98,7 @@ export default function DiscoverPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

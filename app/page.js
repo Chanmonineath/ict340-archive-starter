@@ -1,19 +1,18 @@
 import NavBar from "../components/NavBar.js";
 import Hero from "../components/Hero.js";
-
-const colors = { paper: "#FAF6EC" };
+import Footer from "../components/Footer.js";
+import collection from "../collection.config.js";
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: colors.paper, minHeight: "100vh" }}>
-      <NavBar brand="Rooted Khmer" />
+    <div style={{ minHeight: "100vh" }}>
+      <NavBar />
       <Hero
-        brand="Rooted Khmer"
-        subtitle="Traditional Plant Knowledge & Home Practices"
-        statement="Knowledge, rooted in home."
-        supportCopy="Explore traditional Khmer plant knowledge, natural ingredients, and everyday practices passed down through generations."
-        aboutCopy="Rooted Khmer is a living archive of traditional Khmer plant knowledge, natural ingredients, and everyday home practices passed down through families and generations."
+        eyebrow={`${collection.name} • ${collection.subtitle}`}
+        statement="Knowledge, Preserved in the Home."
+        supportCopy={collection.description}
       />
+      <Footer />
     </div>
   );
 }
