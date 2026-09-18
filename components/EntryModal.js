@@ -1,17 +1,12 @@
 "use client";
 
 import React from "react";
+import { colors, label, box } from "./entry/entryStyles.js";
+import EntryModalHeader from "./entry/EntryModalHeader.js";
+import EntryMeta from "./entry/EntryMeta.js";
+import EntryProcessList from "./entry/EntryProcessList.js";
 // Re-enable once real photos replace the placeholder text:
 // import EntryPhoto from "./EntryPhoto.js";
-
-const colors = {
-  teak: "#2E3B2A",
-  gold: "#B8893A",
-  cream: "#FDF8E9",
-  silk: "#E8DCC0",
-  box: "#F1E9D8",
-  button: "#2E5B3A",
-};
 
 export default function EntryModal({
   title, khmerName, contributor, place, ingredients, process, benefit, imageLabel, onClose,
@@ -44,33 +39,6 @@ export default function EntryModal({
     flexDirection: "column",
     gap: 20,
   };
-  const label = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 11,
-    fontWeight: 600,
-    textTransform: "uppercase",
-    letterSpacing: "0.08em",
-    color: colors.gold,
-    margin: "0 0 4px",
-  };
-  const value = {
-    fontFamily: "var(--font-heading), serif",
-    fontSize: 15,
-    fontWeight: 600,
-    color: colors.teak,
-    margin: 0,
-  };
-  const box = {
-    padding: "12px 14px",
-    backgroundColor: colors.box,
-    border: "1px solid " + colors.silk,
-    borderRadius: 10,
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: 14,
-    color: colors.teak + "CC",
-    lineHeight: 1.5,
-    margin: 0,
-  };
 
   return (
     <div style={overlay} className="modal-overlay" onClick={onClose}>
@@ -84,67 +52,15 @@ export default function EntryModal({
       >
         {/* <EntryPhoto label={imageLabel} /> */}
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-          <div>
-            {khmerName && (
-              <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: "0 0 4px" }}>
-                {khmerName}
-              </p>
-            )}
-            <h2 className="modal-title" style={{ fontFamily: "var(--font-heading), serif", fontWeight: 700, color: colors.teak, margin: 0 }}>
-              {title}
-            </h2>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close remedy"
-            style={{
-              width: 36, height: 36, borderRadius: "50%", border: "none",
-              backgroundColor: colors.box, color: colors.teak, fontSize: 22,
-              fontWeight: 700, lineHeight: 1, cursor: "pointer", flexShrink: 0,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              padding: 0,
-            }}
-          >
-            ×
-          </button>
-        </div>
+        <EntryModalHeader title={title} khmerName={khmerName} onClose={onClose} />
 
         <hr style={{ border: "none", borderTop: "1px solid " + colors.silk, margin: 0 }} />
 
-        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-          <div>
-            <p style={label}>Contributor</p>
-            <p style={value}>{contributor}</p>
-          </div>
-          <div>
-            <p style={label}>Place</p>
-            <p style={value}>{place}</p>
-          </div>
-        </div>
-
-        {ingredients && (
-          <div>
-            <p style={label}>Ingredients</p>
-            <p style={box}>{ingredients}</p>
-          </div>
-        )}
+        <EntryMeta contributor={contributor} place={place} ingredients={ingredients} />
 
         <div>
           <p style={label}>Preparation Process</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {process.map((step, i) => (
-              <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "12px 14px", backgroundColor: colors.box, border: "1px solid " + colors.silk, borderRadius: 10 }}>
-                <span style={{ flexShrink: 0, width: 24, height: 24, borderRadius: "50%", backgroundColor: colors.silk, color: colors.teak, fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  {i + 1}
-                </span>
-                <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 14, color: colors.teak + "CC", lineHeight: 1.5 }}>
-                  {step}
-                </p>
-              </div>
-            ))}
-          </div>
+          <EntryProcessList steps={process} />
         </div>
 
         {benefit && (
