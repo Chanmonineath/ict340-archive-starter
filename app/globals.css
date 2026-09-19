@@ -305,17 +305,13 @@ body {
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
   margin: 0 0 40px;
-  padding: 9px 22px;
   font-family: var(--font-body), sans-serif;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: #8A6B32;
-  background-color: #EFE6D0;
-  border-radius: 9999px;
 }
 
 .hero-title {
@@ -397,7 +393,6 @@ body {
     margin-bottom: 28px;
     font-size: 10px;
     letter-spacing: 0.12em;
-    padding: 8px 16px;
   }
   .hero-title {
     font-size: 38px;
