@@ -2,7 +2,6 @@ const colors = { teak: "#2E3B2A", silk: "#E8DCC0", sand: "#F5EFE2", cream: "#FDF
 
 export default function ContributeBanner() {
   const wrap = {
-    marginTop: 64,
     textAlign: "center",
     padding: "56px 24px",
     backgroundColor: colors.sand,

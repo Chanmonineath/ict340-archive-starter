@@ -1891,14 +1891,16 @@ body {
 }
 
 .contribute-main {
-  padding: 64px 24px 80px;
+  padding: 80px 24px;
 }
 
 @media (max-width: 640px) {
   .archive-main,
-  .discover-main,
-  .contribute-main {
+  .discover-main {
     padding: 32px 16px 56px;
+  }
+  .contribute-main {
+    padding: 56px 16px;
   }
 }
 
