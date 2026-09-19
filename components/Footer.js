@@ -14,21 +14,6 @@ export default function Footer() {
             A living archive dedicated to recording traditional Cambodian home remedies, fresh
             natural ingredients, and everyday family self-care passed down through generation.
           </p>
-          <p className="footer-tagline">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#C49746"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-              style={{ width: 15, height: 15, flexShrink: 0 }}
-            >
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            Preserving Oral Family Knowledge &amp; Kitchen Remedies
-          </p>
         </div>
 
         <div className="footer-links-col">
