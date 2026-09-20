@@ -8,7 +8,8 @@ export default function UserMenu({ user }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
   const menuRef = React.useRef(null);
-  const displayName = user.user_metadata?.name || user.email;
+  const fullName = user.user_metadata?.name;
+  const displayName = fullName ? fullName.trim().split(/\s+/)[0] : user.email;
 
   React.useEffect(() => {
     const handleClickOutside = (e) => {
@@ -51,6 +52,7 @@ export default function UserMenu({ user }) {
 
       {isOpen && (
         <div className="nav-user-dropdown">
+          {fullName && <span className="nav-user-fullname">{fullName}</span>}
           <span className="nav-user-email">{user.email}</span>
           <button type="button" className="nav-logout" onClick={handleLogout}>
             Logout

@@ -161,7 +161,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  max-width: 160px;
+  min-width: 0;
   padding: 8px 4px;
   font-family: var(--font-body), var(--font-khmer), sans-serif;
   font-size: 13px;
@@ -173,8 +173,6 @@ body {
 }
 
 .nav-user-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -194,6 +192,16 @@ body {
   border: 1px solid #E8DCC0;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(46, 59, 42, 0.12);
+}
+
+.nav-user-fullname {
+  font-family: var(--font-body), var(--font-khmer), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2E3B2A;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nav-user-email {
@@ -349,7 +357,6 @@ body {
     stroke: none;
   }
   .nav-user-trigger {
-    max-width: 90px;
     font-size: 12px;
   }
   .nav-user-dropdown {
