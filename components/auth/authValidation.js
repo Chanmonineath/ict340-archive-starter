@@ -1,10 +1,16 @@
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const NAME_RE = /^[\p{L}][\p{L}\p{M}\s'-]*$/u;
 
 export function validate(mode, fields) {
   const errors = {};
 
-  if (mode === "signup" && !fields.name.trim()) {
-    errors.name = "Please enter your name.";
+  if (mode === "signup") {
+    const name = fields.name.trim();
+    if (!name) {
+      errors.name = "Please enter your name.";
+    } else if (!NAME_RE.test(name)) {
+      errors.name = "Name can only contain letters, spaces, apostrophes, and hyphens.";
+    }
   }
 
   if (!fields.email.trim()) {
