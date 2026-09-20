@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Logo from "./Logo.js";
 import collection from "../collection.config.js";
 import useAutoHideHeader from "../hooks/useAutoHideHeader.js";
+import useSupabaseUser from "../hooks/useSupabaseUser.js";
 import NavLinks from "./nav/NavLinks.js";
 import MobileNavPanel from "./nav/MobileNavPanel.js";
 import NavActions from "./nav/NavActions.js";
@@ -26,6 +27,7 @@ export default function NavBar() {
   const navRef = React.useRef(null);
 
   const isHidden = useAutoHideHeader({ pauseWhile: isMenuOpen });
+  const { user } = useSupabaseUser();
 
   React.useEffect(() => {
     setIsMenuOpen(false);
@@ -64,6 +66,7 @@ export default function NavBar() {
           <NavLinks navLinks={navLinks} pathname={pathname} />
 
           <NavActions
+            user={user}
             isMenuOpen={isMenuOpen}
             onToggleMenu={() => setIsMenuOpen((open) => !open)}
           />

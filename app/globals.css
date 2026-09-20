@@ -126,6 +126,7 @@ body {
 }
 
 .nav-actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -149,6 +150,78 @@ body {
   border-radius: 9999px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+}
+
+.nav-user-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 160px;
+  padding: 8px 4px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2E3B2A;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-user-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  min-width: 200px;
+  margin-top: 8px;
+  padding: 14px;
+  background-color: #FDF8E9;
+  border: 1px solid #E8DCC0;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(46, 59, 42, 0.12);
+}
+
+.nav-user-email {
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  color: #2E3B2ACC;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-logout {
+  padding: 8px 16px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #FAF6EC;
+  background-color: #2E5B3A;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-logout:hover {
+  background-color: #24492E;
 }
 
 .nav-join:hover {
@@ -253,7 +326,41 @@ body {
     display: none;
   }
   .nav-join {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-join svg {
+    width: 13px;
+    height: 13px;
+  }
+  .nav-join-person {
+    transform: translateX(3px);
+  }
+  .nav-join-label {
     display: none;
+  }
+  .nav-join-plus {
+    stroke: none;
+  }
+  .nav-user-trigger {
+    max-width: 90px;
+    font-size: 12px;
+  }
+  .nav-user-dropdown {
+    min-width: 160px;
+    padding: 10px;
+    gap: 8px;
+  }
+  .nav-user-email {
+    font-size: 12px;
+  }
+  .nav-logout {
+    padding: 6px 12px;
+    font-size: 11px;
   }
   .nav-brand svg {
     height: 34px;
