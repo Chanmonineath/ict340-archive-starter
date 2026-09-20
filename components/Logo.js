@@ -43,12 +43,12 @@ export default function Logo({ height = 52, variant = "dark", emblemOnly = false
       </text>
       <text
         x="96"
-        y="62"
+        y="63"
         style={{ fontFamily: "var(--font-khmer), system-ui, sans-serif" }}
-        fontSize="11"
+        fontSize="13"
         fontWeight="500"
         fill={subtitleColor}
-        letterSpacing="3"
+        letterSpacing="2.5"
       >
         ផ្ទះ • HOME PRACTICE
       </text>
