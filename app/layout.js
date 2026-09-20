@@ -1,4 +1,4 @@
-import { Cinzel, Plus_Jakarta_Sans, Kantumruy_Pro } from "next/font/google";
+import { Cinzel, Plus_Jakarta_Sans, Noto_Sans_Khmer } from "next/font/google";
 import collection from "../collection.config.js";
 import "./globals.css";
 
@@ -14,7 +14,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-body",
 });
 
-const kantumruyPro = Kantumruy_Pro({
+const notoSansKhmer = Noto_Sans_Khmer({
   subsets: ["khmer", "latin"],
   weight: ["400", "500", "700"],
   variable: "--font-khmer",
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${plusJakartaSans.variable} ${kantumruyPro.variable}`}
+      className={`${cinzel.variable} ${plusJakartaSans.variable} ${notoSansKhmer.variable}`}
     >
       <body
         style={{
