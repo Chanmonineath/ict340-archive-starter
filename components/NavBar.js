@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo.js";
-import AuthModal from "./AuthModal.js";
 import collection from "../collection.config.js";
 import useAutoHideHeader from "../hooks/useAutoHideHeader.js";
 import NavLinks from "./nav/NavLinks.js";
@@ -23,7 +22,6 @@ const navLinks = [
 export default function NavBar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isAuthOpen, setIsAuthOpen] = React.useState(false);
   const [navHeight, setNavHeight] = React.useState(0);
   const navRef = React.useRef(null);
 
@@ -66,7 +64,6 @@ export default function NavBar() {
           <NavLinks navLinks={navLinks} pathname={pathname} />
 
           <NavActions
-            onLoginClick={() => setIsAuthOpen(true)}
             isMenuOpen={isMenuOpen}
             onToggleMenu={() => setIsMenuOpen((open) => !open)}
           />
@@ -80,7 +77,6 @@ export default function NavBar() {
         />
       </nav>
       <div style={{ height: navHeight }} aria-hidden="true" />
-      {isAuthOpen && <AuthModal onClose={() => setIsAuthOpen(false)} />}
     </>
   );
 }

@@ -1,7 +1,9 @@
-export default function NavActions({ onLoginClick, isMenuOpen, onToggleMenu }) {
+import Link from "next/link";
+
+export default function NavActions({ isMenuOpen, onToggleMenu }) {
   return (
     <div className="nav-actions">
-      <button type="button" className="nav-join" onClick={onLoginClick}>
+      <Link href="/login" className="nav-join">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -18,7 +20,7 @@ export default function NavActions({ onLoginClick, isMenuOpen, onToggleMenu }) {
           <line x1="22" y1="11" x2="16" y2="11" />
         </svg>
         Login
-      </button>
+      </Link>
 
       <button
         type="button"
