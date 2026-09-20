@@ -41,16 +41,23 @@ export default function Logo({ height = 52, variant = "dark", emblemOnly = false
       >
         PTEAH
       </text>
-      <text
-        x="96"
-        y="63"
-        style={{ fontFamily: "var(--font-khmer), system-ui, sans-serif" }}
-        fontSize="13"
-        fontWeight="500"
-        fill={subtitleColor}
-        letterSpacing="2.5"
-      >
-        ផ្ទះ • HOME PRACTICE
+      <text x="96" y="63" fill={subtitleColor}>
+        <tspan
+          style={{ fontFamily: "var(--font-khmer), system-ui, sans-serif" }}
+          fontSize="12"
+          fontWeight="500"
+        >
+          ផ្ទះ
+        </tspan>
+        <tspan
+          dx="6"
+          style={{ fontFamily: "var(--font-body), sans-serif" }}
+          fontSize="11"
+          fontWeight="600"
+          letterSpacing="2.5"
+        >
+          • HOME PRACTICE
+        </tspan>
       </text>
       </>
       )}
