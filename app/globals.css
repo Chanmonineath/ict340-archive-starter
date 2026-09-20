@@ -2247,3 +2247,29 @@ body {
     border-radius: 16px;
   }
 }
+
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 48px 24px;
+  background-color: #FAF6EC;
+}
+
+.auth-page .auth-modal {
+  max-height: none;
+  overflow-y: visible;
+  box-shadow: 0 1px 3px rgba(61, 44, 30, 0.08);
+}
+
+.auth-form-error {
+  margin: 0 0 4px;
+  padding: 10px 14px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  color: #9C3B2E;
+  background-color: #F6E4DF;
+  border: 1px solid #E3B6AC;
+  border-radius: 8px;
+}
