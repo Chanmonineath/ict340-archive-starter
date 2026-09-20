@@ -163,7 +163,7 @@ body {
   gap: 6px;
   max-width: 160px;
   padding: 8px 4px;
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body), var(--font-khmer), sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: #2E3B2A;
