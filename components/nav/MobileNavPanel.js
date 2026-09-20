@@ -2,12 +2,10 @@ import Link from "next/link";
 
 const mobileLinkStyle = {
   fontFamily: "var(--font-body), sans-serif",
-  fontSize: 14,
   fontWeight: 600,
   textDecoration: "none",
   textTransform: "uppercase",
   letterSpacing: "0.08em",
-  padding: "12px 16px",
   borderRadius: 8,
 };
 
