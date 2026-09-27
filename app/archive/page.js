@@ -6,15 +6,13 @@ import NavBar from "../../components/NavBar.js";
 import Footer from "../../components/Footer.js";
 import SearchFilter from "../../components/SearchFilter.js";
 import BookView from "../../components/BookView.js";
-import entries from "../../data/entries.js";
+import useEntries from "../../hooks/useEntries.js";
 
 const colors = {
   teak: "#2E3B2A",
   silk: "#E8DCC0",
   paper: "#FAF6EC",
 };
-
-const categories = ["All", ...new Set(entries.map((entry) => entry.category))];
 
 function filterEntries(entries, filter) {
   const queryTokens = filter.query.trim().normalize("NFC").toLowerCase().split(/\s+/).filter(Boolean);
@@ -40,9 +38,14 @@ const styles = {
 };
 
 export default function ArchivePage() {
+  const { entries, isLoading, error } = useEntries();
   const [filter, setFilter] = React.useState({ category: "All", query: "" });
   const [view, setView] = React.useState("cards");
-  const filteredEntries = React.useMemo(() => filterEntries(entries, filter), [filter]);
+  const categories = React.useMemo(
+    () => ["All", ...new Set(entries.map((entry) => entry.category))],
+    [entries]
+  );
+  const filteredEntries = React.useMemo(() => filterEntries(entries, filter), [entries, filter]);
 
   return (
     <div style={styles.page}>
@@ -78,7 +81,19 @@ export default function ArchivePage() {
         style={styles.main}
         className={"archive-main" + (view === "book" ? " archive-main-book" : "")}
       >
-        {view === "book" ? (
+        {isLoading ? (
+          <div style={{ textAlign: "center", padding: "60px 0" }}>
+            <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+              Loading entries…
+            </p>
+          </div>
+        ) : error ? (
+          <div style={{ textAlign: "center", padding: "60px 0" }}>
+            <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+              Couldn't load entries right now.
+            </p>
+          </div>
+        ) : view === "book" ? (
           <BookView entries={entries} />
         ) : (
           <>
