@@ -6,11 +6,12 @@ import { colors, label } from "./entry/entryStyles.js";
 import EntryMeta from "./entry/EntryMeta.js";
 import EntryProcessPreview from "./entry/EntryProcessPreview.js";
 import EntryCardFooter from "./entry/EntryCardFooter.js";
+import EntryOwnerTag from "./entry/EntryOwnerTag.js";
 // Re-enable once real photos replace the placeholder text:
 // import EntryPhoto from "./EntryPhoto.js";
 
 export default function EntryCard({
-  title, khmerName, contributor, place, ingredients, process, benefit, duration, imageLabel,
+  title, khmerName, contributor, place, ingredients, process, benefit, duration, imageLabel, ownerName,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const steps = Array.isArray(process) ? process : [process];
@@ -19,6 +20,7 @@ export default function EntryCard({
     <article
       className="entry-card"
       style={{
+        position: "relative",
         display: "flex",
         flexDirection: "column",
         gap: 16,
@@ -28,6 +30,8 @@ export default function EntryCard({
         borderRadius: 24,
       }}
     >
+      <EntryOwnerTag ownerName={ownerName} />
+
       {/* <EntryPhoto label={imageLabel} /> */}
 
       {khmerName && (

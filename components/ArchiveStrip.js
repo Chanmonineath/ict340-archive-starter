@@ -47,7 +47,7 @@ export default function ArchiveStrip() {
       </div>
       <div style={tile}>
         <p style={num}>9</p>
-        <p style={label}>Contributors</p>
+        <p style={label}>Sources</p>
       </div>
     </section>
   );

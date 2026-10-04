@@ -1,0 +1,30 @@
+// Cambodia's 25 provinces/cities, used for the Province field on /contribute.
+const PROVINCES = [
+  "Banteay Meanchey",
+  "Battambang",
+  "Kampong Cham",
+  "Kampong Chhnang",
+  "Kampong Speu",
+  "Kampong Thom",
+  "Kampot",
+  "Kandal",
+  "Kep",
+  "Koh Kong",
+  "Kratie",
+  "Mondulkiri",
+  "Oddar Meanchey",
+  "Pailin",
+  "Phnom Penh",
+  "Preah Vihear",
+  "Prey Veng",
+  "Pursat",
+  "Ratanakiri",
+  "Siem Reap",
+  "Preah Sihanouk",
+  "Stung Treng",
+  "Svay Rieng",
+  "Takeo",
+  "Tboung Khmum",
+];
+
+export default PROVINCES;

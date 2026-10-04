@@ -80,7 +80,7 @@ export default function FolioPageLeft({
 
             <div className="folio-remedy-meta">
               <div>
-                <span className="folio-meta-label">Contributor</span>
+                <span className="folio-meta-label">Source</span>
                 <span className="folio-meta-value">{currentRemedy.contributor}</span>
               </div>
               <div>

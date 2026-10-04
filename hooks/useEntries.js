@@ -16,12 +16,13 @@ function mapRow(row) {
     benefit: row.benefit,
     duration: row.duration,
     imageLabel: row.photo_url,
+    ownerName: row.profiles?.name ?? null,
   };
 }
 
 // Fetches all entries from Supabase, newest first (title as a tiebreaker),
-// mapping snake_case columns to the camelCase shape every entry component
-// already expects.
+// joined with each owner's public profile name, mapping snake_case columns
+// to the camelCase shape every entry component already expects.
 export default function useEntries() {
   const [entries, setEntries] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -31,7 +32,7 @@ export default function useEntries() {
     const supabase = createClient();
     supabase
       .from("entries")
-      .select("*")
+      .select("*, profiles(name)")
       .order("created_at", { ascending: false })
       .order("title", { ascending: true })
       .then(({ data, error: fetchError }) => {

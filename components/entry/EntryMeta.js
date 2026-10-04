@@ -5,7 +5,7 @@ export default function EntryMeta({ contributor, place, ingredients }) {
     <>
       <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
         <div>
-          <p style={label}>Contributor</p>
+          <p style={label}>Source</p>
           <p style={value}>{contributor}</p>
         </div>
         <div>

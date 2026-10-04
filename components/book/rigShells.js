@@ -64,7 +64,7 @@ export function renderDetailShell(body, entry) {
   const meta = document.createElement("div");
   meta.className = "folio-remedy-meta";
   meta.innerHTML =
-    '<div><span class="folio-meta-label">Contributor</span>' +
+    '<div><span class="folio-meta-label">Source</span>' +
     '<span class="folio-meta-value"></span></div>' +
     '<div><span class="folio-meta-label">Place</span>' +
     '<span class="folio-meta-value"></span></div>' +
