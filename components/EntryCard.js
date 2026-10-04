@@ -7,13 +7,15 @@ import EntryMeta from "./entry/EntryMeta.js";
 import EntryProcessPreview from "./entry/EntryProcessPreview.js";
 import EntryCardFooter from "./entry/EntryCardFooter.js";
 import EntryOwnerTag from "./entry/EntryOwnerTag.js";
-// Re-enable once real photos replace the placeholder text:
-// import EntryPhoto from "./EntryPhoto.js";
+import useSupabaseUser from "../hooks/useSupabaseUser.js";
+import EntryPhoto from "./EntryPhoto.js";
 
 export default function EntryCard({
-  title, khmerName, contributor, place, ingredients, process, benefit, duration, imageLabel, ownerName,
+  id, title, khmerName, contributor, place, ingredients, process, benefit, duration, imageLabel, owner, ownerName, onDeleted,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { user } = useSupabaseUser();
+  const isOwner = Boolean(user && owner && user.id === owner);
   const steps = Array.isArray(process) ? process : [process];
 
   return (
@@ -32,7 +34,7 @@ export default function EntryCard({
     >
       <EntryOwnerTag ownerName={ownerName} />
 
-      {/* <EntryPhoto label={imageLabel} /> */}
+      <EntryPhoto src={imageLabel} label={title} />
 
       {khmerName && (
         <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
@@ -59,7 +61,14 @@ export default function EntryCard({
 
       <hr style={{ border: "none", borderTop: "1px solid " + colors.silk, margin: 0 }} />
 
-      <EntryCardFooter duration={duration} onReadMore={() => setIsOpen(true)} />
+      <EntryCardFooter
+        duration={duration}
+        onReadMore={() => setIsOpen(true)}
+        isOwner={isOwner}
+        entryId={id}
+        title={title}
+        onDeleted={onDeleted}
+      />
 
       {isOpen && (
         <EntryModal

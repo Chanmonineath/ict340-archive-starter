@@ -2,11 +2,16 @@
 
 import React from "react";
 import { validatePhoto } from "./contributeValidation.js";
+import PhotoCropper from "./PhotoCropper.js";
+import PhotoPicker from "./PhotoPicker.js";
 
-const colors = { teak: "#2E3B2A", silk: "#E8DCC0" };
+const colors = { teak: "#2E3B2A" };
 
-export default function PhotoUploadField({ file, onChange, error }) {
+export default function PhotoUploadField({ file, onChange, error, existingPhotoUrl }) {
   const [previewUrl, setPreviewUrl] = React.useState(null);
+  const [pendingFile, setPendingFile] = React.useState(null);
+  const [pendingUrl, setPendingUrl] = React.useState(null);
+  const inputRef = React.useRef(null);
 
   const handleFileChange = (e) => {
     const selected = e.target.files?.[0] ?? null;
@@ -17,47 +22,53 @@ export default function PhotoUploadField({ file, onChange, error }) {
     }
     if (validatePhoto(selected)) {
       // Still accept it into state so the shared validate() surfaces the
-      // same message; just skip generating a preview for a bad file.
+      // same message; just skip opening the cropper for a file that will
+      // be rejected anyway.
       onChange(selected);
       setPreviewUrl(null);
       return;
     }
-    onChange(selected);
-    setPreviewUrl(URL.createObjectURL(selected));
+    setPendingFile(selected);
+    setPendingUrl(URL.createObjectURL(selected));
   };
 
-  return (
-    <div>
-      <label
-        htmlFor="contribute-photo"
-        style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}
-      >
-        Photo
-      </label>
-      <input
-        id="contribute-photo"
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        onChange={handleFileChange}
-        className="auth-input"
-      />
-      {file && (
-        <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-          {file.name}
-        </p>
-      )}
-      {previewUrl && (
-        <img
-          src={previewUrl}
-          alt="Preview of the uploaded photo"
-          style={{ marginTop: 10, maxWidth: 160, borderRadius: 15, border: "1px solid " + colors.silk }}
+  const handleCropConfirm = (croppedFile) => {
+    onChange(croppedFile);
+    setPreviewUrl(URL.createObjectURL(croppedFile));
+    setPendingFile(null);
+    setPendingUrl(null);
+  };
+
+  const handleCropCancel = () => {
+    setPendingFile(null);
+    setPendingUrl(null);
+    if (inputRef.current) inputRef.current.value = "";
+  };
+
+  if (pendingFile) {
+    return (
+      <div>
+        <label style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}>
+          Crop Photo
+        </label>
+        <PhotoCropper
+          imageUrl={pendingUrl}
+          originalFile={pendingFile}
+          onConfirm={handleCropConfirm}
+          onCancel={handleCropCancel}
         />
-      )}
-      {error && (
-        <p className="auth-error" style={{ marginTop: 6 }}>
-          {error}
-        </p>
-      )}
-    </div>
+      </div>
+    );
+  }
+
+  return (
+    <PhotoPicker
+      inputRef={inputRef}
+      onFileChange={handleFileChange}
+      file={file}
+      existingPhotoUrl={existingPhotoUrl}
+      displayedPreviewUrl={previewUrl || (!file ? existingPhotoUrl : null)}
+      error={error}
+    />
   );
 }

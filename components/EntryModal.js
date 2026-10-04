@@ -5,8 +5,7 @@ import { colors, label, box } from "./entry/entryStyles.js";
 import EntryModalHeader from "./entry/EntryModalHeader.js";
 import EntryMeta from "./entry/EntryMeta.js";
 import EntryProcessList from "./entry/EntryProcessList.js";
-// Re-enable once real photos replace the placeholder text:
-// import EntryPhoto from "./EntryPhoto.js";
+import EntryPhoto from "./EntryPhoto.js";
 
 export default function EntryModal({
   title, khmerName, contributor, place, ingredients, process, benefit, imageLabel, onClose,
@@ -50,7 +49,7 @@ export default function EntryModal({
         aria-label={"Full remedy: " + title}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* <EntryPhoto label={imageLabel} /> */}
+        <EntryPhoto src={imageLabel} label={title} />
 
         <EntryModalHeader title={title} khmerName={khmerName} onClose={onClose} />
 

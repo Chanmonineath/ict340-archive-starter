@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { colors, label, box } from "../entry/entryStyles.js";
 import EntryMeta from "../entry/EntryMeta.js";
 import EntryProcessList from "../entry/EntryProcessList.js";
 
-export default function SavedEntryView({ entry, onReset }) {
+export default function SavedEntryView({ entry, onReset, isEditing }) {
   return (
     <div
       style={{
@@ -16,7 +17,7 @@ export default function SavedEntryView({ entry, onReset }) {
       }}
     >
       <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
-        Entry saved — thank you for sharing!
+        {isEditing ? "Changes saved." : "Entry saved — thank you for sharing!"}
       </p>
 
       {entry.photo_url && (
@@ -52,24 +53,71 @@ export default function SavedEntryView({ entry, onReset }) {
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={onReset}
-        style={{
-          alignSelf: "flex-start",
-          fontFamily: "var(--font-body), sans-serif",
-          fontSize: 13,
-          fontWeight: 600,
-          color: colors.cream,
-          backgroundColor: colors.button,
-          border: "none",
-          padding: "12px 24px",
-          borderRadius: 9999,
-          cursor: "pointer",
-        }}
-      >
-        Share Another Entry
-      </button>
+      {isEditing ? (
+        <div style={{ display: "flex", gap: 12 }}>
+          <Link
+            href="/archive"
+            style={{
+              flex: 1,
+              display: "block",
+              textAlign: "center",
+              fontFamily: "var(--font-body), sans-serif",
+              fontSize: 13,
+              fontWeight: 600,
+              color: colors.cream,
+              backgroundColor: colors.button,
+              border: "none",
+              padding: "12px 24px",
+              borderRadius: 9999,
+              cursor: "pointer",
+              textDecoration: "none",
+              boxSizing: "border-box",
+            }}
+          >
+            Back
+          </Link>
+          <Link
+            href={`/entries/${entry.id}/edit`}
+            style={{
+              flex: 1,
+              display: "block",
+              textAlign: "center",
+              fontFamily: "var(--font-body), sans-serif",
+              fontSize: 13,
+              fontWeight: 600,
+              color: colors.button,
+              backgroundColor: "transparent",
+              border: "1px solid " + colors.button,
+              padding: "12px 24px",
+              borderRadius: 9999,
+              cursor: "pointer",
+              textDecoration: "none",
+              boxSizing: "border-box",
+            }}
+          >
+            Edit Again
+          </Link>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={onReset}
+          style={{
+            alignSelf: "flex-start",
+            fontFamily: "var(--font-body), sans-serif",
+            fontSize: 13,
+            fontWeight: 600,
+            color: colors.cream,
+            backgroundColor: colors.button,
+            border: "none",
+            padding: "12px 24px",
+            borderRadius: 9999,
+            cursor: "pointer",
+          }}
+        >
+          Share Another Entry
+        </button>
+      )}
     </div>
   );
 }

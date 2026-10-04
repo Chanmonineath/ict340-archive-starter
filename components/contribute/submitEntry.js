@@ -7,19 +7,23 @@ import { photoExtension } from "./contributeValidation.js";
 // user id, never anything read from the form.
 export async function submitEntry({ fields, photoFile, user }) {
   const supabase = createClient();
-  const extension = photoExtension(photoFile);
-  const path = `${user.id}/${crypto.randomUUID()}.${extension}`;
+  let photoUrl = null;
 
-  const { error: uploadError } = await supabase.storage
-    .from("photos")
-    .upload(path, photoFile, { contentType: photoFile.type });
+  if (photoFile) {
+    const extension = photoExtension(photoFile);
+    const path = `${user.id}/${crypto.randomUUID()}.${extension}`;
 
-  if (uploadError) {
-    console.error(uploadError);
-    throw new Error("upload");
+    const { error: uploadError } = await supabase.storage
+      .from("photos")
+      .upload(path, photoFile, { contentType: photoFile.type });
+
+    if (uploadError) {
+      console.error(uploadError);
+      throw new Error("upload");
+    }
+
+    photoUrl = supabase.storage.from("photos").getPublicUrl(path).data.publicUrl;
   }
-
-  const { data: publicUrlData } = supabase.storage.from("photos").getPublicUrl(path);
 
   const { data: inserted, error: insertError } = await supabase
     .from("entries")
@@ -33,7 +37,7 @@ export async function submitEntry({ fields, photoFile, user }) {
       process: fields.process.map((step) => step.trim()).filter(Boolean),
       benefit: fields.benefit.trim(),
       duration: fields.duration.trim(),
-      photo_url: publicUrlData.publicUrl,
+      photo_url: photoUrl,
       owner: user.id,
     })
     .select()

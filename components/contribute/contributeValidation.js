@@ -15,7 +15,9 @@ function lengthError(label, value, min, max) {
 }
 
 export function validatePhoto(file) {
-  if (!file) return "Please add a photo.";
+  if (!file) {
+    return null;
+  }
   if (!ALLOWED_PHOTO_TYPES[file.type]) {
     return "Photo must be a JPG, PNG, or WEBP image.";
   }
@@ -64,7 +66,7 @@ export function validate(fields, photoFile) {
 
   const durationMatch = /^(\d{1,2})h (\d{1,2})mn$/.exec(fields.duration || "");
   if (!durationMatch || (durationMatch[1] === "0" && durationMatch[2] === "0")) {
-    errors.duration = "Please enter how long this practice takes.";
+    errors.duration = "Please enter how long this practice takes (hours and minutes).";
   }
 
   const photoError = validatePhoto(photoFile);

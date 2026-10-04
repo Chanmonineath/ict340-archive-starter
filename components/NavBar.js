@@ -10,12 +10,13 @@ import useSupabaseUser from "../hooks/useSupabaseUser.js";
 import NavLinks from "./nav/NavLinks.js";
 import MobileNavPanel from "./nav/MobileNavPanel.js";
 import NavActions from "./nav/NavActions.js";
+import BottomNav from "./nav/BottomNav.js";
 
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC", active: "#24492E" };
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/discover", label: "Discover" },
+  { href: "/discover", label: "Curated" },
   { href: "/archive", label: "Archive" },
   { href: "/contribute", label: "Contribute" },
 ];
@@ -80,6 +81,8 @@ export default function NavBar() {
         />
       </nav>
       <div style={{ height: navHeight }} aria-hidden="true" />
+
+      <BottomNav pathname={pathname} user={user} isHidden={isHidden} />
     </>
   );
 }

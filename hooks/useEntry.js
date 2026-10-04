@@ -17,38 +17,36 @@ function mapRow(row) {
     duration: row.duration,
     imageLabel: row.photo_url,
     owner: row.owner,
-    ownerName: row.profiles?.name ?? null,
   };
 }
 
-// Fetches all entries from Supabase, newest first (title as a tiebreaker),
-// joined with each owner's public profile name, mapping snake_case columns
-// to the camelCase shape every entry component already expects.
-export default function useEntries() {
-  const [entries, setEntries] = React.useState([]);
+// Fetches a single entry by id, for the edit page. Same column mapping as
+// useEntries.js, kept separate since this only ever needs one row.
+export default function useEntry(id) {
+  const [entry, setEntry] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
     const supabase = createClient();
     supabase
       .from("entries")
-      .select("*, profiles(name)")
-      .order("created_at", { ascending: false })
-      .order("title", { ascending: true })
+      .select("*")
+      .eq("id", id)
+      .single()
       .then(({ data, error: fetchError }) => {
         if (fetchError) {
           setError(fetchError);
         } else {
-          setEntries((data ?? []).map(mapRow));
+          setEntry(mapRow(data));
         }
         setIsLoading(false);
       });
-  }, []);
+  }, [id]);
 
-  const removeEntry = (id) => {
-    setEntries((prev) => prev.filter((entry) => entry.id !== id));
-  };
-
-  return { entries, isLoading, error, removeEntry };
+  return { entry, isLoading, error };
 }

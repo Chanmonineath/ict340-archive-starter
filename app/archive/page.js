@@ -38,7 +38,7 @@ const styles = {
 };
 
 export default function ArchivePage() {
-  const { entries, isLoading, error } = useEntries();
+  const { entries, isLoading, error, removeEntry } = useEntries();
   const [filter, setFilter] = React.useState({ category: "All", query: "" });
   const [view, setView] = React.useState("cards");
   const categories = React.useMemo(
@@ -109,7 +109,7 @@ export default function ArchivePage() {
             {filteredEntries.length > 0 ? (
               <div style={styles.stripRow} className="entries-grid">
                 {filteredEntries.map((entry) => (
-                  <EntryCard key={entry.id} {...entry} />
+                  <EntryCard key={entry.id} {...entry} onDeleted={removeEntry} />
                 ))}
               </div>
             ) : (
