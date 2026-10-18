@@ -2,8 +2,6 @@
 
 import React from "react";
 import EntryCard from "../../components/EntryCard.js";
-import NavBar from "../../components/NavBar.js";
-import Footer from "../../components/Footer.js";
 import SearchFilter from "../../components/SearchFilter.js";
 import BookView from "../../components/BookView.js";
 import useEntries from "../../hooks/useEntries.js";
@@ -49,8 +47,6 @@ export default function ArchivePage() {
 
   return (
     <div style={styles.page}>
-      <NavBar />
-
       <header className="archive-header">
         <p className="archive-eyebrow">Home Practice Archive</p>
         <h1 className="archive-khmer-title">បណ្ណាសារការអនុវត្តតាមផ្ទះ</h1>
@@ -122,8 +118,6 @@ export default function ArchivePage() {
           </>
         )}
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import NavBar from "../../../../components/NavBar.js";
-import Footer from "../../../../components/Footer.js";
 import useSupabaseUser from "../../../../hooks/useSupabaseUser.js";
 import useEntry from "../../../../hooks/useEntry.js";
 import ContributeForm from "../../../../components/contribute/ContributeForm.js";
@@ -58,7 +56,6 @@ export default function EditEntryPage() {
 
   return (
     <div style={styles.page}>
-      <NavBar />
       <main style={styles.main} className="contribute-main">
         <Link
           href="/archive"
@@ -77,7 +74,6 @@ export default function EditEntryPage() {
         </Link>
         {content}
       </main>
-      <Footer />
     </div>
   );
 }

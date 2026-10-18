@@ -115,6 +115,7 @@ body {
 }
 
 .nav-top-row {
+  position: relative;
   gap: 24px;
 }
 
@@ -129,6 +130,10 @@ body {
   display: flex;
   align-items: center;
   gap: 36px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .nav-actions {

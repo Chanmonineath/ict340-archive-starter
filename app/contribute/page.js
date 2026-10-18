@@ -1,7 +1,5 @@
 "use client";
 
-import NavBar from "../../components/NavBar.js";
-import Footer from "../../components/Footer.js";
 import useSupabaseUser from "../../hooks/useSupabaseUser.js";
 import ContributeForm from "../../components/contribute/ContributeForm.js";
 import ContributeLoginPrompt from "../../components/contribute/ContributeLoginPrompt.js";
@@ -18,7 +16,6 @@ export default function ContributePage() {
 
   return (
     <div style={styles.page}>
-      <NavBar />
       <main style={styles.main} className="contribute-main">
         {isLoading ? (
           <p style={{ textAlign: "center", fontFamily: "var(--font-body), sans-serif", color: colors.teak + "99" }}>
@@ -30,7 +27,6 @@ export default function ContributePage() {
           <ContributeLoginPrompt />
         )}
       </main>
-      <Footer />
     </div>
   );
 }

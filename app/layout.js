@@ -1,5 +1,7 @@
 import { Cinzel, Plus_Jakarta_Sans, Noto_Sans_Khmer } from "next/font/google";
 import collection from "../collection.config.js";
+import NavBar from "../components/NavBar.js";
+import Footer from "../components/Footer.js";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -41,7 +43,9 @@ export default function RootLayout({ children }) {
           minHeight: "100vh",
         }}
       >
+        <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
