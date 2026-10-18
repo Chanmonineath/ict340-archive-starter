@@ -2338,19 +2338,35 @@ body {
   }
 }
 
-.province-select-list {
+.province-select-panel {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
   z-index: 20;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(46, 59, 42, 0.12);
+}
+
+.province-select-search {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+}
+
+.province-select-list {
   margin: 0;
   padding: 6px;
   list-style: none;
-  border-radius: 15px;
-  max-height: 340px;
+  max-height: 290px;
   overflow-y: auto;
-  box-shadow: 0 8px 16px rgba(46, 59, 42, 0.12);
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -2377,13 +2393,23 @@ body {
   background-color: #F2ECE0;
 }
 
+.province-select-empty {
+  padding: 10px 12px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+}
+
 @media (max-width: 640px) {
   .province-select-list {
-    max-height: 280px;
+    max-height: 230px;
   }
   .province-select-option {
     padding: 9px 12px;
     font-size: 13px;
+  }
+  .province-select-search {
+    font-size: 13px;
+    padding: 9px 12px;
   }
 }
 
