@@ -17,6 +17,9 @@ export default function PhotoPicker({ inputRef, onFileChange, file, existingPhot
         onChange={onFileChange}
         className="auth-input"
       />
+      <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+        JPG, PNG, or WEBP, up to 5MB.
+      </p>
       {existingPhotoUrl && !file && (
         <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
           Keeping the current photo — choose a file to replace it.
