@@ -1,13 +1,11 @@
 import Link from "next/link";
 import HomeIcon from "./icons/HomeIcon.js";
-import CuratedIcon from "./icons/CuratedIcon.js";
 import ArchiveIcon from "./icons/ArchiveIcon.js";
 import ContributeIcon from "./icons/ContributeIcon.js";
 import BottomNavAccountTab from "./BottomNavAccountTab.js";
 
 const tabs = [
   { href: "/", label: "Home", Icon: HomeIcon },
-  { href: "/discover", label: "Curated", Icon: CuratedIcon },
   { href: "/archive", label: "Archive", Icon: ArchiveIcon },
   { href: "/contribute", label: "Contribute", Icon: ContributeIcon },
 ];

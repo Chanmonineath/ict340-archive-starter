@@ -1,4 +1,4 @@
-// Site-wide identity used across the home, discover, and contribute pages.
+// Site-wide identity used across the home, footer, and contribute pages.
 const collection = {
   name: "PTEAH",
   subtitle: "Traditional Home Practices",

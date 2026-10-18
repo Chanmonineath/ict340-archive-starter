@@ -24,12 +24,27 @@ export default function Footer() {
           <Link href="/archive" className="footer-link">
             Recipe Cards
           </Link>
-          <Link href="/discover" className="footer-link">
-            Discover Lineages
-          </Link>
           <Link href="/contribute" className="footer-link">
             Join
           </Link>
+        </div>
+
+        <div className="footer-curated-col">
+          <h2 className="footer-heading">Curated with Care</h2>
+          <div className="footer-curated-item">
+            <p className="footer-curated-label">Curated by</p>
+            <p className="footer-curated-value">{collection.curator}</p>
+            {collection.curatorKhmer && (
+              <p className="footer-curated-khmer">{collection.curatorKhmer}</p>
+            )}
+          </div>
+          <div className="footer-curated-item">
+            <p className="footer-curated-label">Source &amp; Inspiration</p>
+            <p className="footer-curated-value">{collection.source}</p>
+            {collection.sourceKhmer && (
+              <p className="footer-curated-khmer">{collection.sourceKhmer}</p>
+            )}
+          </div>
         </div>
 
       </div>

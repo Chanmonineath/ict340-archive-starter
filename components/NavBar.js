@@ -16,7 +16,6 @@ const colors = { teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC", active: "#2
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/discover", label: "Curated" },
   { href: "/archive", label: "Archive" },
   { href: "/contribute", label: "Contribute" },
 ];
