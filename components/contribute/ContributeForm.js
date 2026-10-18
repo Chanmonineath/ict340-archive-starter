@@ -54,6 +54,9 @@ export default function ContributeForm({ user, editingEntry }) {
   const [isSaving, setIsSaving] = React.useState(false);
   const [formError, setFormError] = React.useState("");
   const [savedEntry, setSavedEntry] = React.useState(null);
+  const [baselineFields, setBaselineFields] = React.useState(() =>
+    isEditing ? fieldsFromEntry(editingEntry) : EMPTY_FIELDS,
+  );
 
   const updateField = (name) => (e) =>
     setFields((prev) => ({ ...prev, [name]: e.target.value }));
@@ -64,7 +67,7 @@ export default function ContributeForm({ user, editingEntry }) {
   const hasChanges =
     !isEditing ||
     Boolean(photoFile) ||
-    JSON.stringify(fields) !== JSON.stringify(fieldsFromEntry(editingEntry));
+    JSON.stringify(fields) !== JSON.stringify(baselineFields);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,6 +97,7 @@ export default function ContributeForm({ user, editingEntry }) {
           })
         : await submitEntry({ fields, photoFile, user });
       setSavedEntry(saved);
+      setBaselineFields(fields);
     } catch (err) {
       setFormError(
         err.message === "no-row"
@@ -112,12 +116,32 @@ export default function ContributeForm({ user, editingEntry }) {
     setSavedEntry(null);
   };
 
+  const handleEditAgain = () => {
+    setFields(
+      fieldsFromEntry({
+        title: savedEntry.title,
+        khmerName: savedEntry.khmer_name,
+        contributor: savedEntry.source,
+        place: savedEntry.place,
+        category: savedEntry.category,
+        ingredients: savedEntry.ingredients,
+        process: savedEntry.process,
+        benefit: savedEntry.benefit,
+        duration: savedEntry.duration,
+      }),
+    );
+    setPhotoFile(null);
+    setErrors({});
+    setFormError("");
+    setSavedEntry(null);
+  };
+
   const handleCancel = () => {
     if (!hasChanges) {
       setFormError("No changes to cancel.");
       return;
     }
-    setFields(fieldsFromEntry(editingEntry));
+    setFields(baselineFields);
     setPhotoFile(null);
     setErrors({});
     setFormError("");
@@ -128,6 +152,7 @@ export default function ContributeForm({ user, editingEntry }) {
       <SavedEntryView
         entry={savedEntry}
         onReset={resetForm}
+        onEditAgain={handleEditAgain}
         isEditing={isEditing}
       />
     );

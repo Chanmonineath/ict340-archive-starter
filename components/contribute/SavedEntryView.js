@@ -3,7 +3,7 @@ import { colors, label, box } from "../entry/entryStyles.js";
 import EntryMeta from "../entry/EntryMeta.js";
 import EntryProcessList from "../entry/EntryProcessList.js";
 
-export default function SavedEntryView({ entry, onReset, isEditing }) {
+export default function SavedEntryView({ entry, onReset, onEditAgain, isEditing }) {
   return (
     <div
       style={{
@@ -76,12 +76,11 @@ export default function SavedEntryView({ entry, onReset, isEditing }) {
           >
             Back
           </Link>
-          <Link
-            href={`/entries/${entry.id}/edit`}
+          <button
+            type="button"
+            onClick={onEditAgain}
             style={{
               flex: 1,
-              display: "block",
-              textAlign: "center",
               fontFamily: "var(--font-body), sans-serif",
               fontSize: 13,
               fontWeight: 600,
@@ -91,12 +90,11 @@ export default function SavedEntryView({ entry, onReset, isEditing }) {
               padding: "12px 24px",
               borderRadius: 9999,
               cursor: "pointer",
-              textDecoration: "none",
               boxSizing: "border-box",
             }}
           >
             Edit Again
-          </Link>
+          </button>
         </div>
       ) : (
         <button
