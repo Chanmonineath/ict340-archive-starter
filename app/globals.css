@@ -1279,6 +1279,11 @@ body {
   flex: 1;
 }
 
+.folio-remedy-photo {
+  max-width: 180px;
+  flex-shrink: 0;
+}
+
 .folio-remedy-kh {
   display: block;
   font-family: var(--font-khmer), sans-serif;

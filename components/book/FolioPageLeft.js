@@ -2,6 +2,7 @@ import Logo from "../Logo.js";
 import collection from "../../collection.config.js";
 import { BookOpenIcon } from "./icons.js";
 import { FolioNote, FolioSteps, FolioContentsRows, leafHeading } from "./FolioNoteAndSteps.js";
+import EntryPhoto from "../EntryPhoto.js";
 import formatDuration from "../entry/formatDuration.js";
 
 export default function FolioPageLeft({
@@ -72,6 +73,12 @@ export default function FolioPageLeft({
 
         {currentRemedy && spread.left?.detail && (
           <div className="folio-remedy">
+            {currentRemedy.imageLabel && (
+              <div className="folio-remedy-photo">
+                <EntryPhoto src={currentRemedy.imageLabel} label={currentRemedy.title} />
+              </div>
+            )}
+
             <div>
               {currentRemedy.khmerName && (
                 <span className="folio-remedy-kh">{currentRemedy.khmerName}</span>
