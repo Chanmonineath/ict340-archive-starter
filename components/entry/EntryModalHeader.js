@@ -13,20 +13,22 @@ export default function EntryModalHeader({ title, khmerName, onClose }) {
           {title}
         </h2>
       </div>
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close remedy"
-        style={{
-          width: 36, height: 36, borderRadius: "50%", border: "none",
-          backgroundColor: colors.box, color: colors.teak, fontSize: 22,
-          fontWeight: 700, lineHeight: 1, cursor: "pointer", flexShrink: 0,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          padding: 0,
-        }}
-      >
-        ×
-      </button>
+      {onClose && (
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close remedy"
+          style={{
+            width: 36, height: 36, borderRadius: "50%", border: "none",
+            backgroundColor: colors.box, color: colors.teak, fontSize: 22,
+            fontWeight: 700, lineHeight: 1, cursor: "pointer", flexShrink: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: 0,
+          }}
+        >
+          ×
+        </button>
+      )}
     </div>
   );
 }

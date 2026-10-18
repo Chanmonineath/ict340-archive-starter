@@ -6,10 +6,13 @@ import EntryModalHeader from "./entry/EntryModalHeader.js";
 import EntryMeta from "./entry/EntryMeta.js";
 import EntryProcessList from "./entry/EntryProcessList.js";
 import EntryPhoto from "./EntryPhoto.js";
+import useLockBodyScroll from "../hooks/useLockBodyScroll.js";
 
 export default function EntryModal({
   title, khmerName, contributor, place, ingredients, process, benefit, imageLabel, onClose,
 }) {
+  useLockBodyScroll();
+
   React.useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
@@ -49,9 +52,28 @@ export default function EntryModal({
         aria-label={"Full remedy: " + title}
         onClick={(e) => e.stopPropagation()}
       >
-        <EntryPhoto src={imageLabel} label={title} />
+        {imageLabel && (
+          <div style={{ position: "relative", paddingTop: 44, marginTop: -16 }}>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close remedy"
+              style={{
+                position: "absolute", top: 0, right: 0,
+                width: 36, height: 36, borderRadius: "50%", border: "none",
+                backgroundColor: colors.box, color: colors.teak, fontSize: 22,
+                fontWeight: 700, lineHeight: 1, cursor: "pointer", flexShrink: 0,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                padding: 0,
+              }}
+            >
+              ×
+            </button>
+            <EntryPhoto src={imageLabel} label={title} />
+          </div>
+        )}
 
-        <EntryModalHeader title={title} khmerName={khmerName} onClose={onClose} />
+        <EntryModalHeader title={title} khmerName={khmerName} onClose={imageLabel ? undefined : onClose} />
 
         <hr style={{ border: "none", borderTop: "1px solid " + colors.silk, margin: 0 }} />
 
