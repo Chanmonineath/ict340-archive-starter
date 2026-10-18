@@ -20,6 +20,10 @@ export default function DurationInput({ value, onChange }) {
     onChange(`${next.hours}h ${next.minutes}mn`);
   };
 
+  const fillHoursDefault = () => {
+    if (!hours) onChange(`00h ${minutes}mn`);
+  };
+
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <input
@@ -30,7 +34,8 @@ export default function DurationInput({ value, onChange }) {
         placeholder="00"
         value={hours}
         onChange={updatePart("hours")}
-        aria-label="Hours"
+        onBlur={fillHoursDefault}
+        aria-label="Hours (optional)"
       />
       <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>h</span>
       <input

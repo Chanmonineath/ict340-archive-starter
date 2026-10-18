@@ -67,9 +67,9 @@ export function validate(fields, photoFile) {
   const benefitError = lengthError("Benefit", fields.benefit, 1, 500);
   if (benefitError) errors.benefit = benefitError;
 
-  const durationMatch = /^(\d{1,2})h (\d{1,2})mn$/.exec(fields.duration || "");
-  if (!durationMatch || (durationMatch[1] === "0" && durationMatch[2] === "0")) {
-    errors.duration = "Please enter how long this practice takes (hours and minutes).";
+  const durationMatch = /^(\d{0,2})h (\d{1,2})mn$/.exec(fields.duration || "");
+  if (!durationMatch || (Number(durationMatch[1] || 0) === 0 && Number(durationMatch[2]) === 0)) {
+    errors.duration = "Please enter how long this practice takes.";
   }
 
   const photoError = validatePhoto(photoFile);

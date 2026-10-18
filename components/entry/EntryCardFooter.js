@@ -1,11 +1,12 @@
 import { colors } from "./entryStyles.js";
 import EntryOwnerActions from "./EntryOwnerActions.js";
+import formatDuration from "./formatDuration.js";
 
 export default function EntryCardFooter({ duration, onReadMore, isOwner, entryId, title, onDeleted }) {
   return (
     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
       <p style={{ fontFamily: "var(--font-body), sans-serif", fontStyle: "italic", fontSize: 13, color: "#70624E", margin: 0, paddingTop: isOwner ? 10 : 0 }}>
-        Takes {duration}
+        Takes {formatDuration(duration)}
       </p>
 
       {isOwner ? (

@@ -2,6 +2,7 @@ import Logo from "../Logo.js";
 import collection from "../../collection.config.js";
 import { BookOpenIcon } from "./icons.js";
 import { FolioNote, FolioSteps, FolioContentsRows, leafHeading } from "./FolioNoteAndSteps.js";
+import formatDuration from "../entry/formatDuration.js";
 
 export default function FolioPageLeft({
   spread,
@@ -90,7 +91,7 @@ export default function FolioPageLeft({
               <div className="folio-meta-wide">
                 <span className="folio-meta-label">Duration</span>
                 <span className="folio-meta-value folio-meta-value-plain">
-                  {currentRemedy.duration}
+                  {formatDuration(currentRemedy.duration)}
                 </span>
               </div>
             </div>
