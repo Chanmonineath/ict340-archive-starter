@@ -47,8 +47,11 @@ export function validate(fields, photoFile) {
     errors.place = "Please select a province.";
   }
 
-  if (!fields.category.trim()) {
+  const categoryTrimmed = fields.category.trim();
+  if (!categoryTrimmed) {
     errors.category = "Please choose or add a category.";
+  } else if (!/^[A-Za-zក-៿\s&]+$/.test(categoryTrimmed)) {
+    errors.category = "Category can only contain letters, spaces, and &.";
   }
 
   const ingredientsError = lengthError("Ingredients", fields.ingredients, 1, 200);

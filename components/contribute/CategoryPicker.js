@@ -14,6 +14,11 @@ export default function CategoryPicker({ value, onChange }) {
     setIsAdding(false);
   };
 
+  const updateCustomValue = (e) => {
+    const next = e.target.value;
+    if (/^[A-Za-zក-៿\s&]*$/.test(next)) setCustomValue(next);
+  };
+
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }} role="group" aria-label="Category">
       {KNOWN_CATEGORIES.map((category) => (
@@ -51,7 +56,7 @@ export default function CategoryPicker({ value, onChange }) {
           style={{ width: 160, padding: "8px 16px" }}
           placeholder="New category"
           value={customValue}
-          onChange={(e) => setCustomValue(e.target.value)}
+          onChange={updateCustomValue}
           onBlur={confirmCustom}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
