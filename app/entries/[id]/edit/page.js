@@ -58,7 +58,7 @@ export default function EditEntryPage() {
     <div style={styles.page}>
       <main style={styles.main} className="contribute-main">
         <Link
-          href="/archive"
+          href="/"
           style={{
             display: "inline-block",
             marginTop: -48,
@@ -70,7 +70,7 @@ export default function EditEntryPage() {
             textDecoration: "none",
           }}
         >
-          ← Back to Archive
+          ← Back to Home
         </Link>
         {content}
       </main>

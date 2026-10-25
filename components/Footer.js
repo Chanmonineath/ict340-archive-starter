@@ -18,10 +18,10 @@ export default function Footer() {
 
         <div className="footer-links-col">
           <h2 className="footer-heading">The Archive</h2>
-          <Link href="/archive" className="footer-link">
+          <Link href="/#archive" className="footer-link">
             Book View
           </Link>
-          <Link href="/archive" className="footer-link">
+          <Link href="/#archive" className="footer-link">
             Recipe Cards
           </Link>
           <Link href="/contribute" className="footer-link">

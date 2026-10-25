@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import EntryCard from "../../components/EntryCard.js";
-import SearchFilter from "../../components/SearchFilter.js";
-import BookView from "../../components/BookView.js";
-import useEntries from "../../hooks/useEntries.js";
+import EntryCard from "./EntryCard.js";
+import SearchFilter from "./SearchFilter.js";
+import BookView from "./BookView.js";
+import useEntries from "../hooks/useEntries.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -30,12 +30,11 @@ function filterEntries(entries, filter) {
 }
 
 const styles = {
-  page: { backgroundColor: colors.paper, minHeight: "100vh" },
   main: { maxWidth: 1100, margin: "0 auto" },
   stripRow: { display: "grid", gap: 24 },
 };
 
-export default function ArchivePage() {
+export default function ArchiveSection() {
   const { entries, isLoading, error, removeEntry } = useEntries();
   const [filter, setFilter] = React.useState({ category: "All", query: "" });
   const [view, setView] = React.useState("cards");
@@ -46,7 +45,7 @@ export default function ArchivePage() {
   const filteredEntries = React.useMemo(() => filterEntries(entries, filter), [entries, filter]);
 
   return (
-    <div style={styles.page}>
+    <div id="archive" style={{ backgroundColor: colors.paper }}>
       <header className="archive-header">
         <p className="archive-eyebrow">Home Practice Archive</p>
         <h1 className="archive-khmer-title">បណ្ណាសារការអនុវត្តតាមផ្ទះ</h1>

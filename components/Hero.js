@@ -10,7 +10,7 @@ export default function Hero({ eyebrow, statement, supportCopy }) {
       <p className="hero-support">{supportCopy}</p>
 
       <div className="hero-actions">
-        <Link href="/archive" className="hero-btn-primary" aria-label="Explore the archive">
+        <Link href="#archive" className="hero-btn-primary" aria-label="Explore the archive">
           Explore the Archive
           <svg
             viewBox="0 0 24 24"
