@@ -39,19 +39,19 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
   if (compact) {
     const iconBtn = {
       display: "inline-flex", alignItems: "center", justifyContent: "center",
-      width: 28, height: 28, borderRadius: "50%", backgroundColor: colors.cream,
+      width: 40, height: 40, borderRadius: "50%", backgroundColor: colors.cream,
       cursor: "pointer", textDecoration: "none",
     };
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <Link href={`/entries/${entryId}/edit`} aria-label="Edit entry" style={{ ...iconBtn, color: colors.teak, border: "1px solid " + colors.teak }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <Link href={`/entries/${entryId}/edit`} aria-label="Edit entry" style={{ ...iconBtn, color: colors.teak, border: "1.5px solid " + colors.teak }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 20h9" />
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
           </svg>
         </Link>
-        <button type="button" onClick={() => setIsConfirming(true)} aria-label="Delete entry" style={{ ...iconBtn, color: "#9C3B2E", border: "1px solid #D9A79B" }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <button type="button" onClick={() => setIsConfirming(true)} aria-label="Delete entry" style={{ ...iconBtn, color: "#9C3B2E", border: "1.5px solid #D9A79B" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 6h18" />
             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
             <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
