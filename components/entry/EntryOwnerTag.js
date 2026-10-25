@@ -13,7 +13,7 @@ export default function EntryOwnerTag({ ownerName }) {
         backgroundColor: colors.box,
         border: "1px solid " + colors.silk,
         borderRadius: 9999,
-        fontFamily: "var(--font-body), sans-serif",
+        fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
         fontSize: 11,
         fontWeight: 600,
         color: colors.gold,
