@@ -36,7 +36,11 @@ export default function NavBar() {
 
   React.useEffect(() => {
     const updateHeight = () => {
-      if (navRef.current) setNavHeight(navRef.current.offsetHeight);
+      if (navRef.current) {
+        const height = navRef.current.offsetHeight;
+        setNavHeight(height);
+        document.documentElement.style.setProperty("--nav-height", `${height}px`);
+      }
     };
     updateHeight();
     window.addEventListener("resize", updateHeight);
