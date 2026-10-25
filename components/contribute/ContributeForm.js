@@ -109,13 +109,6 @@ export default function ContributeForm({ user, editingEntry }) {
     }
   };
 
-  const resetForm = () => {
-    setFields(EMPTY_FIELDS);
-    setPhotoFile(null);
-    setErrors({});
-    setSavedEntry(null);
-  };
-
   const handleEditAgain = () => {
     setFields(
       fieldsFromEntry({
@@ -147,13 +140,20 @@ export default function ContributeForm({ user, editingEntry }) {
     setFormError("");
   };
 
+  const resetForm = () => {
+    setFields(EMPTY_FIELDS);
+    setPhotoFile(null);
+    setErrors({});
+    setSavedEntry(null);
+  };
+
   if (savedEntry) {
     return (
       <SavedEntryView
         entry={savedEntry}
-        onReset={resetForm}
-        onEditAgain={handleEditAgain}
         isEditing={isEditing}
+        onEditAgain={handleEditAgain}
+        onSubmitAnother={resetForm}
       />
     );
   }

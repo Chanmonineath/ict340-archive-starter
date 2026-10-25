@@ -3,7 +3,7 @@ import { colors, label, box } from "../entry/entryStyles.js";
 import EntryMeta from "../entry/EntryMeta.js";
 import EntryProcessList from "../entry/EntryProcessList.js";
 
-export default function SavedEntryView({ entry, onReset, onEditAgain, isEditing }) {
+export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmitAnother }) {
   return (
     <div
       style={{
@@ -53,55 +53,13 @@ export default function SavedEntryView({ entry, onReset, onEditAgain, isEditing 
         </div>
       )}
 
-      {isEditing ? (
-        <div style={{ display: "flex", gap: 12 }}>
-          <Link
-            href="/archive"
-            style={{
-              flex: 1,
-              display: "block",
-              textAlign: "center",
-              fontFamily: "var(--font-body), sans-serif",
-              fontSize: 13,
-              fontWeight: 600,
-              color: colors.cream,
-              backgroundColor: colors.button,
-              border: "none",
-              padding: "12px 24px",
-              borderRadius: 9999,
-              cursor: "pointer",
-              textDecoration: "none",
-              boxSizing: "border-box",
-            }}
-          >
-            Back
-          </Link>
-          <button
-            type="button"
-            onClick={onEditAgain}
-            style={{
-              flex: 1,
-              fontFamily: "var(--font-body), sans-serif",
-              fontSize: 13,
-              fontWeight: 600,
-              color: colors.button,
-              backgroundColor: "transparent",
-              border: "1px solid " + colors.button,
-              padding: "12px 24px",
-              borderRadius: 9999,
-              cursor: "pointer",
-              boxSizing: "border-box",
-            }}
-          >
-            Edit Again
-          </button>
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={onReset}
+      <div style={{ display: "flex", gap: 12 }}>
+        <Link
+          href="/"
           style={{
-            alignSelf: "flex-start",
+            flex: 1,
+            display: "block",
+            textAlign: "center",
             fontFamily: "var(--font-body), sans-serif",
             fontSize: 13,
             fontWeight: 600,
@@ -111,10 +69,37 @@ export default function SavedEntryView({ entry, onReset, onEditAgain, isEditing 
             padding: "12px 24px",
             borderRadius: 9999,
             cursor: "pointer",
+            textDecoration: "none",
+            boxSizing: "border-box",
           }}
         >
-          Share Another Entry
+          Back
+        </Link>
+        <button
+          type="button"
+          onClick={isEditing ? onEditAgain : onSubmitAnother}
+          style={{
+            flex: 1,
+            fontFamily: "var(--font-body), sans-serif",
+            fontSize: 13,
+            fontWeight: 600,
+            color: colors.button,
+            backgroundColor: "transparent",
+            border: "1px solid " + colors.button,
+            padding: "12px 24px",
+            borderRadius: 9999,
+            cursor: "pointer",
+            boxSizing: "border-box",
+          }}
+        >
+          {isEditing ? "Edit Again" : "Submit Another"}
         </button>
+      </div>
+
+      {!isEditing && (
+        <p style={{ margin: 0, textAlign: "center", fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
+          Submitted — awaiting review.
+        </p>
       )}
     </div>
   );
