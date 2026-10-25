@@ -31,6 +31,16 @@ export function photoExtension(file) {
   return ALLOWED_PHOTO_TYPES[file.type] ?? null;
 }
 
+// Pads a missing hours segment to "00" so a duration typed with only
+// minutes (e.g. "h 20mn") always reaches the database as "00h 20mn",
+// matching the entries_duration_format check constraint.
+export function normalizeDuration(duration) {
+  const match = /^(\d{0,2})h (\d{1,2})mn$/.exec((duration || "").trim());
+  if (!match) return (duration || "").trim();
+  const hours = match[1] || "00";
+  return `${hours}h ${match[2]}mn`;
+}
+
 export function validate(fields, photoFile) {
   const errors = {};
 

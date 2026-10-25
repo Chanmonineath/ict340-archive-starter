@@ -1,5 +1,5 @@
 import { createClient } from "../../lib/supabase/client.js";
-import { photoExtension } from "./contributeValidation.js";
+import { photoExtension, normalizeDuration } from "./contributeValidation.js";
 
 // Uploads the photo to Storage, then inserts the entry row. Never trusts the
 // original filename or its extension — the storage path extension comes
@@ -36,7 +36,7 @@ export async function submitEntry({ fields, photoFile, user }) {
       ingredients: fields.ingredients.trim(),
       process: fields.process.map((step) => step.trim()).filter(Boolean),
       benefit: fields.benefit.trim(),
-      duration: fields.duration.trim(),
+      duration: normalizeDuration(fields.duration),
       photo_url: photoUrl,
       owner: user.id,
     })
