@@ -1,13 +1,16 @@
 import { createClient } from "../../lib/supabase/client.js";
-import { photoExtension } from "./contributeValidation.js";
+import { photoExtension, normalizeDuration } from "./contributeValidation.js";
 
 // Updates an existing entry. If a new photo was chosen, uploads it the same
 // way submitEntry.js does (random path under the owner's id, extension from
 // the validated MIME type, never the original filename) and swaps the URL;
 // otherwise keeps the entry's current photo_url untouched. owner is never
-// included in the update payload — it's immutable after creation. Checks a
-// row actually came back so a silently-blocked write (e.g. RLS) surfaces as
-// a real error instead of a false "saved" message.
+// included in the update payload — it's immutable after creation. Unless the
+// session is a reviewer (supabase.rpc("is_reviewer")), the edit sends the
+// entry back to pending review rather than leaving a published entry live
+// with unreviewed changes. Checks a row actually came back so a
+// silently-blocked write (e.g. RLS) surfaces as a real error instead of a
+// false "saved" message.
 export async function updateEntry({ id, ownerId, fields, photoFile, currentPhotoUrl }) {
   const supabase = createClient();
   let photoUrl = currentPhotoUrl;
@@ -28,6 +31,8 @@ export async function updateEntry({ id, ownerId, fields, photoFile, currentPhoto
     photoUrl = supabase.storage.from("photos").getPublicUrl(path).data.publicUrl;
   }
 
+  const { data: isReviewer } = await supabase.rpc("is_reviewer");
+
   const { data, error } = await supabase
     .from("entries")
     .update({
@@ -39,8 +44,9 @@ export async function updateEntry({ id, ownerId, fields, photoFile, currentPhoto
       ingredients: fields.ingredients.trim(),
       process: fields.process.map((step) => step.trim()).filter(Boolean),
       benefit: fields.benefit.trim(),
-      duration: fields.duration.trim(),
+      duration: normalizeDuration(fields.duration),
       photo_url: photoUrl,
+      ...(isReviewer ? {} : { status: "pending" }),
     })
     .eq("id", id)
     .select();

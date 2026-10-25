@@ -34,6 +34,7 @@ export default function useEntries() {
     supabase
       .from("entries")
       .select("*, profiles(name)")
+      .eq("status", "published")
       .order("created_at", { ascending: false })
       .order("title", { ascending: true })
       .then(({ data, error: fetchError }) => {
