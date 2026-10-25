@@ -248,9 +248,11 @@ body {
 }
 
 .nav-link {
+  font-size: 14px;
   color: #2E3B2ACC;
   border-bottom: 2px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -334,7 +336,10 @@ body {
     padding: 12px 16px;
   }
   .nav-links {
-    gap: 22px;
+    gap: 18px;
+  }
+  .nav-link {
+    font-size: 13px;
   }
   .nav-join {
     padding: 10px 16px;

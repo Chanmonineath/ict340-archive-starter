@@ -14,11 +14,11 @@ import BottomNav from "./nav/BottomNav.js";
 
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC", active: "#24492E" };
 
-const navLinks = [
+const baseNavLinks = [
   { href: "/", label: "Home" },
-  { href: "/archive", label: "Archive" },
   { href: "/contribute", label: "Contribute" },
 ];
+const myEntriesLink = { href: "/my-entries", label: "My Entries" };
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -28,6 +28,7 @@ export default function NavBar() {
 
   const isHidden = useAutoHideHeader({ pauseWhile: isMenuOpen });
   const { user } = useSupabaseUser();
+  const navLinks = user ? [...baseNavLinks, myEntriesLink] : baseNavLinks;
 
   React.useEffect(() => {
     setIsMenuOpen(false);

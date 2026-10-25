@@ -2,7 +2,6 @@ import Link from "next/link";
 
 const linkStyle = {
   fontFamily: "var(--font-body), sans-serif",
-  fontSize: 14,
   fontWeight: 600,
   textDecoration: "none",
   textTransform: "uppercase",

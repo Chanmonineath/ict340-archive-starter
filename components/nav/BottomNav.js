@@ -4,13 +4,15 @@ import ArchiveIcon from "./icons/ArchiveIcon.js";
 import ContributeIcon from "./icons/ContributeIcon.js";
 import BottomNavAccountTab from "./BottomNavAccountTab.js";
 
-const tabs = [
+const baseTabs = [
   { href: "/", label: "Home", Icon: HomeIcon },
-  { href: "/archive", label: "Archive", Icon: ArchiveIcon },
   { href: "/contribute", label: "Contribute", Icon: ContributeIcon },
 ];
+const myEntriesTab = { href: "/my-entries", label: "My Entries", Icon: ArchiveIcon };
 
 export default function BottomNav({ pathname, user, isHidden }) {
+  const tabs = user ? [...baseTabs, myEntriesTab] : baseTabs;
+
   return (
     <nav
       className={"bottom-nav" + (isHidden ? " bottom-nav-hidden" : "")}
