@@ -2,6 +2,7 @@ import Link from "next/link";
 import HomeIcon from "./icons/HomeIcon.js";
 import ArchiveIcon from "./icons/ArchiveIcon.js";
 import ContributeIcon from "./icons/ContributeIcon.js";
+import ReviewIcon from "./icons/ReviewIcon.js";
 import BottomNavAccountTab from "./BottomNavAccountTab.js";
 
 const baseTabs = [
@@ -9,9 +10,12 @@ const baseTabs = [
   { href: "/contribute", label: "Contribute", Icon: ContributeIcon },
 ];
 const myEntriesTab = { href: "/my-entries", label: "My Entries", Icon: ArchiveIcon };
+const reviewTab = { href: "/review", label: "Review", Icon: ReviewIcon };
 
-export default function BottomNav({ pathname, user, isHidden }) {
-  const tabs = user ? [...baseTabs, myEntriesTab] : baseTabs;
+export default function BottomNav({ pathname, user, isReviewer, isHidden }) {
+  const tabs = user
+    ? [...baseTabs, myEntriesTab, ...(isReviewer ? [reviewTab] : [])]
+    : baseTabs;
 
   return (
     <nav

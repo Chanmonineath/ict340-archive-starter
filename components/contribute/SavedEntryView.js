@@ -96,9 +96,9 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
         </button>
       </div>
 
-      {!isEditing && (
+      {entry.status === "pending" && (
         <p style={{ margin: 0, textAlign: "center", fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
-          Submitted — awaiting review.
+          {isEditing ? "Awaiting review before it's live again." : "Submitted — awaiting review."}
         </p>
       )}
     </div>

@@ -7,6 +7,7 @@ import Logo from "./Logo.js";
 import collection from "../collection.config.js";
 import useAutoHideHeader from "../hooks/useAutoHideHeader.js";
 import useSupabaseUser from "../hooks/useSupabaseUser.js";
+import { createClient } from "../lib/supabase/client.js";
 import NavLinks from "./nav/NavLinks.js";
 import MobileNavPanel from "./nav/MobileNavPanel.js";
 import NavActions from "./nav/NavActions.js";
@@ -19,16 +20,30 @@ const baseNavLinks = [
   { href: "/contribute", label: "Contribute" },
 ];
 const myEntriesLink = { href: "/my-entries", label: "My Entries" };
+const reviewLink = { href: "/review", label: "Review" };
 
 export default function NavBar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [navHeight, setNavHeight] = React.useState(0);
+  const [isReviewer, setIsReviewer] = React.useState(false);
   const navRef = React.useRef(null);
 
   const isHidden = useAutoHideHeader({ pauseWhile: isMenuOpen });
   const { user } = useSupabaseUser();
-  const navLinks = user ? [...baseNavLinks, myEntriesLink] : baseNavLinks;
+
+  React.useEffect(() => {
+    if (!user) {
+      setIsReviewer(false);
+      return;
+    }
+    const supabase = createClient();
+    supabase.rpc("is_reviewer").then(({ data }) => setIsReviewer(data === true));
+  }, [user]);
+
+  const navLinks = user
+    ? [...baseNavLinks, myEntriesLink, ...(isReviewer ? [reviewLink] : [])]
+    : baseNavLinks;
 
   React.useEffect(() => {
     setIsMenuOpen(false);
@@ -86,7 +101,7 @@ export default function NavBar() {
       </nav>
       <div style={{ height: navHeight }} aria-hidden="true" />
 
-      <BottomNav pathname={pathname} user={user} isHidden={isHidden} />
+      <BottomNav pathname={pathname} user={user} isReviewer={isReviewer} isHidden={isHidden} />
     </>
   );
 }
