@@ -36,7 +36,9 @@ body {
   min-width: 0;
 }
 
-.entry-card * {
+.entry-card *,
+.wrap-content,
+.wrap-content * {
   overflow-wrap: anywhere;
   min-width: 0;
 }
