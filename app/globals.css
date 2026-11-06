@@ -21,8 +21,8 @@ body {
 
 .category-pill:hover:not(.category-pill-active) {
   color: #2E5B3A;
-  border-color: #D5C6AC;
-  background-color: #F2ECE0;
+  border-color: #E5C25D;
+  background-color: #F7EFDB;
 }
 
 .category-pill-active:hover {
