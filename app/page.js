@@ -8,6 +8,7 @@ export default function Home() {
       <Hero
         eyebrow={`${collection.name} • ${collection.subtitle}`}
         statement="Knowledge, Preserved in the Home."
+        khmerStatement="ចំណេះដឹងពីបុរាណ ថែរក្សាក្នុងផ្ទះខ្មែរ"
         supportCopy={collection.description}
       />
       <ArchiveSection />
