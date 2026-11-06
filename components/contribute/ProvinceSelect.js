@@ -55,7 +55,7 @@ export default function ProvinceSelect({ value, onChange }) {
           className="province-select-panel"
           style={{
             backgroundColor: "#FFFFFF",
-            border: "1px solid " + colors.silk,
+            border: "1px solid #C49746",
           }}
         >
           <input

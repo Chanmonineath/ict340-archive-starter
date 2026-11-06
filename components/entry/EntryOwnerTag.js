@@ -11,7 +11,7 @@ export default function EntryOwnerTag({ ownerName }) {
         right: 16,
         padding: "4px 10px",
         backgroundColor: colors.box,
-        border: "1px solid " + colors.silk,
+        border: "1px solid #C49746",
         borderRadius: 9999,
         fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
         fontSize: 11,

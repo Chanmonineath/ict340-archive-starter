@@ -12,7 +12,7 @@ export function pillStyle(isActive) {
     fontWeight: isActive ? 600 : 500,
     color: isActive ? "#FAF7F0" : colors.textInactive,
     backgroundColor: isActive ? colors.active : "#EBE3D3",
-    border: `1px solid ${isActive ? colors.active : "#D8CBBA"}`,
+    border: `1px solid ${isActive ? colors.active : "#C49746"}`,
     borderRadius: "9999px",
     cursor: "pointer",
     transition: "all 0.2s ease",

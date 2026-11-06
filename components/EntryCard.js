@@ -28,7 +28,7 @@ export default function EntryCard({
         gap: 16,
         padding: 24,
         backgroundColor: colors.cream,
-        border: "1px solid " + colors.silk,
+        border: "1px solid #C49746",
         borderRadius: 24,
       }}
     >

@@ -29,7 +29,7 @@ export default function ReviewEntryCard({ entry, onDecision }) {
       style={{
         backgroundColor: colors.cream,
         borderRadius: 15,
-        border: "1px solid " + colors.silk,
+        border: "1px solid #C49746",
         padding: 24,
         display: "flex",
         flexDirection: "column",

@@ -17,6 +17,7 @@ export default function EntryStatusBadge({ status }) {
         padding: "4px 12px",
         borderRadius: 9999,
         backgroundColor: copy.background,
+        border: "1px solid #C49746",
         color: colors.teak,
         fontFamily: "var(--font-body), sans-serif",
         fontSize: 12,

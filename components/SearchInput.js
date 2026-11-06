@@ -4,6 +4,7 @@ const colors = {
   text: "#1D3627",
   cream: "#FAF7F0",
   silk: "#E7DEC9",
+  gold: "#C49746",
   active: "#2E5B3A",
 };
 
@@ -27,7 +28,7 @@ export default function SearchInput({
       fontWeight: 500,
       color: colors.text,
       backgroundColor: colors.cream,
-      border: "1px solid " + (isFocused ? colors.active : colors.silk),
+      border: "1px solid " + (isFocused ? colors.active : colors.gold),
       borderRadius: "9999px",
       outline: "none",
       boxShadow: isFocused ? "0 0 0 3px rgba(27, 59, 43, 0.15)" : "none",
@@ -48,7 +49,7 @@ export default function SearchInput({
       left: 0,
       right: 0,
       backgroundColor: colors.cream,
-      border: "1px solid " + colors.silk,
+      border: "1px solid " + colors.gold,
       borderRadius: 16,
       boxShadow: "0 8px 24px rgba(61, 44, 30, 0.12)",
       overflow: "hidden",

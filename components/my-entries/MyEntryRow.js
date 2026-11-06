@@ -13,7 +13,7 @@ export default function MyEntryRow({ id, title, khmerName, status, onDeleted }) 
         gap: 16,
         padding: "16px 20px",
         backgroundColor: colors.cream,
-        border: "1px solid " + colors.silk,
+        border: "1px solid #C49746",
         borderRadius: 12,
       }}
     >
