@@ -30,7 +30,7 @@ export default async function ReviewPage() {
       .eq("status", "pending")
       .order("created_at", { ascending: true });
 
-    content = <ReviewQueue initialEntries={entries ?? []} />;
+    content = <ReviewQueue entries={entries ?? []} />;
   }
 
   return (

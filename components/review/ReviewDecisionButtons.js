@@ -6,18 +6,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
       <div style={{ display: "flex", gap: 12 }}>
         <button
           type="button"
-          onClick={onPublish}
-          disabled={isSaving}
-          style={{
-            flex: 1, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
-            color: colors.cream, backgroundColor: colors.button, border: "none",
-            padding: "12px 24px", borderRadius: 9999, cursor: "pointer",
-          }}
-        >
-          Publish
-        </button>
-        <button
-          type="button"
+          className="btn-secondary-pill"
           onClick={onReturn}
           disabled={isSaving}
           style={{
@@ -27,6 +16,19 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
           }}
         >
           Return for Changes
+        </button>
+        <button
+          type="button"
+          className="btn-primary-pill"
+          onClick={onPublish}
+          disabled={isSaving}
+          style={{
+            flex: 1, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
+            color: colors.cream, backgroundColor: colors.button, border: "none",
+            padding: "12px 24px", borderRadius: 9999, cursor: "pointer",
+          }}
+        >
+          Publish
         </button>
       </div>
 
