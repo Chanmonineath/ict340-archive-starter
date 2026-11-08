@@ -13,7 +13,7 @@ export default function NavLinks({ navLinks, pathname }) {
   return (
     <div className="nav-links">
       {navLinks.map(({ href, label }) => {
-        const isActive = pathname === href;
+        const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
         return (
           <Link
             key={href}

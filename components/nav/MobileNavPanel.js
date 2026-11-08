@@ -21,7 +21,7 @@ export default function MobileNavPanel({ navLinks, pathname, isOpen, onClose }) 
         className={"nav-mobile-panel" + (isOpen ? " nav-mobile-panel-open" : "")}
       >
         {navLinks.map(({ href, label }) => {
-          const isActive = pathname === href;
+          const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
           return (
             <Link
               key={href}

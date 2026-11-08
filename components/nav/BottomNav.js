@@ -23,7 +23,7 @@ export default function BottomNav({ pathname, user, isReviewer, isHidden }) {
       aria-label="Primary mobile"
     >
       {tabs.map(({ href, label, Icon }) => {
-        const isActive = pathname === href;
+        const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
         return (
           <Link
             key={href}
