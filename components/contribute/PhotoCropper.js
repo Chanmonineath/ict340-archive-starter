@@ -58,6 +58,7 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm, onCanc
       <div style={{ display: "flex", gap: 8 }}>
         <button
           type="button"
+          className="btn-secondary-pill"
           onClick={onCancel}
           style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: colors.teak, backgroundColor: colors.cream, border: "1px solid " + colors.silk, padding: "8px 16px", borderRadius: 9999, cursor: "pointer" }}
         >
@@ -65,6 +66,7 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm, onCanc
         </button>
         <button
           type="button"
+          className="btn-primary-pill"
           onClick={handleConfirm}
           disabled={!crop}
           style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: colors.cream, backgroundColor: colors.button, border: "none", padding: "8px 16px", borderRadius: 9999, cursor: "pointer" }}

@@ -47,7 +47,7 @@ export default function ContributeBanner() {
         Do you or someone you know keep a traditional Khmer practice at home —
         a plant, a remedy, a way of cooking or caring? Help us preserve it.
       </p>
-      <a href="mailto:ict340@aupp.edu.kh?subject=New%20archive%20entry" style={btn} aria-label="Submit an entry">
+      <a href="mailto:ict340@aupp.edu.kh?subject=New%20archive%20entry" className="btn-primary-pill" style={btn} aria-label="Submit an entry">
         Submit an entry
       </a>
     </section>

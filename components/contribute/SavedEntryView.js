@@ -56,6 +56,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
       <div style={{ display: "flex", gap: 12 }}>
         <Link
           href="/"
+          className="btn-primary-pill"
           style={{
             flex: 1,
             display: "block",
@@ -77,6 +78,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
         </Link>
         <button
           type="button"
+          className="btn-secondary-pill"
           onClick={isEditing ? onEditAgain : onSubmitAnother}
           style={{
             flex: 1,

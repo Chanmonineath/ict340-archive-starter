@@ -50,7 +50,7 @@ export default function ContributeLoginPrompt() {
         Log in to record a family remedy, natural scrub, or herbal care passed down by your family,
         elders, friends, and communities.
       </p>
-      <Link href="/login" style={btn} aria-label="Log in to submit an entry">
+      <Link href="/login" className="btn-primary-pill" style={btn} aria-label="Log in to submit an entry">
         Log In to Contribute
       </Link>
     </section>

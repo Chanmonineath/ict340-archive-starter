@@ -93,6 +93,7 @@ export default function EntryModal({
 
         <button
           type="button"
+          className="btn-primary-pill"
           onClick={onClose}
           style={{
             alignSelf: "flex-end",

@@ -14,6 +14,7 @@ export default function EntryCardFooter({ duration, onReadMore, isOwner, entryId
       ) : (
         <button
           type="button"
+          className="btn-primary-pill"
           onClick={onReadMore}
           style={{
             fontFamily: "var(--font-body), sans-serif",

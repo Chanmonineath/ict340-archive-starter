@@ -6,6 +6,7 @@ export default function EntryOwnerActions({ entryId, title, onReadMore, onDelete
     <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch" }}>
       <button
         type="button"
+        className="btn-primary-pill"
         onClick={onReadMore}
         style={{
           fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
