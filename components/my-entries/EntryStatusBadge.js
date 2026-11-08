@@ -22,6 +22,7 @@ export default function EntryStatusBadge({ status }) {
         fontFamily: "var(--font-body), sans-serif",
         fontSize: 12,
         fontWeight: 600,
+        whiteSpace: "nowrap",
       }}
     >
       {copy.label}
