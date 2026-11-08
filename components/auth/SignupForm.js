@@ -37,10 +37,25 @@ export default function SignupForm() {
 
     setIsSubmitting(true);
     const supabase = createClient();
+    const name = fields.name.trim();
+
+    const { data: existing } = await supabase
+      .from("profiles")
+      .select("id")
+      .ilike("name", name)
+      .maybeSingle();
+
+    if (existing) {
+      setIsSubmitting(false);
+      setErrors((prev) => ({ ...prev, name: "That name is already taken." }));
+      setTouched((prev) => ({ ...prev, name: true }));
+      return;
+    }
+
     const { error: signUpError } = await supabase.auth.signUp({
       email: fields.email,
       password: fields.password,
-      options: { data: { name: fields.name } },
+      options: { data: { name } },
     });
     setIsSubmitting(false);
 
