@@ -1,6 +1,15 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }) {
+  const handleExploreClick = (e) => {
+    const target = document.getElementById("archive");
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <section className="hero-wrap" role="region" aria-label="Introduction">
       <img src="/assets/background.jpg" alt="" aria-hidden="true" className="hero-bg-photo" />
@@ -17,7 +26,7 @@ export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }
         <p className="hero-support">{supportCopy}</p>
 
         <div className="hero-actions">
-          <Link href="#archive" className="hero-btn-primary" aria-label="Explore the archive">
+          <Link href="#archive" onClick={handleExploreClick} className="hero-btn-primary" aria-label="Explore the archive">
             Explore the Archive
             <svg
               viewBox="0 0 24 24"

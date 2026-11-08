@@ -1,8 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo.js";
 import collection from "../collection.config.js";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  const handleArchiveClick = (e) => {
+    if (pathname !== "/") return;
+    const target = document.getElementById("archive");
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-inner">
@@ -18,10 +31,10 @@ export default function Footer() {
 
         <div className="footer-links-col">
           <h2 className="footer-heading">The Archive</h2>
-          <Link href="/#archive" className="footer-link">
+          <Link href="/#archive" onClick={handleArchiveClick} className="footer-link">
             Book View
           </Link>
-          <Link href="/#archive" className="footer-link">
+          <Link href="/#archive" onClick={handleArchiveClick} className="footer-link">
             Recipe Cards
           </Link>
           <Link href="/contribute" className="footer-link">
