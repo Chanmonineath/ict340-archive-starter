@@ -15,10 +15,17 @@ export default function NavLinks({ navLinks, pathname }) {
     <div className="nav-links">
       {navLinks.map(({ href, label }) => {
         const isActive = isTabActive(href, pathname);
+        const handleClick = (e) => {
+          if (href === "/" && isActive) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        };
         return (
           <Link
             key={href}
             href={href}
+            onClick={handleClick}
             style={linkStyle}
             className={"nav-link" + (isActive ? " nav-link-active" : "")}
             aria-current={isActive ? "page" : undefined}

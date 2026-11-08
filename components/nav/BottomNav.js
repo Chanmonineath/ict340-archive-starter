@@ -25,10 +25,17 @@ export default function BottomNav({ pathname, user, isReviewer, isHidden }) {
     >
       {tabs.map(({ href, label, Icon }) => {
         const isActive = isTabActive(href, pathname);
+        const handleClick = (e) => {
+          if (href === "/" && isActive) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        };
         return (
           <Link
             key={href}
             href={href}
+            onClick={handleClick}
             className={"bottom-nav-item" + (isActive ? " bottom-nav-item-active" : "")}
             aria-current={isActive ? "page" : undefined}
           >
