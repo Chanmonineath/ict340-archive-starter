@@ -50,16 +50,20 @@ export default function NavBar() {
   }, [pathname]);
 
   React.useEffect(() => {
-    const updateHeight = () => {
-      if (navRef.current) {
-        const height = navRef.current.offsetHeight;
-        setNavHeight(height);
-        document.documentElement.style.setProperty("--nav-height", `${height}px`);
-      }
+    if (!navRef.current) return;
+
+    const updateHeight = (height) => {
+      setNavHeight(height);
+      document.documentElement.style.setProperty("--nav-height", `${height}px`);
     };
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+
+    updateHeight(navRef.current.offsetHeight);
+
+    const observer = new ResizeObserver((entries) => {
+      updateHeight(entries[0].contentRect.height);
+    });
+    observer.observe(navRef.current);
+    return () => observer.disconnect();
   }, []);
 
   const wrap = {
