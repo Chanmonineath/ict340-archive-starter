@@ -1,4 +1,5 @@
 import Link from "next/link";
+import isTabActive from "./isTabActive.js";
 
 const linkStyle = {
   fontFamily: "var(--font-body), sans-serif",
@@ -13,7 +14,7 @@ export default function NavLinks({ navLinks, pathname }) {
   return (
     <div className="nav-links">
       {navLinks.map(({ href, label }) => {
-        const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
+        const isActive = isTabActive(href, pathname);
         return (
           <Link
             key={href}

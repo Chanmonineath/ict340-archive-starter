@@ -1,4 +1,5 @@
 import Link from "next/link";
+import isTabActive from "./isTabActive.js";
 
 const mobileLinkStyle = {
   fontFamily: "var(--font-body), sans-serif",
@@ -21,7 +22,7 @@ export default function MobileNavPanel({ navLinks, pathname, isOpen, onClose }) 
         className={"nav-mobile-panel" + (isOpen ? " nav-mobile-panel-open" : "")}
       >
         {navLinks.map(({ href, label }) => {
-          const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
+          const isActive = isTabActive(href, pathname);
           return (
             <Link
               key={href}

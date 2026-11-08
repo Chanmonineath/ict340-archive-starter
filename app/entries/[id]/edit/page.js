@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import useSupabaseUser from "../../../../hooks/useSupabaseUser.js";
 import useEntry from "../../../../hooks/useEntry.js";
 import ContributeForm from "../../../../components/contribute/ContributeForm.js";
@@ -30,6 +29,7 @@ function CenteredMessage({ children }) {
 
 export default function EditEntryPage() {
   const { id } = useParams();
+  const router = useRouter();
   const { user, isLoading: isUserLoading } = useSupabaseUser();
   const { entry, isLoading: isEntryLoading, error } = useEntry(id);
 
@@ -57,8 +57,9 @@ export default function EditEntryPage() {
   return (
     <div style={styles.page}>
       <main style={styles.main} className="contribute-main">
-        <Link
-          href="/"
+        <button
+          type="button"
+          onClick={() => router.back()}
           style={{
             display: "inline-block",
             marginTop: -48,
@@ -67,11 +68,14 @@ export default function EditEntryPage() {
             fontSize: 18,
             fontWeight: 700,
             color: colors.button,
-            textDecoration: "none",
+            background: "none",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
           }}
         >
-          ← Back to Home
-        </Link>
+          ← Back
+        </button>
         {content}
       </main>
     </div>

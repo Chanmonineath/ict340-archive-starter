@@ -1,9 +1,11 @@
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { colors, label, box } from "../entry/entryStyles.js";
 import EntryMeta from "../entry/EntryMeta.js";
 import EntryProcessList from "../entry/EntryProcessList.js";
 
 export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmitAnother }) {
+  const router = useRouter();
+
   return (
     <div
       style={{
@@ -54,13 +56,12 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
       )}
 
       <div style={{ display: "flex", gap: 12 }}>
-        <Link
-          href="/"
+        <button
+          type="button"
+          onClick={() => router.back()}
           className="btn-primary-pill"
           style={{
             flex: 1,
-            display: "block",
-            textAlign: "center",
             fontFamily: "var(--font-body), sans-serif",
             fontSize: 13,
             fontWeight: 600,
@@ -70,12 +71,11 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
             padding: "12px 24px",
             borderRadius: 9999,
             cursor: "pointer",
-            textDecoration: "none",
             boxSizing: "border-box",
           }}
         >
           Back
-        </Link>
+        </button>
         <button
           type="button"
           className="btn-secondary-pill"

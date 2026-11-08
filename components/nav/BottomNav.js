@@ -4,6 +4,7 @@ import ArchiveIcon from "./icons/ArchiveIcon.js";
 import ContributeIcon from "./icons/ContributeIcon.js";
 import ReviewIcon from "./icons/ReviewIcon.js";
 import BottomNavAccountTab from "./BottomNavAccountTab.js";
+import isTabActive from "./isTabActive.js";
 
 const baseTabs = [
   { href: "/", label: "Home", Icon: HomeIcon },
@@ -23,7 +24,7 @@ export default function BottomNav({ pathname, user, isReviewer, isHidden }) {
       aria-label="Primary mobile"
     >
       {tabs.map(({ href, label, Icon }) => {
-        const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
+        const isActive = isTabActive(href, pathname);
         return (
           <Link
             key={href}
