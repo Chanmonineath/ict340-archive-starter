@@ -37,7 +37,7 @@ export default function BottomNav({ pathname, user, isReviewer, isHidden }) {
           </Link>
         );
       })}
-      <BottomNavAccountTab user={user} />
+      <BottomNavAccountTab user={user} pathname={pathname} />
     </nav>
   );
 }

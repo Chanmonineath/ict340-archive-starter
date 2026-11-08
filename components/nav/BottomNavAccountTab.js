@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../lib/supabase/client.js";
 import AccountIcon from "./icons/AccountIcon.js";
+import isTabActive from "./isTabActive.js";
 
-export default function BottomNavAccountTab({ user }) {
+export default function BottomNavAccountTab({ user, pathname }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
   const menuRef = React.useRef(null);
@@ -28,8 +29,13 @@ export default function BottomNavAccountTab({ user }) {
   };
 
   if (!user) {
+    const isActive = isTabActive("/login", pathname) || isTabActive("/signup", pathname);
     return (
-      <Link href="/login" className="bottom-nav-item">
+      <Link
+        href="/login"
+        className={"bottom-nav-item" + (isActive ? " bottom-nav-item-active" : "")}
+        aria-current={isActive ? "page" : undefined}
+      >
         <AccountIcon />
         <span>Login</span>
       </Link>
