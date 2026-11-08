@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import scrollToArchive from "./scrollToArchive.js";
 
 export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }) {
-  const handleExploreClick = (e) => {
-    const target = document.getElementById("archive");
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleExploreClick = () => {
+    scrollToArchive();
   };
 
   return (
@@ -26,7 +24,7 @@ export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }
         <p className="hero-support">{supportCopy}</p>
 
         <div className="hero-actions">
-          <Link href="#archive" onClick={handleExploreClick} className="hero-btn-primary" aria-label="Explore the archive">
+          <button type="button" onClick={handleExploreClick} className="hero-btn-primary" aria-label="Explore the archive">
             Explore the Archive
             <svg
               viewBox="0 0 24 24"
@@ -41,7 +39,7 @@ export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>
-          </Link>
+          </button>
 
           <Link href="/contribute" className="hero-btn-secondary" aria-label="Share a home recipe">
             <svg

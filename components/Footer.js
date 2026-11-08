@@ -4,17 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo.js";
 import collection from "../collection.config.js";
+import scrollToArchive from "./scrollToArchive.js";
 
 export default function Footer() {
   const pathname = usePathname();
-
-  const handleArchiveClick = (e) => {
-    if (pathname !== "/") return;
-    const target = document.getElementById("archive");
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const onHomePage = pathname === "/";
 
   return (
     <footer className="site-footer">
@@ -31,12 +25,25 @@ export default function Footer() {
 
         <div className="footer-links-col">
           <h2 className="footer-heading">The Archive</h2>
-          <Link href="/#archive" onClick={handleArchiveClick} className="footer-link">
-            Book View
-          </Link>
-          <Link href="/#archive" onClick={handleArchiveClick} className="footer-link">
-            Recipe Cards
-          </Link>
+          {onHomePage ? (
+            <>
+              <button type="button" onClick={scrollToArchive} className="footer-link footer-link-button">
+                Book View
+              </button>
+              <button type="button" onClick={scrollToArchive} className="footer-link footer-link-button">
+                Recipe Cards
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/#archive" className="footer-link">
+                Book View
+              </Link>
+              <Link href="/#archive" className="footer-link">
+                Recipe Cards
+              </Link>
+            </>
+          )}
           <Link href="/contribute" className="footer-link">
             Join
           </Link>

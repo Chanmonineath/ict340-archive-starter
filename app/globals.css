@@ -604,6 +604,7 @@ body {
   letter-spacing: 0.11em;
   text-decoration: none;
   border-radius: 9999px;
+  cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -659,6 +660,10 @@ body {
 }
 
 /* ===== Archive header + view toggle ===== */
+
+#archive {
+  scroll-margin-top: var(--nav-height, 71px);
+}
 
 .archive-header {
   display: flex;
@@ -2107,6 +2112,14 @@ body {
 
 .footer-link:hover {
   color: #C49746;
+}
+
+.footer-link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
 }
 
 .footer-curated-col {
