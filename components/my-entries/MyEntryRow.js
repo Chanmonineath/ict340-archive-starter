@@ -8,7 +8,7 @@ import EntryModal from "../EntryModal.js";
 const colors = { teak: "#1D3627", gold: "#B88C4B", silk: "#E7DEC9", cream: "#FAF7F0" };
 
 export default function MyEntryRow({
-  id, title, khmerName, status, contributor, place, ingredients, process, benefit, duration, imageLabel, onDeleted,
+  id, title, khmerName, status, contributor, place, ingredients, process, benefit, duration, imageLabel, reviewNote, onDeleted,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const steps = Array.isArray(process) ? process : [process];
@@ -43,6 +43,11 @@ export default function MyEntryRow({
           <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 16, fontWeight: 700, color: colors.teak }}>
             {title}
           </p>
+          {status === "returned" && reviewNote && (
+            <p style={{ margin: "6px 0 0", fontFamily: "var(--font-body), sans-serif", fontSize: 13, color: colors.teak + "CC" }}>
+              <span style={{ fontWeight: 600 }}>Reviewer note:</span> {reviewNote}
+            </p>
+          )}
         </div>
 
         <div

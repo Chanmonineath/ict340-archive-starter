@@ -10,7 +10,7 @@ export default function ReviewDecisionPanel({ entryId }) {
   const [isSaving, setIsSaving] = React.useState(false);
   const [error, setError] = React.useState("");
 
-  const decide = async (decision) => {
+  const decide = async (decision, note) => {
     setIsSaving(true);
     setError("");
 
@@ -18,6 +18,7 @@ export default function ReviewDecisionPanel({ entryId }) {
     const { data: succeeded, error: rpcError } = await supabase.rpc("review_entry", {
       entry_id: entryId,
       decision,
+      note: note?.trim() || null,
     });
 
     if (rpcError || succeeded !== true) {
@@ -34,7 +35,7 @@ export default function ReviewDecisionPanel({ entryId }) {
     <ReviewDecisionButtons
       isSaving={isSaving}
       onPublish={() => decide("published")}
-      onReturn={() => decide("returned")}
+      onReturn={(note) => decide("returned", note)}
       error={error}
     />
   );

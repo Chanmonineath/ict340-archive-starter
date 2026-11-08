@@ -16,6 +16,7 @@ function mapRow(row) {
     benefit: row.benefit,
     duration: row.duration,
     imageLabel: row.photo_url,
+    reviewNote: row.review_note,
   };
 }
 
@@ -35,7 +36,7 @@ export default function useMyEntries(userId) {
     const supabase = createClient();
     supabase
       .from("entries")
-      .select("id, title, khmer_name, status, source, place, ingredients, process, benefit, duration, photo_url")
+      .select("id, title, khmer_name, status, source, place, ingredients, process, benefit, duration, photo_url, review_note")
       .eq("owner", userId)
       .order("created_at", { ascending: false })
       .then(({ data, error: fetchError }) => {

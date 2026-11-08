@@ -1,13 +1,38 @@
+import React from "react";
 import { colors } from "../entry/entryStyles.js";
 
 export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, error }) {
+  const [note, setNote] = React.useState("");
+
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div>
+        <label
+          htmlFor="review-note"
+          style={{
+            display: "block", marginBottom: 6, fontFamily: "var(--font-body), sans-serif",
+            fontSize: 12, fontWeight: 600, color: colors.teak,
+          }}
+        >
+          Note for the contributor (optional, shown if returned)
+        </label>
+        <textarea
+          id="review-note"
+          className="auth-input"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          disabled={isSaving}
+          rows={2}
+          placeholder="e.g. Please add a photo of the finished remedy."
+          style={{ width: "100%", resize: "vertical", borderRadius: 15, boxSizing: "border-box" }}
+        />
+      </div>
+
       <div style={{ display: "flex", gap: 12 }}>
         <button
           type="button"
           className="btn-secondary-pill"
-          onClick={onReturn}
+          onClick={() => onReturn(note)}
           disabled={isSaving}
           style={{
             flex: 1, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
@@ -37,6 +62,6 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
           {error}
         </p>
       )}
-    </>
+    </div>
   );
 }

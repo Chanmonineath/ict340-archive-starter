@@ -5,7 +5,7 @@ const colors = { paper: "#FAF6EC", teak: "#2E3B2A" };
 
 const styles = {
   page: { backgroundColor: colors.paper, minHeight: "100vh" },
-  main: { maxWidth: 900, margin: "0 auto" },
+  main: { maxWidth: 700, margin: "0 auto" },
 };
 
 function CenteredMessage({ children }) {
