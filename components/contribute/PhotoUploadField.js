@@ -35,14 +35,6 @@ export default function PhotoUploadField({ file, onChange, error, existingPhotoU
   const handleCropConfirm = (croppedFile) => {
     onChange(croppedFile);
     setPreviewUrl(URL.createObjectURL(croppedFile));
-    setPendingFile(null);
-    setPendingUrl(null);
-  };
-
-  const handleCropCancel = () => {
-    setPendingFile(null);
-    setPendingUrl(null);
-    if (inputRef.current) inputRef.current.value = "";
   };
 
   if (pendingFile) {
@@ -55,7 +47,6 @@ export default function PhotoUploadField({ file, onChange, error, existingPhotoU
           imageUrl={pendingUrl}
           originalFile={pendingFile}
           onConfirm={handleCropConfirm}
-          onCancel={handleCropCancel}
         />
       </div>
     );

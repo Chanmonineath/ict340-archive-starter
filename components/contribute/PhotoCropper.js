@@ -5,13 +5,21 @@ import { cropToFile } from "./cropToFile.js";
 import CropWindow from "./CropWindow.js";
 import useCropDrag from "./useCropDrag.js";
 
-const colors = { teak: "#2E3B2A", silk: "#E8DCC0", cream: "#FAF7F0", button: "#2E5B3A" };
+const colors = { teak: "#2E3B2A" };
 
-export default function PhotoCropper({ imageUrl, originalFile, onConfirm, onCancel }) {
+export default function PhotoCropper({ imageUrl, originalFile, onConfirm }) {
   const imgRef = React.useRef(null);
   const containerRef = React.useRef(null);
   const [natural, setNatural] = React.useState(null);
   const { crop, initCrop, handlePointerDown, handlePointerMove, handlePointerUp } = useCropDrag(containerRef, natural);
+
+  const attachCrop = React.useCallback(
+    async (nextCrop) => {
+      const cropped = await cropToFile(imgRef.current, nextCrop, originalFile);
+      onConfirm(cropped);
+    },
+    [originalFile, onConfirm]
+  );
 
   const handleImageLoad = () => {
     const img = imgRef.current;
@@ -19,9 +27,16 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm, onCanc
     initCrop(img.naturalWidth, img.naturalHeight);
   };
 
-  const handleConfirm = async () => {
-    const cropped = await cropToFile(imgRef.current, crop, originalFile);
-    onConfirm(cropped);
+  // The initial centered crop attaches as soon as it's known, so a photo is
+  // saved even if the user never touches the crop box.
+  React.useEffect(() => {
+    if (crop) attachCrop(crop);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [natural]);
+
+  const handleDragEnd = () => {
+    handlePointerUp();
+    if (crop) attachCrop(crop);
   };
 
   return (
@@ -29,8 +44,8 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm, onCanc
       <div
         ref={containerRef}
         onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerLeave={handlePointerUp}
+        onPointerUp={handleDragEnd}
+        onPointerLeave={handleDragEnd}
         style={{ position: "relative", width: "100%", maxWidth: 420, userSelect: "none", touchAction: "none" }}
       >
         <img
@@ -52,28 +67,8 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm, onCanc
       </div>
 
       <p style={{ margin: 0, fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-        Drag inside the box to move it, drag the corner handle to resize.
+        Drag inside the box to move it, drag the corner handle to resize. Your photo is saved automatically.
       </p>
-
-      <div style={{ display: "flex", gap: 8 }}>
-        <button
-          type="button"
-          className="btn-secondary-pill"
-          onClick={onCancel}
-          style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: colors.teak, backgroundColor: colors.cream, border: "1px solid " + colors.silk, padding: "8px 16px", borderRadius: 9999, cursor: "pointer" }}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className="btn-primary-pill"
-          onClick={handleConfirm}
-          disabled={!crop}
-          style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: colors.cream, backgroundColor: colors.button, border: "none", padding: "8px 16px", borderRadius: 9999, cursor: "pointer" }}
-        >
-          Use This Crop
-        </button>
-      </div>
     </div>
   );
 }
