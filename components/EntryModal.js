@@ -31,7 +31,7 @@ export default function EntryModal({
     zIndex: 50,
   };
   const modal = {
-    backgroundColor: colors.cream,
+    backgroundColor: "#FFFFFF",
     borderRadius: 16,
     maxWidth: 560,
     width: "100%",

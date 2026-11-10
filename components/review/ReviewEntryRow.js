@@ -11,7 +11,7 @@ export default function ReviewEntryRow({ id, title, khmer_name }) {
         justifyContent: "space-between",
         gap: 16,
         padding: "16px 20px",
-        backgroundColor: colors.cream,
+        backgroundColor: "#FFFFFF",
         border: "1px solid #C49746",
         borderRadius: 12,
         textDecoration: "none",

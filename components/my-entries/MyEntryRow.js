@@ -51,7 +51,7 @@ export default function MyEntryRow({
           justifyContent: "space-between",
           gap: 16,
           padding: "16px 20px",
-          backgroundColor: colors.cream,
+          backgroundColor: "#FFFFFF",
           border: "1px solid #C49746",
           borderRadius: 12,
           cursor: "pointer",

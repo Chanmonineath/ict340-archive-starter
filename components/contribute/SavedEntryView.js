@@ -9,7 +9,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
   return (
     <div
       style={{
-        backgroundColor: colors.cream,
+        backgroundColor: "#FFFFFF",
         borderRadius: 15,
         border: "1px solid " + colors.silk,
         padding: 32,

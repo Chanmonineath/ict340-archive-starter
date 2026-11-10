@@ -27,7 +27,7 @@ export default function EntryCard({
         flexDirection: "column",
         gap: 16,
         padding: 24,
-        backgroundColor: colors.cream,
+        backgroundColor: "#FFFFFF",
         border: "1px solid #C49746",
         borderRadius: 24,
       }}
