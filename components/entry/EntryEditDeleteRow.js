@@ -39,7 +39,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
   if (compact) {
     const iconBtn = {
       display: "inline-flex", alignItems: "center", justifyContent: "center",
-      width: 40, height: 40, borderRadius: "50%", backgroundColor: colors.cream,
+      width: 40, height: 40, borderRadius: "50%", backgroundColor: "#FFFFFF",
       cursor: "pointer", textDecoration: "none",
     };
     return (
@@ -68,7 +68,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
         style={{
           flex: "1 1 0", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
           fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: colors.teak,
-          backgroundColor: colors.cream, border: "1px solid " + colors.teak, padding: "7px 10px",
+          backgroundColor: "#FFFFFF", border: "1px solid " + colors.teak, padding: "7px 10px",
           borderRadius: 9999, cursor: "pointer", textDecoration: "none",
         }}
       >
@@ -85,7 +85,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
         style={{
           flex: "1 1 0", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
           fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: "#9C3B2E",
-          backgroundColor: colors.cream, border: "1px solid #D9A79B", padding: "7px 10px",
+          backgroundColor: "#FFFFFF", border: "1px solid #D9A79B", padding: "7px 10px",
           borderRadius: 9999, cursor: "pointer",
         }}
       >

@@ -27,7 +27,7 @@ export default function SearchInput({
       fontFamily: "var(--font-body), sans-serif",
       fontWeight: 500,
       color: colors.text,
-      backgroundColor: colors.cream,
+      backgroundColor: "#FFFFFF",
       border: "1px solid " + (isFocused ? colors.active : colors.gold),
       borderRadius: "9999px",
       outline: "none",
