@@ -1,12 +1,13 @@
 import Link from "next/link";
 
-const colors = { teak: "#2E3B2A", silk: "#E8DCC0", sand: "#F5EFE2", cream: "#FDF8E9", button: "#2E5B3A" };
+const colors = { teak: "#2E3B2A", silk: "#E7DEC9", cream: "#FAF7F0", button: "#2E5B3A" };
 
 export default function ContributeLoginPrompt() {
   const wrap = {
     textAlign: "center",
     padding: "56px 24px",
-    backgroundColor: colors.sand,
+    margin: "64px 0",
+    backgroundColor: colors.cream,
     border: "1px solid " + colors.silk,
     borderRadius: 15,
   };
