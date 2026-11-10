@@ -2,8 +2,14 @@
 
 import React from "react";
 import PROVINCES from "./PROVINCES.js";
+import PROVINCE_KHMER_NAMES from "./PROVINCE_KHMER_NAMES.js";
 
 const colors = { teak: "#1D3627", placeholder: "#615443", silk: "#E7DEC9" };
+
+function withKhmerName(province) {
+  const khmerName = PROVINCE_KHMER_NAMES[province];
+  return khmerName ? `${province} (${khmerName})` : province;
+}
 
 export default function ProvinceSelect({ value, onChange }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -47,7 +53,7 @@ export default function ProvinceSelect({ value, onChange }) {
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        {value || "Select a province"}
+        {value ? withKhmerName(value) : "Select a province"}
       </button>
 
       {isOpen && (
@@ -77,7 +83,7 @@ export default function ProvinceSelect({ value, onChange }) {
                     className="province-select-option"
                     onClick={() => selectProvince(province)}
                   >
-                    {province}
+                    {withKhmerName(province)}
                   </button>
                 </li>
               ))
