@@ -78,7 +78,7 @@ export default function ContributeForm({ user, editingEntry }) {
       return;
     }
 
-    const nextErrors = validate(fields, photoFile);
+    const nextErrors = validate(fields, photoFile, existingPhotoUrl);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });

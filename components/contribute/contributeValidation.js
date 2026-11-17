@@ -41,7 +41,7 @@ export function normalizeDuration(duration) {
   return `${hours}h ${match[2]}mn`;
 }
 
-export function validate(fields, photoFile) {
+export function validate(fields, photoFile, existingPhotoUrl) {
   const errors = {};
 
   const titleError = lengthError("Title", fields.title, 1, 100);
@@ -82,8 +82,12 @@ export function validate(fields, photoFile) {
     errors.duration = "Please enter how long this practice takes.";
   }
 
-  const photoError = validatePhoto(photoFile);
-  if (photoError) errors.photo = photoError;
+  if (!photoFile && !existingPhotoUrl) {
+    errors.photo = "Please add a photo.";
+  } else {
+    const photoError = validatePhoto(photoFile);
+    if (photoError) errors.photo = photoError;
+  }
 
   return errors;
 }
