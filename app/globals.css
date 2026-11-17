@@ -2523,6 +2523,25 @@ body {
   box-shadow: 0 0 0 3px rgba(139, 38, 30, 0.12);
 }
 
+.contribute-field-error .auth-input {
+  border-color: #8B261E !important;
+}
+
+.contribute-field-error .auth-input:focus {
+  box-shadow: 0 0 0 3px rgba(139, 38, 30, 0.12);
+}
+
+@keyframes contribute-field-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+.contribute-field-shake {
+  animation: contribute-field-shake 0.4s ease-in-out;
+}
+
 .auth-eye {
   position: absolute;
   right: 14px;

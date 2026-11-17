@@ -57,6 +57,7 @@ export default function ContributeForm({ user, editingEntry }) {
   const [baselineFields, setBaselineFields] = React.useState(() =>
     isEditing ? fieldsFromEntry(editingEntry) : EMPTY_FIELDS,
   );
+  const [shakeKey, setShakeKey] = React.useState(0);
 
   const updateField = (name) => (e) =>
     setFields((prev) => ({ ...prev, [name]: e.target.value }));
@@ -81,6 +82,7 @@ export default function ContributeForm({ user, editingEntry }) {
     const nextErrors = validate(fields, photoFile, existingPhotoUrl);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
+      setShakeKey((key) => key + 1);
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
@@ -190,21 +192,27 @@ export default function ContributeForm({ user, editingEntry }) {
         fields={fields}
         errors={errors}
         onFieldChange={updateField}
+        shakeKey={shakeKey}
       />
 
       <ContributeCategoryField
         value={fields.category}
         error={errors.category}
         onChange={(category) => setFields((prev) => ({ ...prev, category }))}
+        shakeKey={shakeKey}
       />
 
       <ContributeDetailFields
         fields={fields}
         errors={errors}
         onFieldChange={updateField}
+        shakeKey={shakeKey}
       />
 
-      <div>
+      <div
+        key={errors.process ? `process-${shakeKey}` : "process-steady"}
+        className={errors.process ? "contribute-field-error contribute-field-shake" : undefined}
+      >
         <ProcessStepsInput
           steps={fields.process}
           onChange={(process) => setFields((prev) => ({ ...prev, process }))}
@@ -216,12 +224,17 @@ export default function ContributeForm({ user, editingEntry }) {
         )}
       </div>
 
-      <PhotoUploadField
-        file={photoFile}
-        onChange={setPhotoFile}
-        error={errors.photo}
-        existingPhotoUrl={existingPhotoUrl}
-      />
+      <div
+        key={errors.photo ? `photo-${shakeKey}` : "photo-steady"}
+        className={errors.photo ? "contribute-field-error contribute-field-shake" : undefined}
+      >
+        <PhotoUploadField
+          file={photoFile}
+          onChange={setPhotoFile}
+          error={errors.photo}
+          existingPhotoUrl={existingPhotoUrl}
+        />
+      </div>
 
       {isSaving && (
         <UploadProgressBar
