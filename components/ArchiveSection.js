@@ -6,6 +6,7 @@ import SearchFilter from "./SearchFilter.js";
 import BookView from "./BookView.js";
 import useEntries from "../hooks/useEntries.js";
 import useLanguage from "../hooks/useLanguage.js";
+import { sortEntriesByLanguage } from "./entryContentLanguage.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -36,7 +37,7 @@ const styles = {
 };
 
 export default function ArchiveSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { entries, isLoading, error, removeEntry } = useEntries();
   const [filter, setFilter] = React.useState({ category: "All", query: "" });
   const [view, setView] = React.useState("cards");
@@ -44,7 +45,10 @@ export default function ArchiveSection() {
     () => ["All", ...new Set(entries.map((entry) => entry.category))],
     [entries]
   );
-  const filteredEntries = React.useMemo(() => filterEntries(entries, filter), [entries, filter]);
+  const filteredEntries = React.useMemo(() => {
+    const filtered = filterEntries(entries, filter);
+    return sortEntriesByLanguage(filtered, language);
+  }, [entries, filter, language]);
 
   return (
     <div id="archive" style={{ backgroundColor: colors.paper }}>
