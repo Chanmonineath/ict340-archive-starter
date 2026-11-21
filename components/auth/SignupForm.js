@@ -9,9 +9,11 @@ import { UserIcon, MailIcon } from "./authIcons.js";
 import AuthField from "./AuthField.js";
 import AuthPasswordField from "./AuthPasswordField.js";
 import AuthHeader from "./AuthHeader.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function SignupForm() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [fields, setFields] = React.useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [errors, setErrors] = React.useState({});
   const [touched, setTouched] = React.useState({});
@@ -23,14 +25,14 @@ export default function SignupForm() {
   const updateField = (name) => (e) => setFields((prev) => ({ ...prev, [name]: e.target.value }));
   const markTouched = (name) => () => {
     setTouched((prev) => ({ ...prev, [name]: true }));
-    setErrors(validate("signup", fields));
+    setErrors(validate("signup", fields, t.auth));
   };
   const showError = (name) => touched[name] && errors[name];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError("");
-    const nextErrors = validate("signup", fields);
+    const nextErrors = validate("signup", fields, t.auth);
     setErrors(nextErrors);
     setTouched({ name: true, email: true, password: true, confirmPassword: true });
     if (Object.keys(nextErrors).length > 0) return;
@@ -47,7 +49,7 @@ export default function SignupForm() {
 
     if (existing) {
       setIsSubmitting(false);
-      setErrors((prev) => ({ ...prev, name: "That name is already taken." }));
+      setErrors((prev) => ({ ...prev, name: t.auth.nameTaken }));
       setTouched((prev) => ({ ...prev, name: true }));
       return;
     }
@@ -76,12 +78,12 @@ export default function SignupForm() {
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           {formError && <p className="auth-form-error">{formError}</p>}
 
-          <AuthField id="auth-name" label="Your Name" icon={<UserIcon />} error={showError("name")}>
+          <AuthField id="auth-name" label={t.auth.yourName} icon={<UserIcon />} error={showError("name")}>
             <input
               id="auth-name"
               type="text"
               className="auth-input"
-              placeholder="e.g. Sreysros Chan"
+              placeholder={t.auth.namePlaceholder}
               value={fields.name}
               onChange={updateField("name")}
               onBlur={markTouched("name")}
@@ -89,12 +91,12 @@ export default function SignupForm() {
             />
           </AuthField>
 
-          <AuthField id="auth-email" label="Email Address" icon={<MailIcon />} error={showError("email")}>
+          <AuthField id="auth-email" label={t.auth.emailLabel} icon={<MailIcon />} error={showError("email")}>
             <input
               id="auth-email"
               type="email"
               className="auth-input"
-              placeholder="you@example.com"
+              placeholder={t.auth.emailPlaceholder}
               value={fields.email}
               onChange={updateField("email")}
               onBlur={markTouched("email")}
@@ -104,7 +106,7 @@ export default function SignupForm() {
 
           <AuthPasswordField
             id="auth-password"
-            label="Password"
+            label={t.auth.passwordLabel}
             value={fields.password}
             onChange={updateField("password")}
             onBlur={markTouched("password")}
@@ -116,7 +118,7 @@ export default function SignupForm() {
 
           <AuthPasswordField
             id="auth-confirm-password"
-            label="Confirm Password"
+            label={t.auth.confirmPasswordLabel}
             value={fields.confirmPassword}
             onChange={updateField("confirmPassword")}
             onBlur={markTouched("confirmPassword")}
@@ -127,14 +129,14 @@ export default function SignupForm() {
           />
 
           <button type="submit" className="auth-submit" disabled={isSubmitting}>
-            {isSubmitting ? "Creating Account…" : "Create Account"}
+            {isSubmitting ? t.auth.creatingAccount : t.auth.createAccountBtn}
           </button>
         </form>
 
         <p className="auth-switch">
-          Already have an account?{" "}
+          {t.auth.alreadyHaveAccount}
           <Link href="/login" className="auth-switch-link">
-            Log in
+            {t.auth.logInLink}
           </Link>
         </p>
       </div>

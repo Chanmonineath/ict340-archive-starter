@@ -1,7 +1,10 @@
 import Logo from "../Logo.js";
 import collection from "../../collection.config.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function AuthHeader({ mode }) {
+  const { t } = useLanguage();
+
   return (
     <>
       <div className="auth-header">
@@ -10,12 +13,12 @@ export default function AuthHeader({ mode }) {
       </div>
 
       <h2 className="auth-title auth-title-center">
-        {mode === "login" ? "Welcome Back" : "Create Your Account"}
+        {mode === "login" ? t.auth.welcomeBack : t.auth.createAccount}
       </h2>
       <p className="auth-subtitle auth-subtitle-center">
         {mode === "login"
-          ? "Log in to save and share your family recipes."
-          : `Join ${collection.name} to contribute and save your family recipes.`}
+          ? t.auth.loginSubtitle
+          : t.auth.signupSubtitle(collection.name)}
       </p>
     </>
   );

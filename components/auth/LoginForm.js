@@ -8,9 +8,11 @@ import { MailIcon } from "./authIcons.js";
 import AuthField from "./AuthField.js";
 import AuthPasswordField from "./AuthPasswordField.js";
 import AuthHeader from "./AuthHeader.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function LoginForm() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
@@ -31,7 +33,7 @@ export default function LoginForm() {
     setIsSubmitting(false);
 
     if (signInError) {
-      setError("Invalid email or password");
+      setError(t.auth.invalidCredentials);
       return;
     }
 
@@ -47,12 +49,12 @@ export default function LoginForm() {
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           {error && <p className="auth-form-error">{error}</p>}
 
-          <AuthField id="auth-email" label="Email Address" icon={<MailIcon />}>
+          <AuthField id="auth-email" label={t.auth.emailLabel} icon={<MailIcon />}>
             <input
               id="auth-email"
               type="email"
               className="auth-input"
-              placeholder="you@example.com"
+              placeholder={t.auth.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
@@ -62,7 +64,7 @@ export default function LoginForm() {
 
           <AuthPasswordField
             id="auth-password"
-            label="Password"
+            label={t.auth.passwordLabel}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
@@ -71,14 +73,14 @@ export default function LoginForm() {
           />
 
           <button type="submit" className="auth-submit" disabled={isSubmitting}>
-            {isSubmitting ? "Logging In…" : "Log In"}
+            {isSubmitting ? t.auth.loggingIn : t.auth.logIn}
           </button>
         </form>
 
         <p className="auth-switch">
-          Don&rsquo;t have an account yet?{" "}
+          {t.auth.noAccountYet}
           <Link href="/signup" className="auth-switch-link">
-            Create an account
+            {t.auth.createAnAccount}
           </Link>
         </p>
       </div>

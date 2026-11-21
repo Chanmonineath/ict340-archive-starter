@@ -1,9 +1,12 @@
 import { LockIcon, EyeIcon } from "./authIcons.js";
 import AuthField from "./AuthField.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function AuthPasswordField({
   id, label, value, onChange, onBlur, error, autoComplete, isVisible, onToggleVisible,
 }) {
+  const { t } = useLanguage();
+
   return (
     <AuthField id={id} label={label} icon={<LockIcon />} error={error}>
       <input
@@ -20,7 +23,7 @@ export default function AuthPasswordField({
         type="button"
         className="auth-eye"
         onClick={onToggleVisible}
-        aria-label={isVisible ? "Hide password" : "Show password"}
+        aria-label={isVisible ? t.auth.hidePassword : t.auth.showPassword}
         tabIndex={-1}
       >
         <EyeIcon open={isVisible} />
