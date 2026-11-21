@@ -9,8 +9,14 @@ function parseDuration(value) {
   return match ? { hours: match[1], minutes: match[2] } : { hours: "", minutes: "" };
 }
 
+const KHMER_DIGITS = "០១២៣៤៥៦៧៨៩";
+
+function toAsciiDigits(raw) {
+  return raw.replace(/[០-៩]/g, (digit) => String(KHMER_DIGITS.indexOf(digit)));
+}
+
 function clampDigits(raw) {
-  return raw.replace(/\D/g, "").slice(0, 2);
+  return toAsciiDigits(raw).replace(/\D/g, "").slice(0, 2);
 }
 
 export default function DurationInput({ value, onChange }) {
