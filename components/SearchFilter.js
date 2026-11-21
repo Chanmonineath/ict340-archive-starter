@@ -3,6 +3,7 @@
 import React from "react";
 import SearchInput from "./SearchInput.js";
 import CategoryPills from "./CategoryPills.js";
+import useLanguage from "../hooks/useLanguage.js";
 
 const colors = { teak: "#1D3627", leaf: "#3F5B3A" };
 
@@ -14,6 +15,7 @@ export default function SearchFilter({
   categories = ["All"],
   entries = [],
 }) {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = React.useState(initialCategory || "All");
   const [searchQuery, setSearchQuery] = React.useState(initialQuery || "");
   const [isFocused, setIsFocused] = React.useState(false);
@@ -72,7 +74,7 @@ export default function SearchFilter({
             lineHeight: 1.2,
           }}
         >
-          Explore entries
+          {t.search.exploreHeading}
         </h2>
         <p
           style={{
@@ -82,7 +84,7 @@ export default function SearchFilter({
             fontFamily: "var(--font-body), sans-serif",
           }}
         >
-          Search and filter traditional practices
+          {t.search.exploreSubheading}
         </p>
       </div>
 
@@ -104,7 +106,7 @@ export default function SearchFilter({
       />
 
       <div style={styles.resultsCount}>
-        <span>Results</span>
+        <span>{t.search.results}</span>
         <span style={styles.countBadge}>{resultsCount ?? 0}</span>
       </div>
     </div>

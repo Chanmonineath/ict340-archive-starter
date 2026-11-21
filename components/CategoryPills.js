@@ -1,13 +1,17 @@
 "use client";
 
+import useLanguage from "../hooks/useLanguage.js";
+
 const colors = { active: "#2E5B3A", textInactive: "#615443" };
 
 export default function CategoryPills({ categories, selectedCategory, onSelect }) {
+  const { t } = useLanguage();
+
   return (
     <div
       style={{ display: "flex", flexWrap: "wrap", gap: 12, paddingTop: 8 }}
       role="tablist"
-      aria-label="Filter by category"
+      aria-label={t.archive.filterByCategory}
     >
       {categories.map((category) => {
         const isActive = selectedCategory === category;

@@ -5,6 +5,7 @@ import EntryCard from "./EntryCard.js";
 import SearchFilter from "./SearchFilter.js";
 import BookView from "./BookView.js";
 import useEntries from "../hooks/useEntries.js";
+import useLanguage from "../hooks/useLanguage.js";
 
 const colors = {
   teak: "#2E3B2A",
@@ -35,6 +36,7 @@ const styles = {
 };
 
 export default function ArchiveSection() {
+  const { t } = useLanguage();
   const { entries, isLoading, error, removeEntry } = useEntries();
   const [filter, setFilter] = React.useState({ category: "All", query: "" });
   const [view, setView] = React.useState("cards");
@@ -47,10 +49,10 @@ export default function ArchiveSection() {
   return (
     <div id="archive" style={{ backgroundColor: colors.paper }}>
       <header className="archive-header">
-        <p className="archive-eyebrow">Home Practice Archive</p>
+        <p className="archive-eyebrow">{t.archive.eyebrow}</p>
         <h1 className="archive-khmer-title">បណ្ណាសារការអនុវត្តតាមផ្ទះ</h1>
 
-        <div className="view-toggle" role="tablist" aria-label="Choose archive display">
+        <div className="view-toggle" role="tablist" aria-label={t.archive.chooseDisplay}>
           <button
             type="button"
             role="tab"
@@ -58,7 +60,7 @@ export default function ArchiveSection() {
             className={"view-toggle-btn" + (view === "cards" ? " view-toggle-btn-active" : "")}
             onClick={() => setView("cards")}
           >
-            Recipe Cards
+            {t.archive.recipeCardsTab}
           </button>
           <button
             type="button"
@@ -67,7 +69,7 @@ export default function ArchiveSection() {
             className={"view-toggle-btn" + (view === "book" ? " view-toggle-btn-active" : "")}
             onClick={() => setView("book")}
           >
-            Folio Book
+            {t.archive.folioBookTab}
           </button>
         </div>
       </header>
@@ -79,13 +81,13 @@ export default function ArchiveSection() {
         {isLoading ? (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
             <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-              Loading entries…
+              {t.archive.loading}
             </p>
           </div>
         ) : error ? (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
             <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-              Couldn't load entries right now.
+              {t.archive.loadError}
             </p>
           </div>
         ) : view === "book" ? (
@@ -110,7 +112,7 @@ export default function ArchiveSection() {
             ) : (
               <div style={{ textAlign: "center", padding: "60px 0" }}>
                 <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-                  No entries found matching your search or filter.
+                  {t.archive.empty}
                 </p>
               </div>
             )}

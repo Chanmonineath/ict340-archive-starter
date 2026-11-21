@@ -1,5 +1,7 @@
 "use client";
 
+import useLanguage from "../hooks/useLanguage.js";
+
 const colors = {
   text: "#1D3627",
   cream: "#FAF7F0",
@@ -18,6 +20,7 @@ export default function SearchInput({
   showSuggestions,
   onSelectSuggestion,
 }) {
+  const { t } = useLanguage();
   const styles = {
     searchContainer: { position: "relative" },
     searchInput: {
@@ -86,12 +89,12 @@ export default function SearchInput({
       <input
         type="text"
         style={styles.searchInput}
-        placeholder="Search by name..."
+        placeholder={t.search.placeholder}
         value={searchQuery}
         onChange={(e) => onQueryChange(e.target.value)}
         onFocus={onFocus}
         onBlur={onBlur}
-        aria-label="Search entries"
+        aria-label={t.search.ariaLabel}
         role="combobox"
         aria-expanded={showSuggestions}
         aria-controls="search-suggestions"
