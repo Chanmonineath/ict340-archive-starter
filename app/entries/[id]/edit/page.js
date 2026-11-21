@@ -3,6 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import useSupabaseUser from "../../../../hooks/useSupabaseUser.js";
 import useEntry from "../../../../hooks/useEntry.js";
+import useLanguage from "../../../../hooks/useLanguage.js";
 import ContributeForm from "../../../../components/contribute/ContributeForm.js";
 import ContributeLoginPrompt from "../../../../components/contribute/ContributeLoginPrompt.js";
 
@@ -32,23 +33,24 @@ export default function EditEntryPage() {
   const router = useRouter();
   const { user, isLoading: isUserLoading } = useSupabaseUser();
   const { entry, isLoading: isEntryLoading, error } = useEntry(id);
+  const { t } = useLanguage();
 
   const isLoading = isUserLoading || isEntryLoading;
 
   let content;
   if (isLoading) {
-    content = <CenteredMessage>Loading…</CenteredMessage>;
+    content = <CenteredMessage>{t.common.loading}</CenteredMessage>;
   } else if (!user) {
     content = <ContributeLoginPrompt />;
   } else if (error || !entry) {
     content = (
       <CenteredMessage>
-        Couldn&rsquo;t load this entry right now.
+        {t.entryEdit.loadError}
       </CenteredMessage>
     );
   } else if (entry.owner !== user.id) {
     content = (
-      <CenteredMessage>You can&rsquo;t edit this entry.</CenteredMessage>
+      <CenteredMessage>{t.entryEdit.notYours}</CenteredMessage>
     );
   } else {
     content = <ContributeForm user={user} editingEntry={entry} />;
@@ -74,7 +76,7 @@ export default function EditEntryPage() {
             cursor: "pointer",
           }}
         >
-          ← Back
+          {t.entryEdit.back}
         </button>
         {content}
       </main>
