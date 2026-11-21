@@ -7,13 +7,15 @@ import useLanguage from "../../hooks/useLanguage.js";
 
 const colors = { teak: "#1D3627", placeholder: "#615443", silk: "#E7DEC9" };
 
-function withKhmerName(province) {
-  const khmerName = PROVINCE_KHMER_NAMES[province];
-  return khmerName ? `${province} (${khmerName})` : province;
+function displayName(province, language) {
+  if (language === "km") {
+    return PROVINCE_KHMER_NAMES[province] || province;
+  }
+  return province;
 }
 
 export default function ProvinceSelect({ value, onChange }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const wrapRef = React.useRef(null);
@@ -42,7 +44,13 @@ export default function ProvinceSelect({ value, onChange }) {
 
   const normalizedQuery = query.trim().normalize("NFC").toLowerCase();
   const visibleProvinces = normalizedQuery
-    ? PROVINCES.filter((province) => province.normalize("NFC").toLowerCase().startsWith(normalizedQuery))
+    ? PROVINCES.filter((province) => {
+        if (language === "km") {
+          const khmerName = PROVINCE_KHMER_NAMES[province];
+          return khmerName ? khmerName.normalize("NFC").toLowerCase().includes(normalizedQuery) : false;
+        }
+        return province.normalize("NFC").toLowerCase().startsWith(normalizedQuery);
+      })
     : PROVINCES;
 
   return (
@@ -55,7 +63,7 @@ export default function ProvinceSelect({ value, onChange }) {
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        {value ? withKhmerName(value) : t.contribute.selectProvince}
+        {value ? displayName(value, language) : t.contribute.selectProvince}
       </button>
 
       {isOpen && (
@@ -85,7 +93,7 @@ export default function ProvinceSelect({ value, onChange }) {
                     className="province-select-option"
                     onClick={() => selectProvince(province)}
                   >
-                    {withKhmerName(province)}
+                    {displayName(province, language)}
                   </button>
                 </li>
               ))
