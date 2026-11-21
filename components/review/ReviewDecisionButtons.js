@@ -1,5 +1,6 @@
 import React from "react";
 import { colors } from "../entry/entryStyles.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 const MAX_NOTE_WORDS = 500;
 
@@ -9,6 +10,7 @@ function countWords(text) {
 }
 
 export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, error }) {
+  const { t } = useLanguage();
   const [note, setNote] = React.useState("");
   const wordCount = countWords(note);
   const isOverLimit = wordCount > MAX_NOTE_WORDS;
@@ -23,7 +25,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
             fontSize: 12, fontWeight: 600, color: colors.teak,
           }}
         >
-          Note for the contributor (optional, shown if returned)
+          {t.review.noteLabel}
         </label>
         <textarea
           id="review-note"
@@ -32,7 +34,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
           onChange={(e) => setNote(e.target.value)}
           disabled={isSaving}
           rows={2}
-          placeholder="e.g. Please add a photo of the finished remedy."
+          placeholder={t.review.notePlaceholder}
           style={{ width: "100%", resize: "vertical", borderRadius: 15, boxSizing: "border-box" }}
         />
         <p
@@ -41,7 +43,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
             fontSize: 11, color: isOverLimit ? "#9C3B2E" : colors.teak + "99",
           }}
         >
-          {wordCount}/{MAX_NOTE_WORDS} words
+          {t.review.wordCount(wordCount, MAX_NOTE_WORDS)}
         </p>
       </div>
 
@@ -57,7 +59,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
             padding: "12px 24px", borderRadius: 9999, cursor: "pointer",
           }}
         >
-          Return for Changes
+          {t.review.returnForChanges}
         </button>
         <button
           type="button"
@@ -70,7 +72,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
             padding: "12px 24px", borderRadius: 9999, cursor: "pointer",
           }}
         >
-          Publish
+          {t.review.publish}
         </button>
       </div>
 

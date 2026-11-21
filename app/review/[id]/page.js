@@ -5,6 +5,13 @@ import EntryMeta from "../../../components/entry/EntryMeta.js";
 import EntryProcessList from "../../../components/entry/EntryProcessList.js";
 import EntryPhoto from "../../../components/EntryPhoto.js";
 import ReviewDecisionPanel from "../../../components/review/ReviewDecisionPanel.js";
+import {
+  CantReviewMessage,
+  NotPendingMessage,
+  BackToQueueLink,
+  PreparationProcessLabel,
+  BenefitNotesLabel,
+} from "../../../components/review/ReviewPageText.js";
 
 const pageColors = { paper: "#FAF6EC", teak: "#2E3B2A", button: "#2E5B3A" };
 
@@ -28,7 +35,7 @@ export default async function ReviewEntryPage({ params }) {
 
   let content;
   if (!isReviewer) {
-    content = <CenteredMessage>You can&rsquo;t review entries.</CenteredMessage>;
+    content = <CenteredMessage><CantReviewMessage /></CenteredMessage>;
   } else {
     const { data: entry } = await supabase
       .from("entries")
@@ -37,7 +44,7 @@ export default async function ReviewEntryPage({ params }) {
       .maybeSingle();
 
     if (!entry || entry.status !== "pending") {
-      content = <CenteredMessage>This entry isn&rsquo;t waiting for review.</CenteredMessage>;
+      content = <CenteredMessage><NotPendingMessage /></CenteredMessage>;
     } else {
       const steps = Array.isArray(entry.process) ? entry.process : [entry.process];
 
@@ -59,13 +66,13 @@ export default async function ReviewEntryPage({ params }) {
           <EntryMeta contributor={entry.source} place={entry.place} ingredients={entry.ingredients} />
 
           <div>
-            <p style={label}>Preparation Process</p>
+            <p style={label}><PreparationProcessLabel /></p>
             <EntryProcessList steps={steps} />
           </div>
 
           {entry.benefit && (
             <div>
-              <p style={label}>Benefit &amp; Wellness Notes</p>
+              <p style={label}><BenefitNotesLabel /></p>
               <p style={box}>{entry.benefit}</p>
             </div>
           )}
@@ -93,7 +100,7 @@ export default async function ReviewEntryPage({ params }) {
             textDecoration: "none",
           }}
         >
-          ← Back to Review Queue
+          <BackToQueueLink />
         </Link>
         {content}
       </main>

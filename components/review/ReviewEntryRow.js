@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { colors } from "../entry/entryStyles.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function ReviewEntryRow({ id, title, khmer_name }) {
+  const { t } = useLanguage();
+
   return (
     <Link
       href={"/review/" + id}
@@ -40,7 +45,7 @@ export default function ReviewEntryRow({ id, title, khmer_name }) {
           borderRadius: 9999,
         }}
       >
-        View →
+        {t.review.viewEntry}
       </span>
     </Link>
   );

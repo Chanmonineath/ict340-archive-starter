@@ -4,9 +4,11 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../lib/supabase/client.js";
 import ReviewDecisionButtons from "./ReviewDecisionButtons.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function ReviewDecisionPanel({ entryId }) {
   const router = useRouter();
+  const { t } = useLanguage();
   const [isSaving, setIsSaving] = React.useState(false);
   const [error, setError] = React.useState("");
 
@@ -23,7 +25,7 @@ export default function ReviewDecisionPanel({ entryId }) {
 
     if (rpcError || succeeded !== true) {
       setIsSaving(false);
-      setError("That change wasn't saved. Please try again.");
+      setError(t.review.notSaved);
       return;
     }
 

@@ -1,5 +1,6 @@
 import { createClient } from "../../lib/supabase/server.js";
 import ReviewQueue from "../../components/review/ReviewQueue.js";
+import { ReviewHeading, CantReviewMessage } from "../../components/review/ReviewPageText.js";
 
 const colors = { paper: "#FAF6EC", teak: "#2E3B2A" };
 
@@ -22,7 +23,7 @@ export default async function ReviewPage() {
 
   let content;
   if (!isReviewer) {
-    content = <CenteredMessage>You can&rsquo;t review entries.</CenteredMessage>;
+    content = <CenteredMessage><CantReviewMessage /></CenteredMessage>;
   } else {
     const { data: entries } = await supabase
       .from("entries")
@@ -45,7 +46,7 @@ export default async function ReviewPage() {
             color: colors.teak,
           }}
         >
-          Review Queue
+          <ReviewHeading />
         </h1>
         {content}
       </main>
