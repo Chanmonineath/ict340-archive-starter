@@ -5,15 +5,18 @@ import ContributeIcon from "./icons/ContributeIcon.js";
 import ReviewIcon from "./icons/ReviewIcon.js";
 import BottomNavAccountTab from "./BottomNavAccountTab.js";
 import isTabActive from "./isTabActive.js";
-
-const baseTabs = [
-  { href: "/", label: "Home", Icon: HomeIcon },
-  { href: "/contribute", label: "Contribute", Icon: ContributeIcon },
-];
-const myEntriesTab = { href: "/my-entries", label: "My Entries", Icon: ArchiveIcon };
-const reviewTab = { href: "/review", label: "Review", Icon: ReviewIcon };
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function BottomNav({ pathname, user, isReviewer, isHidden }) {
+  const { t } = useLanguage();
+
+  const baseTabs = [
+    { href: "/", label: t.nav.home, Icon: HomeIcon },
+    { href: "/contribute", label: t.nav.contribute, Icon: ContributeIcon },
+  ];
+  const myEntriesTab = { href: "/my-entries", label: t.nav.myEntries, Icon: ArchiveIcon };
+  const reviewTab = { href: "/review", label: t.nav.review, Icon: ReviewIcon };
+
   const tabs = user
     ? [...baseTabs, myEntriesTab, ...(isReviewer ? [reviewTab] : [])]
     : baseTabs;

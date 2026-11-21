@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import { createClient } from "../../lib/supabase/client.js";
 import AccountIcon from "./icons/AccountIcon.js";
 import isTabActive from "./isTabActive.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function BottomNavAccountTab({ user, pathname }) {
   const router = useRouter();
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
   const menuRef = React.useRef(null);
 
@@ -37,7 +39,7 @@ export default function BottomNavAccountTab({ user, pathname }) {
         aria-current={isActive ? "page" : undefined}
       >
         <AccountIcon />
-        <span>Login</span>
+        <span>{t.nav.login}</span>
       </Link>
     );
   }
@@ -52,7 +54,7 @@ export default function BottomNavAccountTab({ user, pathname }) {
         className="bottom-nav-item bottom-nav-account-trigger"
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
-        aria-label="Account"
+        aria-label={t.nav.account}
       >
         <AccountIcon />
         <span>{displayName}</span>
@@ -63,7 +65,7 @@ export default function BottomNavAccountTab({ user, pathname }) {
           {fullName && <span className="nav-user-fullname">{fullName}</span>}
           <span className="nav-user-email">{user.email}</span>
           <button type="button" className="nav-logout" onClick={handleLogout}>
-            Logout
+            {t.nav.logout}
           </button>
         </div>
       )}

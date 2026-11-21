@@ -1,8 +1,11 @@
 import Link from "next/link";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function LoginLink() {
+  const { t } = useLanguage();
+
   return (
-    <Link href="/login" className="nav-join" aria-label="Login">
+    <Link href="/login" className="nav-join" aria-label={t.nav.login}>
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -20,7 +23,7 @@ export default function LoginLink() {
         <line className="nav-join-plus" x1="19" y1="8" x2="19" y2="14" />
         <line className="nav-join-plus" x1="22" y1="11" x2="16" y2="11" />
       </svg>
-      <span className="nav-join-label">Login</span>
+      <span className="nav-join-label">{t.nav.login}</span>
     </Link>
   );
 }

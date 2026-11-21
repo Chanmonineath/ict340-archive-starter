@@ -3,9 +3,11 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../lib/supabase/client.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function UserMenu({ user }) {
   const router = useRouter();
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
   const menuRef = React.useRef(null);
   const fullName = user.user_metadata?.name;
@@ -55,7 +57,7 @@ export default function UserMenu({ user }) {
           {fullName && <span className="nav-user-fullname">{fullName}</span>}
           <span className="nav-user-email">{user.email}</span>
           <button type="button" className="nav-logout" onClick={handleLogout}>
-            Logout
+            {t.nav.logout}
           </button>
         </div>
       )}

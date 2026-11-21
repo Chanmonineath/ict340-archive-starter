@@ -7,6 +7,7 @@ import Logo from "./Logo.js";
 import collection from "../collection.config.js";
 import useAutoHideHeader from "../hooks/useAutoHideHeader.js";
 import useSupabaseUser from "../hooks/useSupabaseUser.js";
+import useLanguage from "../hooks/useLanguage.js";
 import { createClient } from "../lib/supabase/client.js";
 import NavLinks from "./nav/NavLinks.js";
 import MobileNavPanel from "./nav/MobileNavPanel.js";
@@ -14,13 +15,6 @@ import NavActions from "./nav/NavActions.js";
 import BottomNav from "./nav/BottomNav.js";
 
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0", paper: "#FAF6EC", active: "#24492E" };
-
-const baseNavLinks = [
-  { href: "/", label: "Home" },
-  { href: "/contribute", label: "Contribute" },
-];
-const myEntriesLink = { href: "/my-entries", label: "My Entries" };
-const reviewLink = { href: "/review", label: "Review" };
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -31,6 +25,14 @@ export default function NavBar() {
 
   const isHidden = useAutoHideHeader({ pauseWhile: isMenuOpen });
   const { user } = useSupabaseUser();
+  const { t } = useLanguage();
+
+  const baseNavLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/contribute", label: t.nav.contribute },
+  ];
+  const myEntriesLink = { href: "/my-entries", label: t.nav.myEntries };
+  const reviewLink = { href: "/review", label: t.nav.review };
 
   React.useEffect(() => {
     if (!user) {
