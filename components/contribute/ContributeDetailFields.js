@@ -1,4 +1,5 @@
 import DurationInput from "./DurationInput.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 function Field({ id, label, error, shakeKey, children }) {
   return (
@@ -18,21 +19,23 @@ function Field({ id, label, error, shakeKey, children }) {
 }
 
 export default function ContributeDetailFields({ fields, errors, onFieldChange, shakeKey }) {
+  const { t } = useLanguage();
+
   return (
     <>
-      <Field id="ingredients" label="Ingredients" error={errors.ingredients} shakeKey={shakeKey}>
-        <textarea id="ingredients" className="auth-input" rows={3} placeholder="e.g. Ripe tamarind pulp, coarse sea salt, and a spoonful of honey" value={fields.ingredients} onChange={onFieldChange("ingredients")} />
+      <Field id="ingredients" label={t.contribute.ingredients} error={errors.ingredients} shakeKey={shakeKey}>
+        <textarea id="ingredients" className="auth-input" rows={3} placeholder={t.contribute.ingredientsPlaceholder} value={fields.ingredients} onChange={onFieldChange("ingredients")} />
       </Field>
 
-      <Field id="duration" label="Estimated Preparation Time" error={errors.duration} shakeKey={shakeKey}>
+      <Field id="duration" label={t.contribute.duration} error={errors.duration} shakeKey={shakeKey}>
         <DurationInput
           value={fields.duration}
           onChange={(duration) => onFieldChange("duration")({ target: { value: duration } })}
         />
       </Field>
 
-      <Field id="benefit" label="Benefit & Wellness Notes" error={errors.benefit} shakeKey={shakeKey}>
-        <textarea id="benefit" className="auth-input" rows={3} placeholder="Why is this practice helpful?" value={fields.benefit} onChange={onFieldChange("benefit")} />
+      <Field id="benefit" label={t.contribute.benefit} error={errors.benefit} shakeKey={shakeKey}>
+        <textarea id="benefit" className="auth-input" rows={3} placeholder={t.contribute.benefitPlaceholder} value={fields.benefit} onChange={onFieldChange("benefit")} />
       </Field>
     </>
   );

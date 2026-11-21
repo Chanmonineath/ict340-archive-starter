@@ -2,8 +2,10 @@
 
 import React from "react";
 import { KNOWN_CATEGORIES, pillStyle } from "./categoryPillStyle.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function CategoryPicker({ value, onChange }) {
+  const { t } = useLanguage();
   const [isAdding, setIsAdding] = React.useState(false);
   const [customValue, setCustomValue] = React.useState("");
   const isCustom = value && !KNOWN_CATEGORIES.includes(value);
@@ -20,7 +22,7 @@ export default function CategoryPicker({ value, onChange }) {
   };
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }} role="group" aria-label="Category">
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }} role="group" aria-label={t.contribute.category}>
       {KNOWN_CATEGORIES.map((category) => (
         <button
           key={category}
@@ -42,7 +44,7 @@ export default function CategoryPicker({ value, onChange }) {
           className="category-pill category-pill-active"
           style={pillStyle(true)}
           onClick={() => onChange("")}
-          aria-label={`Remove category ${value}`}
+          aria-label={t.contribute.removeCategory(value)}
         >
           {value}
         </button>
@@ -54,7 +56,7 @@ export default function CategoryPicker({ value, onChange }) {
           autoFocus
           className="auth-input"
           style={{ width: 160, padding: "8px 16px" }}
-          placeholder="New category"
+          placeholder={t.contribute.newCategoryPlaceholder}
           value={customValue}
           onChange={updateCustomValue}
           onBlur={confirmCustom}
@@ -71,9 +73,9 @@ export default function CategoryPicker({ value, onChange }) {
           className="category-pill"
           style={pillStyle(false)}
           onClick={() => setIsAdding(true)}
-          aria-label="Add a new category"
+          aria-label={t.contribute.addCategory}
         >
-          + Add
+          {t.contribute.addCategoryShort}
         </button>
       )}
     </div>

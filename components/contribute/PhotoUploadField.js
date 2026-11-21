@@ -4,10 +4,12 @@ import React from "react";
 import { validatePhoto } from "./contributeValidation.js";
 import PhotoCropper from "./PhotoCropper.js";
 import PhotoPicker from "./PhotoPicker.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 const colors = { teak: "#2E3B2A" };
 
 export default function PhotoUploadField({ file, onChange, error, existingPhotoUrl }) {
+  const { t } = useLanguage();
   const [previewUrl, setPreviewUrl] = React.useState(null);
   const [pendingFile, setPendingFile] = React.useState(null);
   const [pendingUrl, setPendingUrl] = React.useState(null);
@@ -20,7 +22,7 @@ export default function PhotoUploadField({ file, onChange, error, existingPhotoU
       setPreviewUrl(null);
       return;
     }
-    if (validatePhoto(selected)) {
+    if (validatePhoto(selected, t.contribute)) {
       // Still accept it into state so the shared validate() surfaces the
       // same message; just skip opening the cropper for a file that will
       // be rejected anyway.
@@ -41,7 +43,7 @@ export default function PhotoUploadField({ file, onChange, error, existingPhotoU
     return (
       <div>
         <label style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}>
-          Crop Photo
+          {t.contribute.cropPhoto}
         </label>
         <PhotoCropper
           imageUrl={pendingUrl}

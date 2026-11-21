@@ -1,5 +1,7 @@
 "use client";
 
+import useLanguage from "../../hooks/useLanguage.js";
+
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0" };
 
 function parseDuration(value) {
@@ -12,6 +14,7 @@ function clampDigits(raw) {
 }
 
 export default function DurationInput({ value, onChange }) {
+  const { t } = useLanguage();
   const { hours, minutes } = parseDuration(value);
 
   const updatePart = (part) => (e) => {
@@ -35,9 +38,9 @@ export default function DurationInput({ value, onChange }) {
         value={hours}
         onChange={updatePart("hours")}
         onBlur={fillHoursDefault}
-        aria-label="Hours (optional)"
+        aria-label={t.contribute.hoursAria}
       />
-      <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>h</span>
+      <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>{t.contribute.hoursUnit}</span>
       <input
         type="text"
         inputMode="numeric"
@@ -46,9 +49,9 @@ export default function DurationInput({ value, onChange }) {
         placeholder="00"
         value={minutes}
         onChange={updatePart("minutes")}
-        aria-label="Minutes"
+        aria-label={t.contribute.minutesAria}
       />
-      <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>mn</span>
+      <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>{t.contribute.minutesUnit}</span>
     </div>
   );
 }

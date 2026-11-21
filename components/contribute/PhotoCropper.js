@@ -4,10 +4,12 @@ import React from "react";
 import { cropToFile } from "./cropToFile.js";
 import CropWindow from "./CropWindow.js";
 import useCropDrag from "./useCropDrag.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 const colors = { teak: "#2E3B2A" };
 
 export default function PhotoCropper({ imageUrl, originalFile, onConfirm }) {
+  const { t } = useLanguage();
   const imgRef = React.useRef(null);
   const containerRef = React.useRef(null);
   const [natural, setNatural] = React.useState(null);
@@ -51,7 +53,7 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm }) {
         <img
           ref={imgRef}
           src={imageUrl}
-          alt="Photo to crop"
+          alt={t.contribute.photoCropAlt}
           onLoad={handleImageLoad}
           style={{ display: "block", width: "100%", height: "auto", borderRadius: 10 }}
           draggable={false}
@@ -67,7 +69,7 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm }) {
       </div>
 
       <p style={{ margin: 0, fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-        Drag inside the box to move it, drag the corner handle to resize. Your photo is saved automatically.
+        {t.contribute.photoCropHelp}
       </p>
     </div>
   );

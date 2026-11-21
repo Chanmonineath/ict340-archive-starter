@@ -1,6 +1,7 @@
 "use client";
 
 import useSupabaseUser from "../../hooks/useSupabaseUser.js";
+import useLanguage from "../../hooks/useLanguage.js";
 import ContributeForm from "../../components/contribute/ContributeForm.js";
 import ContributeLoginPrompt from "../../components/contribute/ContributeLoginPrompt.js";
 
@@ -13,13 +14,14 @@ const styles = {
 
 export default function ContributePage() {
   const { user, isLoading } = useSupabaseUser();
+  const { t } = useLanguage();
 
   return (
     <div style={styles.page}>
       <main style={styles.main} className="contribute-main">
         {isLoading ? (
           <p style={{ textAlign: "center", fontFamily: "var(--font-body), sans-serif", color: colors.teak + "99" }}>
-            Loading…
+            {t.common.loading}
           </p>
         ) : user ? (
           <ContributeForm user={user} />

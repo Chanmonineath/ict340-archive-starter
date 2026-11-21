@@ -1,13 +1,17 @@
+import useLanguage from "../../hooks/useLanguage.js";
+
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0" };
 
 export default function PhotoPicker({ inputRef, onFileChange, file, existingPhotoUrl, displayedPreviewUrl, error }) {
+  const { t } = useLanguage();
+
   return (
     <div>
       <label
         htmlFor="contribute-photo"
         style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}
       >
-        Photo
+        {t.contribute.photoLabel}
       </label>
       <input
         id="contribute-photo"
@@ -18,11 +22,11 @@ export default function PhotoPicker({ inputRef, onFileChange, file, existingPhot
         className="auth-input"
       />
       <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-        JPG, PNG, or WEBP, up to 5MB.
+        {t.contribute.photoHelp}
       </p>
       {existingPhotoUrl && !file && (
         <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
-          Keeping the current photo — choose a file to replace it.
+          {t.contribute.keepingCurrentPhoto}
         </p>
       )}
       {file && (
@@ -33,7 +37,7 @@ export default function PhotoPicker({ inputRef, onFileChange, file, existingPhot
       {displayedPreviewUrl && (
         <img
           src={displayedPreviewUrl}
-          alt="Preview of the uploaded photo"
+          alt={t.contribute.photoPreviewAlt}
           style={{ marginTop: 10, maxWidth: 160, borderRadius: 15, border: "1px solid " + colors.silk }}
         />
       )}

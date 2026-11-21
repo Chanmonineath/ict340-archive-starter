@@ -1,8 +1,12 @@
 "use client";
 
+import useLanguage from "../../hooks/useLanguage.js";
+
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0", button: "#2E5B3A" };
 
 export default function ProcessStepsInput({ steps, onChange }) {
+  const { t } = useLanguage();
+
   const updateStep = (index, value) => {
     const next = [...steps];
     next[index] = value;
@@ -16,7 +20,7 @@ export default function ProcessStepsInput({ steps, onChange }) {
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
         <label style={{ fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}>
-          Preparation Process Steps
+          {t.contribute.processStepsLabel}
         </label>
         <button
           type="button"
@@ -26,7 +30,7 @@ export default function ProcessStepsInput({ steps, onChange }) {
             color: colors.button, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, fontSize: 13,
           }}
         >
-          + Add Step
+          {t.contribute.addStep}
         </button>
       </div>
 
@@ -47,14 +51,14 @@ export default function ProcessStepsInput({ steps, onChange }) {
               className="auth-input"
               value={step}
               onChange={(e) => updateStep(index, e.target.value)}
-              placeholder={`Step ${index + 1}`}
+              placeholder={t.contribute.stepPlaceholder(index + 1)}
               style={{ flex: 1 }}
             />
             {steps.length > 1 && (
               <button
                 type="button"
                 onClick={() => removeStep(index)}
-                aria-label={`Remove step ${index + 1}`}
+                aria-label={t.contribute.removeStep(index + 1)}
                 style={{
                   flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center",
                   background: "none", border: "none", cursor: "pointer", padding: 4,

@@ -1,8 +1,10 @@
 import Link from "next/link";
+import useLanguage from "../../hooks/useLanguage.js";
 
 const colors = { teak: "#2E3B2A", silk: "#E7DEC9", cream: "#FAF7F0", button: "#2E5B3A" };
 
 export default function ContributeLoginPrompt() {
+  const { t } = useLanguage();
   const wrap = {
     textAlign: "center",
     padding: "56px 24px",
@@ -45,14 +47,13 @@ export default function ContributeLoginPrompt() {
   };
 
   return (
-    <section style={wrap} aria-label="Log in to contribute">
-      <h2 style={title} className="contribute-title">Share your knowledge</h2>
+    <section style={wrap} aria-label={t.contribute.loginPromptAria}>
+      <h2 style={title} className="contribute-title">{t.contribute.loginPromptHeading}</h2>
       <p style={desc}>
-        Log in to record a family remedy, natural scrub, or herbal care passed down by your family,
-        elders, friends, and communities.
+        {t.contribute.loginPromptBody}
       </p>
-      <Link href="/login" className="btn-primary-pill" style={btn} aria-label="Log in to submit an entry">
-        Log In to Contribute
+      <Link href="/login" className="btn-primary-pill" style={btn} aria-label={t.contribute.loginPromptLinkAria}>
+        {t.contribute.loginPromptCta}
       </Link>
     </section>
   );

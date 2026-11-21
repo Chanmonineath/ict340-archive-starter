@@ -12,6 +12,7 @@ import ContributeDetailFields from "./ContributeDetailFields.js";
 import ContributeCategoryField from "./ContributeCategoryField.js";
 import ContributeFormHeader from "./ContributeFormHeader.js";
 import UploadProgressBar from "./UploadProgressBar.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0", sand: "#F5EFE2" };
 
@@ -45,6 +46,7 @@ function fieldsFromEntry(entry) {
 }
 
 export default function ContributeForm({ user, editingEntry }) {
+  const { t } = useLanguage();
   const isEditing = Boolean(editingEntry);
   const [fields, setFields] = React.useState(() =>
     isEditing ? fieldsFromEntry(editingEntry) : EMPTY_FIELDS,
@@ -75,11 +77,11 @@ export default function ContributeForm({ user, editingEntry }) {
     setFormError("");
 
     if (isEditing && !hasChanges) {
-      setFormError("No changes to save.");
+      setFormError(t.contribute.noChangesToSave);
       return;
     }
 
-    const nextErrors = validate(fields, photoFile, existingPhotoUrl);
+    const nextErrors = validate(fields, photoFile, existingPhotoUrl, t.contribute);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       setShakeKey((key) => key + 1);
@@ -103,8 +105,8 @@ export default function ContributeForm({ user, editingEntry }) {
     } catch (err) {
       setFormError(
         err.message === "no-row"
-          ? "That change wasn't saved"
-          : `Couldn't ${isEditing ? "save your changes" : "save your entry"} right now. Please try again.`,
+          ? t.contribute.changeNotSaved
+          : t.contribute.saveFailed(isEditing),
       );
     } finally {
       setIsSaving(false);
@@ -133,7 +135,7 @@ export default function ContributeForm({ user, editingEntry }) {
 
   const handleCancel = () => {
     if (!hasChanges) {
-      setFormError("No changes to cancel.");
+      setFormError(t.contribute.noChangesToCancel);
       return;
     }
     setFields(baselineFields);
@@ -183,8 +185,8 @@ export default function ContributeForm({ user, editingEntry }) {
       {errorCount > 0 && (
         <p className="auth-form-error">
           {errorCount === 1
-            ? "Please fix the highlighted field below."
-            : `Please fix the ${errorCount} highlighted fields below.`}
+            ? t.contribute.fixOneField
+            : t.contribute.fixManyFields(errorCount)}
         </p>
       )}
 
@@ -238,7 +240,7 @@ export default function ContributeForm({ user, editingEntry }) {
 
       {isSaving && (
         <UploadProgressBar
-          label={photoFile ? "Uploading photo and saving…" : "Saving…"}
+          label={photoFile ? t.contribute.uploadingAndSaving : t.contribute.saving}
         />
       )}
 
@@ -262,7 +264,7 @@ export default function ContributeForm({ user, editingEntry }) {
               cursor: "pointer",
             }}
           >
-            Cancel
+            {t.contribute.cancel}
           </button>
         )}
         <button
@@ -272,10 +274,10 @@ export default function ContributeForm({ user, editingEntry }) {
           style={{ flex: 1 }}
         >
           {isSaving
-            ? "Saving…"
+            ? t.contribute.saving
             : isEditing
-              ? "Save Changes"
-              : "Submit an Entry"}
+              ? t.contribute.saveChanges
+              : t.contribute.submitEntry}
         </button>
       </div>
 

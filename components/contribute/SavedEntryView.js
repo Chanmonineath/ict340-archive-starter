@@ -2,9 +2,11 @@ import { useRouter } from "next/navigation";
 import { colors, label, box } from "../entry/entryStyles.js";
 import EntryMeta from "../entry/EntryMeta.js";
 import EntryProcessList from "../entry/EntryProcessList.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmitAnother }) {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <div
@@ -19,7 +21,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
       }}
     >
       <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
-        {isEditing ? "Changes saved." : "Entry saved — thank you for sharing!"}
+        {isEditing ? t.contribute.savedChanges : t.contribute.savedNew}
       </p>
 
       {entry.photo_url && (
@@ -44,13 +46,13 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
       <EntryMeta contributor={entry.source} place={entry.place} ingredients={entry.ingredients} />
 
       <div>
-        <p style={label}>Preparation Process</p>
+        <p style={label}>{t.contribute.preparationProcess}</p>
         <EntryProcessList steps={entry.process} />
       </div>
 
       {entry.benefit && (
         <div>
-          <p style={label}>Benefit &amp; Wellness Notes</p>
+          <p style={label}>{t.contribute.benefitNotesHeading}</p>
           <p style={box}>{entry.benefit}</p>
         </div>
       )}
@@ -74,7 +76,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
             boxSizing: "border-box",
           }}
         >
-          Back
+          {t.contribute.back}
         </button>
         <button
           type="button"
@@ -94,13 +96,13 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
             boxSizing: "border-box",
           }}
         >
-          {isEditing ? "Edit Again" : "Submit Another"}
+          {isEditing ? t.contribute.editAgain : t.contribute.submitAnother}
         </button>
       </div>
 
       {entry.status === "pending" && (
         <p style={{ margin: 0, textAlign: "center", fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
-          {isEditing ? "Awaiting review before it's live again." : "Submitted — awaiting review."}
+          {isEditing ? t.contribute.awaitingReviewAgain : t.contribute.submittedAwaitingReview}
         </p>
       )}
     </div>

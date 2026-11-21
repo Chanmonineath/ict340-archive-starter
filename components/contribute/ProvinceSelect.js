@@ -3,6 +3,7 @@
 import React from "react";
 import PROVINCES from "./PROVINCES.js";
 import PROVINCE_KHMER_NAMES from "./PROVINCE_KHMER_NAMES.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 const colors = { teak: "#1D3627", placeholder: "#615443", silk: "#E7DEC9" };
 
@@ -12,6 +13,7 @@ function withKhmerName(province) {
 }
 
 export default function ProvinceSelect({ value, onChange }) {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const wrapRef = React.useRef(null);
@@ -53,7 +55,7 @@ export default function ProvinceSelect({ value, onChange }) {
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        {value ? withKhmerName(value) : "Select a province"}
+        {value ? withKhmerName(value) : t.contribute.selectProvince}
       </button>
 
       {isOpen && (
@@ -69,7 +71,7 @@ export default function ProvinceSelect({ value, onChange }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by letter…"
+            placeholder={t.contribute.searchByLetter}
             className="province-select-search"
             style={{ color: colors.teak, borderBottom: "1px solid " + colors.silk }}
           />
@@ -89,7 +91,7 @@ export default function ProvinceSelect({ value, onChange }) {
               ))
             ) : (
               <li className="province-select-empty" style={{ color: colors.placeholder }}>
-                No province starts with &ldquo;{query.trim()}&rdquo;
+                {t.contribute.noProvinceMatch(query.trim())}
               </li>
             )}
           </ul>

@@ -7,22 +7,15 @@ const ALLOWED_PHOTO_TYPES = {
 };
 const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
 
-function lengthError(label, value, min, max) {
-  const len = value.trim().length;
-  if (len < min) return `Please enter ${label.toLowerCase()}.`;
-  if (len > max) return `${label} must be ${max} characters or fewer.`;
-  return null;
-}
-
-export function validatePhoto(file) {
+export function validatePhoto(file, t) {
   if (!file) {
     return null;
   }
   if (!ALLOWED_PHOTO_TYPES[file.type]) {
-    return "Photo must be a JPG, PNG, or WEBP image.";
+    return t.photoTypeError;
   }
   if (file.size > MAX_PHOTO_BYTES) {
-    return "Photo must be 5MB or smaller.";
+    return t.photoSizeError;
   }
   return null;
 }
@@ -41,51 +34,58 @@ export function normalizeDuration(duration) {
   return `${hours}h ${match[2]}mn`;
 }
 
-export function validate(fields, photoFile, existingPhotoUrl) {
+function lengthError(value, min, max, requiredMsg, tooLongMsg) {
+  const len = value.trim().length;
+  if (len < min) return requiredMsg;
+  if (len > max) return tooLongMsg(max);
+  return null;
+}
+
+export function validate(fields, photoFile, existingPhotoUrl, t) {
   const errors = {};
 
-  const titleError = lengthError("Title", fields.title, 1, 100);
+  const titleError = lengthError(fields.title, 1, 100, t.titleRequired, t.titleTooLong);
   if (titleError) errors.title = titleError;
 
-  const khmerNameError = lengthError("Khmer name", fields.khmerName, 1, 100);
+  const khmerNameError = lengthError(fields.khmerName, 1, 100, t.khmerNameRequired, t.khmerNameTooLong);
   if (khmerNameError) errors.khmerName = khmerNameError;
 
-  const sourceError = lengthError("Source", fields.source, 1, 50);
+  const sourceError = lengthError(fields.source, 1, 50, t.sourceRequired, t.sourceTooLong);
   if (sourceError) errors.source = sourceError;
 
   if (!fields.place.trim() || !PROVINCES.includes(fields.place.trim())) {
-    errors.place = "Please select a province.";
+    errors.place = t.provinceRequired;
   }
 
   const categoryTrimmed = fields.category.trim();
   if (!categoryTrimmed) {
-    errors.category = "Please choose or add a category.";
+    errors.category = t.categoryRequired;
   } else if (!/^[A-Za-zក-៿\s&]+$/.test(categoryTrimmed)) {
-    errors.category = "Category can only contain letters, spaces, and &.";
+    errors.category = t.categoryInvalid;
   }
 
-  const ingredientsError = lengthError("Ingredients", fields.ingredients, 1, 200);
+  const ingredientsError = lengthError(fields.ingredients, 1, 200, t.ingredientsRequired, t.ingredientsTooLong);
   if (ingredientsError) errors.ingredients = ingredientsError;
 
   const steps = fields.process.map((step) => step.trim()).filter(Boolean);
   if (steps.length === 0) {
-    errors.process = "Please add at least one step.";
+    errors.process = t.stepsRequired;
   } else if (steps.join(" ").length > 2000) {
-    errors.process = "Process steps must total 2000 characters or fewer.";
+    errors.process = t.stepsTooLong;
   }
 
-  const benefitError = lengthError("Benefit", fields.benefit, 1, 500);
+  const benefitError = lengthError(fields.benefit, 1, 500, t.benefitRequired, t.benefitTooLong);
   if (benefitError) errors.benefit = benefitError;
 
   const durationMatch = /^(\d{0,2})h (\d{1,2})mn$/.exec(fields.duration || "");
   if (!durationMatch || (Number(durationMatch[1] || 0) === 0 && Number(durationMatch[2]) === 0)) {
-    errors.duration = "Please enter how long this practice takes.";
+    errors.duration = t.durationRequired;
   }
 
   if (!photoFile && !existingPhotoUrl) {
-    errors.photo = "Please add a photo.";
+    errors.photo = t.photoRequired;
   } else {
-    const photoError = validatePhoto(photoFile);
+    const photoError = validatePhoto(photoFile, t);
     if (photoError) errors.photo = photoError;
   }
 
