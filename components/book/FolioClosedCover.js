@@ -1,7 +1,10 @@
 import Logo from "../Logo.js";
 import { SparklesIcon } from "./icons.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function FolioClosedCover({ onOpen }) {
+  const { t } = useLanguage();
+
   return (
     <div
       className="folio-closed"
@@ -14,28 +17,28 @@ export default function FolioClosedCover({ onOpen }) {
           onOpen();
         }
       }}
-      aria-label="Open book"
+      aria-label={t.book.openBook}
     >
       <div className="folio-closed-inner">
         <div className="folio-closed-overlay">
           <div className="folio-closed-top">
             <span>ការអនុវត្តតាមផ្ទះ</span>
-            <span>Family Archive</span>
+            <span>{t.book.coverLabel}</span>
           </div>
 
           <div className="folio-closed-mid">
             <div className="folio-closed-emblem">
               <Logo height={58} variant="light" emblemOnly />
             </div>
-            <h1 className="folio-closed-title">Home Practices</h1>
+            <h1 className="folio-closed-title">{t.book.coverTitle}</h1>
             <div className="folio-closed-rule" />
-            <p className="folio-closed-sub">Natural Remedies &amp; Family Care</p>
-            <p className="folio-closed-note">Passed Down Through Generation</p>
+            <p className="folio-closed-sub">{t.book.coverSubtitle}</p>
+            <p className="folio-closed-note">{t.book.coverNote}</p>
           </div>
 
           <div className="folio-closed-cta">
             <SparklesIcon size={14} color="#F8CF75" />
-            <span>Click to Open Book</span>
+            <span>{t.book.clickToOpen}</span>
           </div>
         </div>
 

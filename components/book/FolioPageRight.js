@@ -1,6 +1,9 @@
+"use client";
+
 import Logo from "../Logo.js";
 import { ChevronRight, HeartIcon, RotateIcon, BotanicalPlate } from "./icons.js";
 import { FolioNote, FolioSteps, FolioContentsRows, leafHeading } from "./FolioNoteAndSteps.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function FolioPageRight({
   spread,
@@ -11,19 +14,21 @@ export default function FolioPageRight({
   onJump,
   onNextPage,
 }) {
+  const { t } = useLanguage();
+
   return (
     <div className="folio-page folio-page-right">
       <div className="folio-page-head">
         <span>
           {spread.kind === "contents"
-            ? "Botanical Plate"
+            ? t.book.botanicalPlate
             : spread.kind === "contentsOverflow"
-              ? "Table of Home Remedies"
+              ? t.book.tableOfHomeRemedies
               : spread.kind === "remedy"
-                ? leafHeading(spread.right, spread, "Full Preparation Process")
-                : "Full Preparation Process"}
+                ? leafHeading(spread.right, spread, t.book.fullPreparationProcess, t)
+                : t.book.fullPreparationProcess}
         </span>
-        <span>Page {rightPageNum}</span>
+        <span>{t.book.pageWord(rightPageNum)}</span>
       </div>
 
       <div
@@ -39,12 +44,10 @@ export default function FolioPageRight({
             <div className="folio-emblem-ring folio-emblem-ring-dark">
               <Logo height={44} emblemOnly />
             </div>
-            <h3 className="folio-invite-title">Living Home Knowledge</h3>
-            <p className="folio-invite-text">
-              Preserved directly from the hearths of Cambodian families.
-            </p>
+            <h3 className="folio-invite-title">{t.book.livingHomeKnowledge}</h3>
+            <p className="folio-invite-text">{t.book.livingHomeKnowledgeText}</p>
             <button type="button" className="folio-invite-btn" onClick={onNextPage}>
-              <span>Explore Home Remedies</span>
+              <span>{t.book.exploreHomeRemedies}</span>
               <ChevronRight size={14} />
             </button>
           </div>
@@ -58,16 +61,12 @@ export default function FolioPageRight({
                 <div className="folio-plate-scrim" aria-hidden="true" />
                 <div className="folio-plate-caption">
                   <span className="folio-plate-caption-kh">គ្រឿងផ្សំធម្មជាតិតាមផ្ទះ</span>
-                  <span className="folio-plate-caption-en">
-                    Pure Natural Ingredients &amp; Stone Pestles
-                  </span>
+                  <span className="folio-plate-caption-en">{t.book.plateCaption}</span>
                 </div>
               </div>
             </div>
 
-            <p className="folio-plate-inscription">
-              &ldquo; Oral Tradition • Passed Down Through Generations.&rdquo;
-            </p>
+            <p className="folio-plate-inscription">{t.book.plateInscription}</p>
           </div>
         )}
 
@@ -90,25 +89,23 @@ export default function FolioPageRight({
             <div className="folio-thanks-ring">
               <HeartIcon size={24} color="#1A392A" />
             </div>
-            <h3 className="folio-thanks-title">Honoring Family Tradition</h3>
-            <p className="folio-thanks-text">
-              Thank you for reading and keeping traditional Cambodian home self-care alive.
-            </p>
+            <h3 className="folio-thanks-title">{t.book.honoringFamilyTradition}</h3>
+            <p className="folio-thanks-text">{t.book.honoringFamilyTraditionText}</p>
             <button
               type="button"
               className="folio-invite-btn folio-invite-btn-sm"
               onClick={() => onJump(1)}
             >
               <RotateIcon size={14} color="#E6BC6B" />
-              <span>Back to Table of Contents</span>
+              <span>{t.book.backToTableOfContents}</span>
             </button>
           </div>
         )}
       </div>
 
       <div className="folio-page-foot">
-        <span>Khmer Home Practices</span>
-        <span>Page {rightPageNum}</span>
+        <span>{t.book.khmerHomePractices}</span>
+        <span>{t.book.pageWord(rightPageNum)}</span>
       </div>
     </div>
   );

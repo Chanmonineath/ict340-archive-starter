@@ -1,9 +1,12 @@
+"use client";
+
 import Logo from "../Logo.js";
 import collection from "../../collection.config.js";
 import { BookOpenIcon } from "./icons.js";
 import { FolioNote, FolioSteps, FolioContentsRows, leafHeading } from "./FolioNoteAndSteps.js";
 import EntryPhoto from "../EntryPhoto.js";
 import formatDuration from "../entry/formatDuration.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function FolioPageLeft({
   spread,
@@ -13,15 +16,17 @@ export default function FolioPageLeft({
   leftPageOf,
   onJump,
 }) {
+  const { t } = useLanguage();
+
   return (
     <div className="folio-page folio-page-left">
       <div className="folio-page-head">
         <span>
           {spread.kind === "remedy"
-            ? leafHeading(spread.left, spread, "Khmer Home Practices")
-            : "Khmer Home Practices"}
+            ? leafHeading(spread.left, spread, t.book.khmerHomePractices, t)
+            : t.book.khmerHomePractices}
         </span>
-        <span>Page {leftPageNum}</span>
+        <span>{t.book.pageWord(leftPageNum)}</span>
       </div>
 
       <div className={"folio-page-body" + (spread.kind === "remedy" ? "" : " folio-page-body-centred")}>
@@ -30,16 +35,11 @@ export default function FolioPageLeft({
             <div className="folio-emblem-ring">
               <Logo height={44} emblemOnly />
             </div>
-            <span className="folio-kicker">Dedicated to Family Wisdom</span>
+            <span className="folio-kicker">{t.book.dedicatedToFamilyWisdom}</span>
             <h2 className="folio-dedication-khmer">ការអនុវត្តតាមផ្ទះ</h2>
-            <p className="folio-dedication-quote">
-              &ldquo;Every remedy here carries the hands that made it.&rdquo;
-            </p>
+            <p className="folio-dedication-quote">{t.book.dedicationQuote}</p>
             <div className="folio-hairline" />
-            <p className="folio-dedication-blurb">
-              With gratitude to the family members, elders, and contributors who shared these
-              remedies, so this knowledge can be kept and passed on.
-            </p>
+            <p className="folio-dedication-blurb">{t.book.dedicationBlurb}</p>
           </div>
         )}
 
@@ -47,7 +47,7 @@ export default function FolioPageLeft({
           <div className="folio-contents">
             <div className="folio-contents-kicker">
               <BookOpenIcon size={14} color="#1A392A" />
-              <span>Table of Home Remedies</span>
+              <span>{t.book.tableOfHomeRemedies}</span>
             </div>
             <h2 className="folio-contents-khmer">មាតិកាឱសថ និងការថែទាំតាមផ្ទះ</h2>
 
@@ -88,15 +88,15 @@ export default function FolioPageLeft({
 
             <div className="folio-remedy-meta">
               <div>
-                <span className="folio-meta-label">Source</span>
+                <span className="folio-meta-label">{t.book.sourceLabel}</span>
                 <span className="folio-meta-value">{currentRemedy.contributor}</span>
               </div>
               <div>
-                <span className="folio-meta-label">Place</span>
+                <span className="folio-meta-label">{t.book.placeLabel}</span>
                 <span className="folio-meta-value">{currentRemedy.place}</span>
               </div>
               <div className="folio-meta-wide">
-                <span className="folio-meta-label">Duration</span>
+                <span className="folio-meta-label">{t.book.durationLabel}</span>
                 <span className="folio-meta-value folio-meta-value-plain">
                   {formatDuration(currentRemedy.duration)}
                 </span>
@@ -105,16 +105,16 @@ export default function FolioPageLeft({
 
             {currentRemedy.ingredients && (
               <div>
-                <span className="folio-meta-label folio-meta-label-block">Ingredients</span>
+                <span className="folio-meta-label folio-meta-label-block">{t.book.ingredientsLabel}</span>
                 <div className="folio-box">{currentRemedy.ingredients}</div>
               </div>
             )}
 
             <div className="folio-box folio-box-tradition">
-              <span className="folio-tradition-label">Benefit &amp; Wellness Note:</span>
+              <span className="folio-tradition-label">{t.book.benefitWellnessNote}</span>
               {spread.left.note}
               {spread.left.noteRunsOver && (
-                <span className="folio-note-catchword">Continued overleaf →</span>
+                <span className="folio-note-catchword">{t.book.continuedOverleaf}</span>
               )}
             </div>
           </div>
@@ -125,19 +125,16 @@ export default function FolioPageLeft({
 
         {spread.kind === "colophon" && (
           <div className="folio-colophon">
-            <span className="folio-kicker">Living Family Archive</span>
-            <h2 className="folio-colophon-title">Preserving Home Heritage</h2>
-            <p className="folio-colophon-text">
-              These home practices demonstrate that natural health and self-care thrive right at
-              home with simple, wholesome pantry ingredients.
-            </p>
+            <span className="folio-kicker">{t.book.livingFamilyArchive}</span>
+            <h2 className="folio-colophon-title">{t.book.preservingHomeHeritage}</h2>
+            <p className="folio-colophon-text">{t.book.preservingHomeHeritageText}</p>
           </div>
         )}
       </div>
 
       <div className="folio-page-foot">
-        <span>{collection.name} Archive</span>
-        <span>Page {leftPageNum}</span>
+        <span>{t.book.archiveFooter(collection.name)}</span>
+        <span>{t.book.pageWord(leftPageNum)}</span>
       </div>
     </div>
   );

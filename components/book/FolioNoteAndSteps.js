@@ -1,21 +1,26 @@
-export function leafHeading(leaf, spread, fallback) {
+"use client";
+
+import useLanguage from "../../hooks/useLanguage.js";
+
+export function leafHeading(leaf, spread, fallback, t) {
   if (!leaf) return fallback;
-  if (leaf.detail) return "Khmer Home Practices";
-  if (leaf.noteContinued) return `${spread.entry.title} — Benefit & Wellness Note`;
-  if (leaf.steps) return "Full Preparation Process";
+  if (leaf.detail) return t.book.khmerHomePractices;
+  if (leaf.noteContinued) return t.book.benefitWellnessNoteHeading(spread.entry.title);
+  if (leaf.steps) return t.book.fullPreparationProcess;
   return fallback;
 }
 
 export function FolioNote({ side }) {
+  const { t } = useLanguage();
   return (
     <div className="folio-note">
       <div className="folio-steps-head">
-        <span className="folio-meta-label">Benefit &amp; Wellness Note (continued)</span>
+        <span className="folio-meta-label">{t.book.benefitWellnessNoteContinued}</span>
       </div>
       <div className="folio-box folio-box-tradition">
         {side.note}
         {side.noteRunsOver && (
-          <span className="folio-note-catchword">Continued overleaf →</span>
+          <span className="folio-note-catchword">{t.book.continuedOverleaf}</span>
         )}
       </div>
     </div>
@@ -23,14 +28,15 @@ export function FolioNote({ side }) {
 }
 
 export function FolioSteps({ side, spread }) {
+  const { t } = useLanguage();
   const last = side.offset + side.steps.length;
   return (
     <div className="folio-steps">
       <div className="folio-steps-head">
         <span className="folio-meta-label">
           {side.steps.length < spread.totalSteps
-            ? `Steps ${side.offset + 1}–${last} of ${spread.totalSteps}`
-            : `Preparation Steps (${spread.totalSteps} steps)`}
+            ? t.book.stepsRange(side.offset + 1, last, spread.totalSteps)
+            : t.book.preparationSteps(spread.totalSteps)}
         </span>
         <span className="folio-steps-time">{spread.entry.duration}</span>
       </div>
@@ -45,13 +51,13 @@ export function FolioSteps({ side, spread }) {
       </div>
 
       {last < spread.totalSteps && (
-        <p className="folio-steps-catchword">Continued overleaf →</p>
+        <p className="folio-steps-catchword">{t.book.continuedOverleaf}</p>
       )}
     </div>
   );
 }
 
-export function FolioContentsRow({ row, targetSpreadIndex, pageNumber, onJump }) {
+export function FolioContentsRow({ row, targetSpreadIndex, pageNumber, onJump, t }) {
   const { entry, idx } = row;
   return (
     <button
@@ -65,12 +71,13 @@ export function FolioContentsRow({ row, targetSpreadIndex, pageNumber, onJump })
         <span className="folio-contents-en">{entry.title}</span>
         {entry.khmerName && <span className="folio-contents-kh">({entry.khmerName})</span>}
       </span>
-      <span className="folio-contents-page">Page {pageNumber}</span>
+      <span className="folio-contents-page">{t.book.pageWord(pageNumber)}</span>
     </button>
   );
 }
 
 export function FolioContentsRows({ rows, spreadIndexForEntry, leftPageOf, onJump }) {
+  const { t } = useLanguage();
   return (
     <div className="folio-contents-list">
       {rows.map((row) => {
@@ -82,6 +89,7 @@ export function FolioContentsRows({ rows, spreadIndexForEntry, leftPageOf, onJum
             targetSpreadIndex={targetSpreadIndex}
             pageNumber={leftPageOf(targetSpreadIndex)}
             onJump={onJump}
+            t={t}
           />
         );
       })}
