@@ -1,6 +1,9 @@
+import useLanguage from "../hooks/useLanguage.js";
+
 const colors = { teak: "#2E3B2A", silk: "#E8DCC0", sand: "#F5EFE2", cream: "#FDF8E9", button: "#2E5B3A" };
 
 export default function ContributeBanner() {
+  const { t } = useLanguage();
   const wrap = {
     textAlign: "center",
     padding: "56px 24px",
@@ -41,14 +44,13 @@ export default function ContributeBanner() {
     display: "inline-block",
   };
   return (
-    <section id="contribute" style={wrap} aria-label="Contribute to the archive">
-      <h2 style={title} className="contribute-title">Share your knowledge</h2>
+    <section id="contribute" style={wrap} aria-label={t.contribute.bannerAria}>
+      <h2 style={title} className="contribute-title">{t.contribute.bannerHeading}</h2>
       <p style={desc}>
-        Do you or someone you know keep a traditional Khmer practice at home —
-        a plant, a remedy, a way of cooking or caring? Help us preserve it.
+        {t.contribute.bannerBody}
       </p>
-      <a href="mailto:ict340@aupp.edu.kh?subject=New%20archive%20entry" className="btn-primary-pill" style={btn} aria-label="Submit an entry">
-        Submit an entry
+      <a href="mailto:ict340@aupp.edu.kh?subject=New%20archive%20entry" className="btn-primary-pill" style={btn} aria-label={t.contribute.bannerCta}>
+        {t.contribute.bannerCta}
       </a>
     </section>
   );

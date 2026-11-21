@@ -1,14 +1,18 @@
+import useLanguage from "../../hooks/useLanguage.js";
+
 const colors = { teak: "#1D3627" };
 
-const STATUS_COPY = {
-  pending: { label: "Pending review", background: "#E7DEC9" },
-  published: { label: "Published", background: "#CFE3D4" },
-  returned: { label: "Returned for changes", background: "#E9C8BE" },
+const STATUS_BACKGROUNDS = {
+  pending: "#E7DEC9",
+  published: "#CFE3D4",
+  returned: "#E9C8BE",
 };
 
 export default function EntryStatusBadge({ status }) {
-  const copy = STATUS_COPY[status];
-  if (!copy) return null;
+  const { t } = useLanguage();
+  const background = STATUS_BACKGROUNDS[status];
+  const copyLabel = t.status[status];
+  if (!background || !copyLabel) return null;
 
   return (
     <span
@@ -16,7 +20,7 @@ export default function EntryStatusBadge({ status }) {
         display: "inline-block",
         padding: "4px 12px",
         borderRadius: 9999,
-        backgroundColor: copy.background,
+        backgroundColor: background,
         border: "1px solid #C49746",
         color: colors.teak,
         fontFamily: "var(--font-body), sans-serif",
@@ -25,7 +29,7 @@ export default function EntryStatusBadge({ status }) {
         whiteSpace: "nowrap",
       }}
     >
-      {copy.label}
+      {copyLabel}
     </span>
   );
 }

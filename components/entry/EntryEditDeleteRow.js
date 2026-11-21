@@ -5,8 +5,10 @@ import Link from "next/link";
 import { colors } from "./entryStyles.js";
 import { deleteEntry } from "./deleteEntry.js";
 import EntryDeleteConfirm from "./EntryDeleteConfirm.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact }) {
+  const { t } = useLanguage();
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
   const [error, setError] = React.useState("");
@@ -18,7 +20,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
       await deleteEntry(entryId);
       onDeleted?.(entryId);
     } catch (err) {
-      setError(err.message === "no-row" ? "That change wasn't saved" : "Couldn't delete this entry right now.");
+      setError(err.message === "no-row" ? t.entryCard.deleteSaveFailed : t.entryCard.deleteFailed);
     } finally {
       setIsDeleting(false);
     }
@@ -44,13 +46,13 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
     };
     return (
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <Link href={`/entries/${entryId}/edit`} aria-label="Edit entry" style={{ ...iconBtn, color: colors.teak, border: "1.5px solid " + colors.teak }}>
+        <Link href={`/entries/${entryId}/edit`} aria-label={t.entryCard.editEntry} style={{ ...iconBtn, color: colors.teak, border: "1.5px solid " + colors.teak }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 20h9" />
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
           </svg>
         </Link>
-        <button type="button" onClick={() => setIsConfirming(true)} aria-label="Delete entry" style={{ ...iconBtn, color: "#9C3B2E", border: "1.5px solid #D9A79B" }}>
+        <button type="button" onClick={() => setIsConfirming(true)} aria-label={t.entryCard.deleteEntry} style={{ ...iconBtn, color: "#9C3B2E", border: "1.5px solid #D9A79B" }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 6h18" />
             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
@@ -76,12 +78,12 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
           <path d="M12 20h9" />
           <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
         </svg>
-        Edit
+        {t.entryCard.edit}
       </Link>
       <button
         type="button"
         onClick={() => setIsConfirming(true)}
-        aria-label="Delete entry"
+        aria-label={t.entryCard.deleteEntry}
         style={{
           flex: "1 1 0", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
           fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: "#9C3B2E",
@@ -94,7 +96,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
           <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
         </svg>
-        Delete
+        {t.entryCard.delete}
       </button>
     </div>
   );

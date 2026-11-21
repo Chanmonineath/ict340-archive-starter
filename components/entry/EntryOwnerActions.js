@@ -1,7 +1,12 @@
+"use client";
+
 import { colors } from "./entryStyles.js";
 import EntryEditDeleteRow from "./EntryEditDeleteRow.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function EntryOwnerActions({ entryId, title, onReadMore, onDeleted }) {
+  const { t } = useLanguage();
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "stretch" }}>
       <button
@@ -14,7 +19,7 @@ export default function EntryOwnerActions({ entryId, title, onReadMore, onDelete
           padding: "10px 20px", borderRadius: 9999, cursor: "pointer", whiteSpace: "nowrap",
         }}
       >
-        Read Full Remedy →
+        {t.entryCard.readFullRemedy}
       </button>
 
       <EntryEditDeleteRow entryId={entryId} title={title} onDeleted={onDeleted} />

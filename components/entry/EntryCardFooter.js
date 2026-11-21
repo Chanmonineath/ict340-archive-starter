@@ -1,12 +1,17 @@
+"use client";
+
 import { colors } from "./entryStyles.js";
 import EntryOwnerActions from "./EntryOwnerActions.js";
 import formatDuration from "./formatDuration.js";
+import useLanguage from "../../hooks/useLanguage.js";
 
 export default function EntryCardFooter({ duration, onReadMore, isOwner, entryId, title, onDeleted }) {
+  const { t } = useLanguage();
+
   return (
     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
       <p style={{ fontFamily: "var(--font-body), sans-serif", fontStyle: "italic", fontSize: 13, color: "#70624E", margin: 0, paddingTop: isOwner ? 10 : 0 }}>
-        Takes {formatDuration(duration)}
+        {t.entryCard.takesTime(formatDuration(duration))}
       </p>
 
       {isOwner ? (
@@ -29,7 +34,7 @@ export default function EntryCardFooter({ duration, onReadMore, isOwner, entryId
             transition: "background-color 0.2s ease, transform 0.1s ease",
           }}
         >
-          Read Full Remedy →
+          {t.entryCard.readFullRemedy}
         </button>
       )}
     </div>

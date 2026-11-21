@@ -7,10 +7,12 @@ import EntryMeta from "./entry/EntryMeta.js";
 import EntryProcessList from "./entry/EntryProcessList.js";
 import EntryPhoto from "./EntryPhoto.js";
 import useLockBodyScroll from "../hooks/useLockBodyScroll.js";
+import useLanguage from "../hooks/useLanguage.js";
 
 export default function EntryModal({
   title, khmerName, contributor, place, ingredients, process, benefit, imageLabel, onClose,
 }) {
+  const { t } = useLanguage();
   useLockBodyScroll();
 
   React.useEffect(() => {
@@ -49,7 +51,7 @@ export default function EntryModal({
         className="modal-scroll"
         role="dialog"
         aria-modal="true"
-        aria-label={"Full remedy: " + title}
+        aria-label={t.entryCard.fullRemedyAria(title)}
         onClick={(e) => e.stopPropagation()}
       >
         {imageLabel && (
@@ -57,7 +59,7 @@ export default function EntryModal({
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close remedy"
+              aria-label={t.entryCard.closeRemedy}
               style={{
                 position: "absolute", top: 0, right: 0,
                 width: 36, height: 36, borderRadius: "50%", border: "none",
@@ -80,13 +82,13 @@ export default function EntryModal({
         <EntryMeta contributor={contributor} place={place} ingredients={ingredients} />
 
         <div>
-          <p style={label}>Preparation Process</p>
+          <p style={label}>{t.entryCard.preparationProcess}</p>
           <EntryProcessList steps={process} />
         </div>
 
         {benefit && (
           <div>
-            <p style={label}>Benefit &amp; Wellness Notes</p>
+            <p style={label}>{t.entryCard.benefitWellnessNotes}</p>
             <p style={box}>{benefit}</p>
           </div>
         )}
@@ -108,7 +110,7 @@ export default function EntryModal({
             cursor: "pointer",
           }}
         >
-          Close Remedy
+          {t.entryCard.closeRemedyBtn}
         </button>
       </div>
     </div>
