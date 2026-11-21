@@ -10,6 +10,7 @@ export default function Home() {
         statement="Knowledge, Preserved in the Home."
         khmerStatement="ចំណេះដឹងពីបុរាណ ថែរក្សាក្នុងផ្ទះខ្មែរ"
         supportCopy={collection.description}
+        supportCopyKhmer={collection.descriptionKhmer}
       />
       <ArchiveSection />
     </>

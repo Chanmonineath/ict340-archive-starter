@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import scrollToArchive from "./scrollToArchive.js";
+import useLanguage from "../hooks/useLanguage.js";
 
-export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }) {
+export default function Hero({ eyebrow, statement, khmerStatement, supportCopy, supportCopyKhmer }) {
+  const { t, language } = useLanguage();
+  const resolvedSupportCopy = language === "km" && supportCopyKhmer ? supportCopyKhmer : supportCopy;
+
   const handleExploreClick = () => {
     scrollToArchive();
   };
 
   return (
-    <section className="hero-wrap" role="region" aria-label="Introduction">
+    <section className="hero-wrap" role="region" aria-label={t.hero.introduction}>
       <img src="/assets/background.jpg" alt="" aria-hidden="true" className="hero-bg-photo" />
       <div className="hero-bg-scrim" aria-hidden="true" />
       <div className="hero-bg-glow" aria-hidden="true" />
@@ -21,11 +25,11 @@ export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }
 
         {khmerStatement && <p className="hero-title-khmer">{khmerStatement}</p>}
 
-        <p className="hero-support">{supportCopy}</p>
+        <p className="hero-support">{resolvedSupportCopy}</p>
 
         <div className="hero-actions">
-          <button type="button" onClick={handleExploreClick} className="hero-btn-primary" aria-label="Explore the archive">
-            Explore the Archive
+          <button type="button" onClick={handleExploreClick} className="hero-btn-primary" aria-label={t.hero.exploreArchive}>
+            {t.hero.exploreArchive}
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -41,7 +45,7 @@ export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }
             </svg>
           </button>
 
-          <Link href="/contribute" className="hero-btn-secondary" aria-label="Share a home recipe">
+          <Link href="/contribute" className="hero-btn-secondary" aria-label={t.hero.shareRecipe}>
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -56,7 +60,7 @@ export default function Hero({ eyebrow, statement, khmerStatement, supportCopy }
               <line x1="12" y1="8" x2="12" y2="16" />
               <line x1="8" y1="12" x2="16" y2="12" />
             </svg>
-            Share a Home Recipe
+            {t.hero.shareRecipe}
           </Link>
         </div>
       </div>

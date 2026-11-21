@@ -6,6 +6,8 @@ const collection = {
   // One sentence: what is this archive, and why does it matter?
   description:
     "A living digital collection of traditional Cambodian home practices, natural body care, and kitchen remedies passed down through generation.",
+  descriptionKhmer:
+    "បណ្ណសារឌីជីថលដែលប្រមូលផ្តុំការអនុវត្តតាមផ្ទះប្រពៃណីខ្មែរ ការថែទាំរាងកាយតាមបែបធម្មជាតិ និងវិធីព្យាបាលតាមផ្ទះបាយ ដែលបន្តពីជំនាន់មួយទៅជំនាន់មួយ។",
 
   // Who is building this archive? Your name, as you want it shown.
   curator: "Sok Chanmonineath",
