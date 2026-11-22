@@ -1,17 +1,60 @@
-# Rooted Khmer
+# PTEAH — Traditional Home Practices
 
-A community archive of traditional Khmer home remedies and plant knowledge — coconut oil, kaffir lime hair mask, ponlai and turmeric scrubs, and more — each entry sourced from a real family member or community source, with a Khmer name, ingredients, step-by-step process, and a sourced benefit/caution note.
+## 1. What this is
 
-Built for ICT 340 (American University of Phnom Penh). Sprint 1 covers browsing and search.
+PTEAH is a living digital archive of traditional Cambodian home practices — plant remedies, natural body care, and kitchen know-how — built across one semester of ICT 340 at the American University of Phnom Penh. Each entry carries a title in English and Khmer, the source who shared it, a province, ingredients, a step-by-step process, a benefit note, and a photo. Anyone can browse and search the published collection; a logged-in contributor can submit their own entry, which goes through a review step before it's visible to everyone else. If a stranger asked what I built this semester: a place where Khmer home remedies that usually only live in someone's memory get written down, credited to the person who shared them, and kept somewhere a phone can reach.
 
-## Pages
+## 2. Who it's for
 
-- **Home** — introduction and entry points into the archive
-- **Discover** — who curated this archive and where the knowledge comes from
-- **Archive** — every entry, with live search (English and Khmer, case-insensitive, multi-word) and category filtering
-- **Contribute** — how to submit a new entry
+This is built for people in Cambodia — contributors sharing a remedy their grandmother taught them, and visitors looking one up — not for an English-speaking audience as an afterthought. That shaped real choices:
 
-## Running it locally
+- **Khmer first.** Every entry's title, source, and benefit note can be written and read in Khmer. The Noto Sans Khmer font is loaded site-wide so Khmer script never falls back to a broken system font. A site-wide EN/KH language toggle (flag switch in the nav) now covers every piece of UI chrome — nav, footer, hero, search, auth, the contribute form, My Entries, the review queue, and the book view — translating labels, buttons, and messages, not individual entries' own content. English province names (used in the contribute form) switch to Khmer names under the toggle too, and the province search matches whichever script is showing. The archive's card grid also reorders so entries whose own written content (ingredients/process/benefit, not just the required title+Khmer-name pair) leans Khmer come first under the Khmer toggle, and vice versa for English. UNSURE: the ~150 Khmer strings in the toggle's dictionary were written by the AI and have not been checked by a native Khmer speaker — treat them as a first draft, not verified translation, until someone fluent reviews them.
+- **Phones first.** The whole layout — nav, cards, the contribute form, the review queue — is built mobile-first with a fixed top bar and a bottom tab bar, since that's how most people here will actually open this.
+- **Slow connections.** Photos are uploaded through Supabase Storage and served as plain public URLs rather than through any heavier image pipeline, keeping the stack simple; I know the hero background image specifically is still an uncompressed ~1MB file and that's a real weight problem on mobile data I haven't fixed yet.
+- **Sources are named and credited on purpose.** Every entry has a required `source` field (who it came from) and a `place` (which province) — not just a title. That's a direct response to this being knowledge that belongs to real people, not an anonymous dataset.
+
+## 3. How it works
+
+- **Next.js 16 (App Router) on Vercel** serves the site. All styling is inline style objects or plain CSS — no component library, no CSS framework.
+- **The language toggle is hand-built, not a library.** `hooks/useLanguage.js` is a plain React Context holding the active language and a `setLanguage` function, persisted to `localStorage` (wrapped in try/catch so private browsing can't break it). `lib/i18n/en.js` and `lib/i18n/km.js` are plain JS objects — no package was added for this, since `package.json` still lists only the two Supabase packages plus Next/React. The two server components that need translated text but must keep their security check server-side (`/review` and `/review/[id]`, which call `is_reviewer()` before rendering anything) get their strings from a small client-only text component instead of calling the hook directly — the RPC check itself was never touched.
+- **Supabase** handles accounts (email/password auth), the `entries` data, the `profiles` table (one row per account, holding a public display `name`), and entry photos in a `photos` Storage bucket.
+- **The `entries` table** — the columns the app actually reads or writes: `id`, `title`, `khmer_name`, `category`, `source`, `place`, `ingredients`, `process` (an array of step strings), `benefit`, `duration` (a `"NNh NNmn"` string), `photo_url`, `owner`, `status`, `review_note`, `created_at`.
+- **Three entry statuses**: `pending` (submitted, waiting on a reviewer), `published` (visible to everyone), `returned` (a reviewer sent it back, optionally with a `review_note` explaining why). A brand-new submission always starts `pending`. Editing an already-published entry resets it to `pending` again unless the person editing is a reviewer — so a published entry is never silently changed out from under readers.
+- **Who can read/write what** is enforced by Supabase Row Level Security policies plus one RPC function, both configured in the Supabase dashboard (not as SQL files in this repo):
+  - The public homepage only ever queries `status = 'published'` entries.
+  - `/my-entries` is the one place a contributor sees their _own_ entries regardless of status — pending and returned included.
+  - `/review` and `/review/[id]` call an `is_reviewer()` RPC server-side before showing anything; if it returns false, the page shows "You can't review entries." instead of the queue.
+  - Reviewer decisions go through a `review_entry(entry_id, decision, note)` RPC rather than a direct table update — see section 4.
+  - UNSURE of the exact RLS policy text (SELECT/INSERT/UPDATE/DELETE conditions) since that lives in the Supabase dashboard, not in this repo's code. What I can state with confidence from testing (see section 8): an unauthenticated or non-owner request cannot publish an entry through the RPC, and logged-out API reads return no pending or returned rows.
+
+## 4. Security decisions
+
+**The gate.** Publishing or returning an entry only ever happens through `review_entry(entry_id, decision, note)`, a Supabase RPC (`security definer`). It checks `is_reviewer()` internally and only updates a row if that check passes _and_ the entry is still `pending` — so even a contributor who finds and calls this RPC directly from the browser console gets back `false`, not a changed row. A hidden or disabled Publish button in the UI is not what protects this: hiding the button only stops someone from _finding_ the action easily, it does nothing to stop them calling the same RPC by hand. The real protection is that the RPC itself refuses the write server-side regardless of how it's called. I verified this directly (Lab 10 Part 4): a second, non-reviewer account calling `review_entry` from the console got `data: false` back, and a direct SELECT query from that same account returned only its own entries plus published ones — never another contributor's pending or returned work.
+
+**Decisions the briefs left to me:**
+
+- **What a returned entry says.** A reviewer can attach a free-text note (capped at 500 words, enforced in the form) explaining why an entry was returned; the contributor sees it on `/my-entries` under their entry's status badge. I added this because "returned for changes" with no reason is a dead end for the contributor — they have no way to know what to fix.
+- **Whether reviewers can take down published entries.** UNSURE — I did not build a dedicated "unpublish" action in the app, and whether the DELETE/UPDATE policy on `entries` lets a reviewer delete or edit someone else's _published_ row is a dashboard-side policy decision I need to go confirm and state here plainly before submitting. (Flagging this honestly rather than guessing: check the Supabase policy before the Q&A, since this is exactly the kind of thing that question comes from.)
+- **What search shows a contributor about their own pending entries.** The public archive search only ever queries published entries — a contributor's own pending or returned work never appears in the public search results, even to them. They see that work only on `/my-entries`, a separate, logged-in-only view. I kept these separate on purpose: search is "what's live," and My Entries is "what's mine," and blurring the two would make it unclear to a contributor whether their work is actually visible to others yet.
+
+## 5. AI use
+
+I used Claude (via the Claude Code CLI) throughout the sprint — Claude Sonnet 5 for this final sprint's work, specifically — and this replaces the Prompt Journal for the final.
+
+| Task                                       | What the AI wrote                                                                                                        | Kept as-is / rewrote                                                                                                                                                                                                                                         | How I checked                                                                                                                                             |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Review queue redesign (list + detail page) | The `/review` list view, the `/review/[id]` detail page, and the decision-button wiring through `review_entry`           | Kept the RPC-based write path as-is (it was already correctly gated); rewrote where the Publish/Return buttons lived after asking it to lay out both options, since duplicating them on the list rows would have been pointless                              | Ran it locally, clicked through publish/return on real pending entries, re-ran the Lab 10 Part 4 console attack afterward to confirm the gate still held  |
+| Reviewer note feature                      | The `review_note` column usage, the note textarea, the word-limit validation, and the My Entries preview/popover display | Rewrote the word limit after noticing the first version had no cap at all — I caught that gap myself, not the AI, and asked for the 500-word limit afterward                                                                                                 | Typed an intentionally huge unbroken string into the note field to confirm the preview truncates and doesn't break the card layout                        |
+| Duplicate-name signup check                | An app-side `profiles` lookup before `signUp()`, plus a recommendation for a database-level unique index                 | Kept the app-side check; pushed back when the AI initially treated the app-side check alone as sufficient — it has a real race condition two simultaneous signups could slip through, so I had it add the actual database unique index as the real guarantee | Ran the SQL myself in the Supabase SQL editor, confirmed existing duplicate rows first, then confirmed the index rejected a repeat name                   |
+| Required-photo validation                  | Form validation requiring a photo on new (not edited) entries                                                            | Kept as written; explicitly decided _against_ the AI's suggested database `NOT NULL` constraint for now, since it would need a one-time data check first and the app-side rule was enough for this pass                                                      | Tried submitting with no photo, confirmed the error blocks the save; tried editing an existing entry without touching the photo, confirmed it still saves |
+| Khmer province names in the picker         | A lookup table of English → Khmer province names, written from the AI's own knowledge first                              | Rewrote the entire table after I supplied a verified source (official province name/diacritics list) — the AI's first draft had at least one wrong diacritic (Kandal)                                                                                        | Compared every entry against the source I provided, line by line                                                                                          |
+| Site-wide EN/Khmer language toggle         | The `useLanguage` context/hook, the `en.js`/`km.js` dictionaries (~150 keys), and wiring ~35 components to it, plus a flag-based sliding toggle switch | Kept the AI's server/client split for the review pages (a small client-only text component feeding the server-rendered security check) rather than moving the `is_reviewer()` check client-side, which would have weakened it; kept the scope boundary I set — entry content (title, khmer_name, ingredients, process, benefit) stays untranslated/as-submitted, only UI chrome and field labels switch; had it add Khmer-numeral support to the duration input after noticing Khmer digits were silently being stripped | Ran `npm run build` after every batch of files to catch any broken client/server boundary; clicked through both toggle states on the review queue specifically to confirm the server-side reviewer check still gated correctly |
+
+## 6. Sources and credits
+
+Every entry's `source` field names who the knowledge came from. UNSURE — I need to fill in the actual list of named contributors and any who asked not to be named here before submitting; this section is a placeholder structure, not yet the real list. (Example of the format this capstone brief asked for: "a weaver in Takeo who asked not to be named.") Photos not taken by the contributor themselves should be credited the same way, by whoever actually took or supplied them.
+
+## 7. Running it locally
 
 ```bash
 npm install
@@ -20,13 +63,28 @@ npm run dev
 
 Then open http://localhost:3000.
 
-## Structure
+Environment variables needed, in `.env.local` (names only, never commit real values):
 
-- `data/entries.js` — the archive's entries; each one has a title, Khmer name, category, contributor, place, ingredients, process steps, and a benefit note
-- `collection.config.js` — site-wide identity (name, curator, source)
-- `components/` — shared UI (nav, hero, entry cards, search/filter, modal)
-- `app/` — the four pages (Next.js App Router)
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 
-## Rules of the road
+The publishable key is a public, client-safe Supabase key by design — it's meant to be exposed in browser code and is not a secret. It is not committed to this repo regardless, since `.env*` is gitignored.
 
-You own what you ship. Every line that lands in this repository is yours to explain, whoever or whatever wrote it.
+## 8. Submission checklist
+
+- Live URL loads logged out and shows published entries only: https://ict340-archive-starter-five.vercel.app/
+- A stranger cannot publish their own entry through the page or the console: yes, tested (Lab 10 Part 4, console RPC attack)
+- Logged out, the API returns nothing pending or returned: yes, re-tested 2026-11-22
+- Contributors can edit and delete only their own entries: yes — `updateEntry`/`deleteEntry` both check that a row actually came back after the write, which is how a silent RLS block gets surfaced instead of a false "saved" message
+- No secrets anywhere in the repo history: yes, checked with `git log -p --all` for key/password patterns and confirmed `.env.local`/`.env` were never committed at any point in history
+- At least eight real entries, each with a credited source: yes, 8 published entries in the live database
+- Khmer renders on every screen a user meets, including the queue: yes — Khmer name/notes render on entry cards and My Entries, and the review queue's own chrome (headings, labels, buttons) now switches with the site-wide language toggle; UNSURE whether the ~150 AI-written Khmer strings the toggle uses are accurate — needs a native speaker's review before relying on them
+- Works at phone width: yes, built and tested mobile-first throughout — fill in (device or browser width) used
+- No test entries, lorem ipsum or TODO comments in shipped pages: yes — the placeholder-named test entry ("dwdwdw") used during this sprint's testing has been removed from the database
+- No console errors on the main pages: yes, checked 2026-11-22, clean DevTools console
+- jesseorndorff is a collaborator on this repo: yes
+- Supabase project restored and awake on: 2026-11-22
+- Demo video link opens in a private window: UNSURE — not yet recorded
+- Reflection pasted in the Canvas submission: UNSURE — not yet done
+- Posted in the Show Your Archive discussion: UNSURE — not yet done
+- Q&A slot booked for (date and time): UNSURE — fill in
