@@ -68,7 +68,7 @@ export default function PhotoCropper({ imageUrl, originalFile, onConfirm }) {
         )}
       </div>
 
-      <p style={{ margin: 0, fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+      <p style={{ margin: 0, fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
         {t.contribute.photoCropHelp}
       </p>
     </div>

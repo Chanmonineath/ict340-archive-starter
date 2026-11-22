@@ -69,7 +69,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
         href={`/entries/${entryId}/edit`}
         style={{
           flex: "1 1 0", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
-          fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: colors.teak,
+          fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 12, fontWeight: 600, color: colors.teak,
           backgroundColor: "#FFFFFF", border: "1px solid " + colors.teak, padding: "7px 10px",
           borderRadius: 9999, cursor: "pointer", textDecoration: "none",
         }}
@@ -86,7 +86,7 @@ export default function EntryEditDeleteRow({ entryId, title, onDeleted, compact 
         aria-label={t.entryCard.deleteEntry}
         style={{
           flex: "1 1 0", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
-          fontFamily: "var(--font-body), sans-serif", fontSize: 12, fontWeight: 600, color: "#9C3B2E",
+          fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 12, fontWeight: 600, color: "#9C3B2E",
           backgroundColor: "#FFFFFF", border: "1px solid #D9A79B", padding: "7px 10px",
           borderRadius: 9999, cursor: "pointer",
         }}

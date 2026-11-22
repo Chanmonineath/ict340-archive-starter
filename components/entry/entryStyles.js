@@ -8,7 +8,7 @@ export const colors = {
 };
 
 export const label = {
-  fontFamily: "var(--font-body), sans-serif",
+  fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
   fontSize: 11,
   fontWeight: 600,
   textTransform: "uppercase",
@@ -18,7 +18,7 @@ export const label = {
 };
 
 export const value = {
-  fontFamily: "var(--font-heading), serif",
+  fontFamily: "var(--font-heading), var(--font-khmer), serif",
   fontSize: 15,
   fontWeight: 600,
   color: colors.teak,
@@ -30,7 +30,7 @@ export const box = {
   backgroundColor: colors.box,
   border: "1px solid " + colors.silk,
   borderRadius: 10,
-  fontFamily: "var(--font-body), sans-serif",
+  fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
   fontSize: 14,
   color: colors.teak + "CC",
   lineHeight: 1.5,

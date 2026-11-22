@@ -254,7 +254,7 @@ export default function ContributeForm({ user, editingEntry }) {
             style={{
               flex: 1,
               marginTop: 4,
-              fontFamily: "var(--font-body), sans-serif",
+              fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
               fontSize: 14,
               fontWeight: 600,
               color: "#FAF7F0",

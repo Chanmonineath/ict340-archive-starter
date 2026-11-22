@@ -19,7 +19,7 @@ export default function ProcessStepsInput({ steps, onChange }) {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-        <label style={{ fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}>
+        <label style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 600, color: colors.teak }}>
           {t.contribute.processStepsLabel}
         </label>
         <button
@@ -27,7 +27,7 @@ export default function ProcessStepsInput({ steps, onChange }) {
           onClick={addStep}
           style={{
             background: "none", border: "none", cursor: "pointer",
-            color: colors.button, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, fontSize: 13,
+            color: colors.button, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 600, fontSize: 13,
           }}
         >
           {t.contribute.addStep}

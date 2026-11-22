@@ -37,11 +37,11 @@ export default function EntryCard({
       <EntryPhoto src={imageLabel} label={title} />
 
       {khmerName && (
-        <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
+        <p style={{ fontFamily: "var(--font-khmer), var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
           {khmerName}
         </p>
       )}
-      <h3 style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 24, fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
+      <h3 style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 24, fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
         {title}
       </h3>
 
@@ -52,7 +52,7 @@ export default function EntryCard({
       <div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
           <p style={label}>Process ({steps.length} steps)</p>
-          <span style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 12, color: "#7D6E5C" }}>
+          <span style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 12, color: "#7D6E5C" }}>
             Summary view
           </span>
         </div>

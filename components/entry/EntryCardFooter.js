@@ -10,7 +10,7 @@ export default function EntryCardFooter({ duration, onReadMore, isOwner, entryId
 
   return (
     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
-      <p style={{ fontFamily: "var(--font-body), sans-serif", fontStyle: "italic", fontSize: 13, color: "#70624E", margin: 0, paddingTop: isOwner ? 10 : 0 }}>
+      <p style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontStyle: "italic", fontSize: 13, color: "#70624E", margin: 0, paddingTop: isOwner ? 10 : 0 }}>
         {t.entryCard.takesTime(formatDuration(duration))}
       </p>
 
@@ -22,7 +22,7 @@ export default function EntryCardFooter({ duration, onReadMore, isOwner, entryId
           className="btn-primary-pill"
           onClick={onReadMore}
           style={{
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 13,
             fontWeight: 600,
             color: colors.cream,

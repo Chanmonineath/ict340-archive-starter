@@ -14,7 +14,7 @@ export default function ContributeLoginPrompt() {
     borderRadius: 15,
   };
   const title = {
-    fontFamily: "var(--font-heading), serif",
+    fontFamily: "var(--font-heading), var(--font-khmer), serif",
     fontWeight: 700,
     color: colors.teak,
     margin: "0 0 12px",
@@ -31,7 +31,7 @@ export default function ContributeLoginPrompt() {
     marginRight: "auto",
   };
   const btn = {
-    fontFamily: "var(--font-body), sans-serif",
+    fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
     fontSize: 14,
     fontWeight: 600,
     color: colors.cream,

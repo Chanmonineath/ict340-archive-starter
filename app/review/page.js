@@ -11,7 +11,7 @@ const styles = {
 
 function CenteredMessage({ children }) {
   return (
-    <p style={{ textAlign: "center", fontFamily: "var(--font-body), sans-serif", color: colors.teak + "99" }}>
+    <p style={{ textAlign: "center", fontFamily: "var(--font-body), var(--font-khmer), sans-serif", color: colors.teak + "99" }}>
       {children}
     </p>
   );
@@ -41,7 +41,7 @@ export default async function ReviewPage() {
           style={{
             margin: "0 0 24px",
             textAlign: "center",
-            fontFamily: "var(--font-heading), serif",
+            fontFamily: "var(--font-heading), var(--font-khmer), serif",
             fontWeight: 700,
             color: colors.teak,
           }}

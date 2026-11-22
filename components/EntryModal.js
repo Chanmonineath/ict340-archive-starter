@@ -99,7 +99,7 @@ export default function EntryModal({
           onClick={onClose}
           style={{
             alignSelf: "flex-end",
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 13,
             fontWeight: 600,
             color: colors.cream,

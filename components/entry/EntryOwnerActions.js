@@ -14,7 +14,7 @@ export default function EntryOwnerActions({ entryId, title, onReadMore, onDelete
         className="btn-primary-pill"
         onClick={onReadMore}
         style={{
-          fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
+          fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, fontWeight: 600,
           color: colors.cream, backgroundColor: colors.button, border: "none",
           padding: "10px 20px", borderRadius: 9999, cursor: "pointer", whiteSpace: "nowrap",
         }}

@@ -27,7 +27,7 @@ export default function SearchInput({
       width: "100%",
       padding: "14px 20px 14px 46px",
       fontSize: 16,
-      fontFamily: "var(--font-body), sans-serif",
+      fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
       fontWeight: 500,
       color: colors.text,
       backgroundColor: "#FFFFFF",
@@ -64,7 +64,7 @@ export default function SearchInput({
     suggestionItem: {
       padding: "10px 14px",
       borderRadius: 10,
-      fontFamily: "var(--font-body), sans-serif",
+      fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
       fontSize: 14,
       color: colors.text,
       cursor: "pointer",

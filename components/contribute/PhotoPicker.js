@@ -9,7 +9,7 @@ export default function PhotoPicker({ inputRef, onFileChange, file, existingPhot
     <div>
       <label
         htmlFor="contribute-photo"
-        style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}
+        style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 600, color: colors.teak }}
       >
         {t.contribute.photoLabel}
       </label>
@@ -21,16 +21,16 @@ export default function PhotoPicker({ inputRef, onFileChange, file, existingPhot
         onChange={onFileChange}
         className="auth-input"
       />
-      <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+      <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
         {t.contribute.photoHelp}
       </p>
       {existingPhotoUrl && !file && (
-        <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+        <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
           {t.contribute.keepingCurrentPhoto}
         </p>
       )}
       {file && (
-        <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+        <p style={{ margin: "6px 0 0", fontSize: 12, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
           {file.name}
         </p>
       )}

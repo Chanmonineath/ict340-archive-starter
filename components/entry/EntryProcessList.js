@@ -33,7 +33,7 @@ export default function EntryProcessList({ steps }) {
           >
             {i + 1}
           </span>
-          <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 14, color: colors.teak + "CC", lineHeight: 1.5 }}>
+          <p style={{ margin: 0, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 14, color: colors.teak + "CC", lineHeight: 1.5 }}>
             {step}
           </p>
         </div>

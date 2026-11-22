@@ -42,7 +42,7 @@ export default function PhotoUploadField({ file, onChange, error, existingPhotoU
   if (pendingFile) {
     return (
       <div>
-        <label style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}>
+        <label style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 600, color: colors.teak }}>
           {t.contribute.cropPhoto}
         </label>
         <PhotoCropper

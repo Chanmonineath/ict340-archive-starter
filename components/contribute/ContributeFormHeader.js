@@ -7,7 +7,7 @@ export default function ContributeFormHeader({ isEditing }) {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h2 style={{ margin: 0, fontFamily: "var(--font-heading), serif", fontWeight: 700, color: colors.teak }}>
+      <h2 style={{ margin: 0, fontFamily: "var(--font-heading), var(--font-khmer), serif", fontWeight: 700, color: colors.teak }}>
         {isEditing ? t.contribute.editHeading : t.contribute.newHeading}
       </h2>
     </div>

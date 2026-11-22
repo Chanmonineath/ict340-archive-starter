@@ -5,11 +5,11 @@ export default function EntryModalHeader({ title, khmerName, onClose }) {
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
       <div>
         {khmerName && (
-          <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: "0 0 4px" }}>
+          <p style={{ fontFamily: "var(--font-khmer), var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, color: colors.gold, margin: "0 0 4px" }}>
             {khmerName}
           </p>
         )}
-        <h2 className="modal-title" style={{ fontFamily: "var(--font-body), sans-serif", fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
+        <h2 className="modal-title" style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
           {title}
         </h2>
       </div>

@@ -10,7 +10,7 @@ export default function ReviewQueue({ entries }) {
 
   if (entries.length === 0) {
     return (
-      <p style={{ textAlign: "center", fontFamily: "var(--font-body), sans-serif", color: colors.teak + "99" }}>
+      <p style={{ textAlign: "center", fontFamily: "var(--font-body), var(--font-khmer), sans-serif", color: colors.teak + "99" }}>
         {t.review.empty}
       </p>
     );

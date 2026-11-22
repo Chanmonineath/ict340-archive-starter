@@ -46,7 +46,7 @@ export default function DurationInput({ value, onChange }) {
         onBlur={fillHoursDefault}
         aria-label={t.contribute.hoursAria}
       />
-      <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>{t.contribute.hoursUnit}</span>
+      <span style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", color: colors.teak }}>{t.contribute.hoursUnit}</span>
       <input
         type="text"
         inputMode="numeric"
@@ -57,7 +57,7 @@ export default function DurationInput({ value, onChange }) {
         onChange={updatePart("minutes")}
         aria-label={t.contribute.minutesAria}
       />
-      <span style={{ fontFamily: "var(--font-body), sans-serif", color: colors.teak }}>{t.contribute.minutesUnit}</span>
+      <span style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", color: colors.teak }}>{t.contribute.minutesUnit}</span>
     </div>
   );
 }

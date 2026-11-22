@@ -44,7 +44,7 @@ export default function SearchFilter({
       alignItems: "center",
       justifyContent: "flex-end",
       fontSize: 13,
-      fontFamily: "var(--font-body), sans-serif",
+      fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
       color: colors.leaf,
       gap: 6,
     },
@@ -70,7 +70,7 @@ export default function SearchFilter({
             margin: 0,
             fontWeight: 700,
             color: colors.teak,
-            fontFamily: "var(--font-heading), serif",
+            fontFamily: "var(--font-heading), var(--font-khmer), serif",
             lineHeight: 1.2,
           }}
         >
@@ -81,7 +81,7 @@ export default function SearchFilter({
             margin: 0,
             fontSize: 14,
             color: "#7D6E5C",
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
           }}
         >
           {t.search.exploreSubheading}

@@ -33,7 +33,7 @@ export default function Logo({ height = 52, variant = "dark", emblemOnly = false
       <text
         x="95"
         y="45"
-        style={{ fontFamily: "var(--font-heading), Georgia, serif" }}
+        style={{ fontFamily: "var(--font-heading), var(--font-khmer), Georgia, serif" }}
         fontSize="28"
         fontWeight="bold"
         fill={wordmarkColor}
@@ -51,7 +51,7 @@ export default function Logo({ height = 52, variant = "dark", emblemOnly = false
         </tspan>
         <tspan
           dx="6"
-          style={{ fontFamily: "var(--font-body), sans-serif" }}
+          style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}
           fontSize="11"
           fontWeight="600"
           letterSpacing="2.5"

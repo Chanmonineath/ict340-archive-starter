@@ -59,11 +59,11 @@ export default function MyEntryRow({
       >
         <div className="wrap-content">
           {khmerName && (
-            <p style={{ margin: "0 0 2px", fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold }}>
+            <p style={{ margin: "0 0 2px", fontFamily: "var(--font-khmer), var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, color: colors.gold }}>
               {khmerName}
             </p>
           )}
-          <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 16, fontWeight: 700, color: colors.teak }}>
+          <p style={{ margin: 0, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 16, fontWeight: 700, color: colors.teak }}>
             {title}
           </p>
           {status === "returned" && reviewNote && (
@@ -71,7 +71,7 @@ export default function MyEntryRow({
               ref={noteRef}
               style={{
                 margin: "6px 0 0", position: "relative",
-                fontFamily: "var(--font-body), sans-serif", fontSize: 13, color: colors.teak + "CC",
+                fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, color: colors.teak + "CC",
               }}
             >
               <span style={{ fontWeight: 600 }}>Reviewer note:</span> {notePreview}

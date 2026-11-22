@@ -20,7 +20,7 @@ export default function ContributePage() {
     <div style={styles.page}>
       <main style={styles.main} className="contribute-main">
         {isLoading ? (
-          <p style={{ textAlign: "center", fontFamily: "var(--font-body), sans-serif", color: colors.teak + "99" }}>
+          <p style={{ textAlign: "center", fontFamily: "var(--font-body), var(--font-khmer), sans-serif", color: colors.teak + "99" }}>
             {t.common.loading}
           </p>
         ) : user ? (

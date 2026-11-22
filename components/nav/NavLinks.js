@@ -2,7 +2,7 @@ import Link from "next/link";
 import isTabActive from "./isTabActive.js";
 
 const linkStyle = {
-  fontFamily: "var(--font-body), sans-serif",
+  fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
   fontWeight: 600,
   textDecoration: "none",
   textTransform: "uppercase",

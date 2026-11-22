@@ -22,7 +22,7 @@ const styles = {
 
 function CenteredMessage({ children }) {
   return (
-    <p style={{ textAlign: "center", fontFamily: "var(--font-body), sans-serif", color: pageColors.teak + "99" }}>
+    <p style={{ textAlign: "center", fontFamily: "var(--font-body), var(--font-khmer), sans-serif", color: pageColors.teak + "99" }}>
       {children}
     </p>
   );
@@ -53,11 +53,11 @@ export default async function ReviewEntryPage({ params }) {
           <EntryPhoto src={entry.photo_url} label={entry.title} />
 
           {entry.khmer_name && (
-            <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
+            <p style={{ fontFamily: "var(--font-khmer), var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
               {entry.khmer_name}
             </p>
           )}
-          <h1 style={{ fontFamily: "var(--font-body), sans-serif", fontWeight: 700, color: colors.teak, margin: 0 }}>
+          <h1 style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 700, color: colors.teak, margin: 0 }}>
             {entry.title}
           </h1>
 
@@ -93,7 +93,7 @@ export default async function ReviewEntryPage({ params }) {
           style={{
             display: "inline-block",
             marginBottom: 24,
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 14,
             fontWeight: 700,
             color: pageColors.button,

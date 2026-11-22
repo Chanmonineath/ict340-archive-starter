@@ -8,7 +8,7 @@ export default function ContributeCategoryField({ value, error, onChange, shakeK
 
   return (
     <div>
-      <label style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: colors.teak }}>
+      <label style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 600, color: colors.teak }}>
         {t.contribute.category}
       </label>
       <div

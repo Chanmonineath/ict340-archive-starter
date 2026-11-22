@@ -20,7 +20,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
         gap: 20,
       }}
     >
-      <p style={{ margin: 0, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
+      <p style={{ margin: 0, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
         {isEditing ? t.contribute.savedChanges : t.contribute.savedNew}
       </p>
 
@@ -33,11 +33,11 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
       )}
 
       {entry.khmer_name && (
-        <p style={{ fontFamily: "var(--font-khmer), var(--font-body), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
+        <p style={{ fontFamily: "var(--font-khmer), var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, color: colors.gold, margin: 0 }}>
           {entry.khmer_name}
         </p>
       )}
-      <h2 style={{ fontFamily: "var(--font-body), sans-serif", fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
+      <h2 style={{ fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 700, color: colors.teak, margin: 0, lineHeight: 1.25 }}>
         {entry.title}
       </h2>
 
@@ -64,7 +64,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
           className="btn-primary-pill"
           style={{
             flex: 1,
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 13,
             fontWeight: 600,
             color: colors.cream,
@@ -84,7 +84,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
           onClick={isEditing ? onEditAgain : onSubmitAnother}
           style={{
             flex: 1,
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 13,
             fontWeight: 600,
             color: colors.button,
@@ -101,7 +101,7 @@ export default function SavedEntryView({ entry, isEditing, onEditAgain, onSubmit
       </div>
 
       {entry.status === "pending" && (
-        <p style={{ margin: 0, textAlign: "center", fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
+        <p style={{ margin: 0, textAlign: "center", fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, fontWeight: 600, color: colors.button }}>
           {isEditing ? t.contribute.awaitingReviewAgain : t.contribute.submittedAwaitingReview}
         </p>
       )}

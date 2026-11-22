@@ -17,14 +17,14 @@ export default function ArchiveStrip() {
     borderLeft: "3px solid " + colors.gold,
   };
   const num = {
-    fontFamily: "var(--font-heading), serif",
+    fontFamily: "var(--font-heading), var(--font-khmer), serif",
     fontSize: 24,
     fontWeight: 700,
     color: colors.teak,
     margin: 0,
   };
   const label = {
-    fontFamily: "var(--font-body), sans-serif",
+    fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
     fontSize: 12,
     color: colors.teak + "99",
     textTransform: "uppercase",

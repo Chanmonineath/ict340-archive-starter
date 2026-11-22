@@ -4,7 +4,7 @@ import useLanguage from "../../hooks/useLanguage.js";
 function Field({ id, label, error, shakeKey, children }) {
   return (
     <div style={{ flex: "1 1 240px" }}>
-      <label htmlFor={id} style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), sans-serif", fontWeight: 600, color: "#2E3B2A" }}>
+      <label htmlFor={id} style={{ display: "block", marginBottom: 8, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontWeight: 600, color: "#2E3B2A" }}>
         {label}
       </label>
       <div

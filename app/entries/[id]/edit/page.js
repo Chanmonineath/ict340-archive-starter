@@ -19,7 +19,7 @@ function CenteredMessage({ children }) {
     <p
       style={{
         textAlign: "center",
-        fontFamily: "var(--font-body), sans-serif",
+        fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
         color: colors.teak + "99",
       }}
     >
@@ -66,7 +66,7 @@ export default function EditEntryPage() {
             display: "inline-block",
             marginTop: -48,
             marginBottom: 32,
-            fontFamily: "var(--font-body), sans-serif",
+            fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 18,
             fontWeight: 700,
             color: colors.button,

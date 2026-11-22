@@ -84,13 +84,13 @@ export default function ArchiveSection() {
       >
         {isLoading ? (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+            <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
               {t.archive.loading}
             </p>
           </div>
         ) : error ? (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+            <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
               {t.archive.loadError}
             </p>
           </div>
@@ -115,7 +115,7 @@ export default function ArchiveSection() {
               </div>
             ) : (
               <div style={{ textAlign: "center", padding: "60px 0" }}>
-                <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), sans-serif" }}>
+                <p style={{ fontSize: 16, color: colors.teak + "99", fontFamily: "var(--font-body), var(--font-khmer), sans-serif" }}>
                   {t.archive.empty}
                 </p>
               </div>

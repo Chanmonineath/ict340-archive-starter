@@ -21,7 +21,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
         <label
           htmlFor="review-note"
           style={{
-            display: "block", marginBottom: 6, fontFamily: "var(--font-body), sans-serif",
+            display: "block", marginBottom: 6, fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 12, fontWeight: 600, color: colors.teak,
           }}
         >
@@ -39,7 +39,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
         />
         <p
           style={{
-            margin: "4px 0 0", textAlign: "right", fontFamily: "var(--font-body), sans-serif",
+            margin: "4px 0 0", textAlign: "right", fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
             fontSize: 11, color: isOverLimit ? "#9C3B2E" : colors.teak + "99",
           }}
         >
@@ -54,7 +54,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
           onClick={() => onReturn(note)}
           disabled={isSaving || isOverLimit}
           style={{
-            flex: 1, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
+            flex: 1, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, fontWeight: 600,
             color: colors.teak, backgroundColor: "transparent", border: "1px solid " + colors.teak,
             padding: "12px 24px", borderRadius: 9999, cursor: "pointer",
           }}
@@ -67,7 +67,7 @@ export default function ReviewDecisionButtons({ isSaving, onPublish, onReturn, e
           onClick={onPublish}
           disabled={isSaving}
           style={{
-            flex: 1, fontFamily: "var(--font-body), sans-serif", fontSize: 13, fontWeight: 600,
+            flex: 1, fontFamily: "var(--font-body), var(--font-khmer), sans-serif", fontSize: 13, fontWeight: 600,
             color: colors.cream, backgroundColor: colors.button, border: "none",
             padding: "12px 24px", borderRadius: 9999, cursor: "pointer",
           }}

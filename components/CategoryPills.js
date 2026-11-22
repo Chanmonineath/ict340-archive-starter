@@ -24,7 +24,7 @@ export default function CategoryPills({ categories, selectedCategory, onSelect }
               alignItems: "center",
               padding: "8px 16px",
               fontSize: 13,
-              fontFamily: "var(--font-body), sans-serif",
+              fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
               fontWeight: isActive ? 600 : 500,
               color: isActive ? "#FAF7F0" : colors.textInactive,
               backgroundColor: isActive ? colors.active : "#EBE3D3",
