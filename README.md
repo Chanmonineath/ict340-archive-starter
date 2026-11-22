@@ -54,7 +54,7 @@ I used Claude (via the Claude Code CLI: Claude Sonnet 5) throughout the sprint �
 
 ## 6. Sources and credits
 
-Every entry's `source` field names who the knowledge came from. UNSURE — I need to fill in the actual list of named contributors and any who asked not to be named here before submitting; this section is a placeholder structure, not yet the real list. (Example of the format this capstone brief asked for: "a weaver in Takeo who asked not to be named.") Photos not taken by the contributor themselves should be credited the same way, by whoever actually took or supplied them.
+Every entry's `source` field names who the knowledge came from. The contributors here are credited by relationship and place, not by name, because the family names are private. The current sources are: a family elder (Phnom Penh), a grandmother (Kampong Cham, two entries), a neighbour (Phnom Penh), a mother (Phnom Penh), a friend's mother (Phnom Penh), an aunt (Phnom Penh), an uncle (Pursat), and one entry credited to "achma" (Banteay Meanchey). UNSURE — confirm whether "achma" is a name or a title before submitting. Photos: UNSURE — confirm whether each photo was taken by the person who shared the remedy, and credit anyone else who took or supplied one.
 
 ## 7. Running it locally
 
