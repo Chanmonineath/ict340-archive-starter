@@ -2273,6 +2273,11 @@ body {
   padding: 24px;
 }
 
+body:has(.modal-overlay) .nav-wrap,
+body:has(.modal-overlay) .bottom-nav {
+  display: none;
+}
+
 .modal-scroll {
   padding: 32px;
 }
@@ -2304,6 +2309,38 @@ body {
 }
 
 /* ===== Auth modal (Login / Create account) ===== */
+
+.corner-ornament {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  background: url("/assets/corner-gold.png") no-repeat center / contain;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.corner-ornament-tl {
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+}
+
+.corner-ornament-tr {
+  top: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.corner-ornament-br {
+  bottom: 0;
+  right: 0;
+  transform: rotate(270deg);
+}
+
+.corner-ornament-bl {
+  bottom: 0;
+  left: 0;
+}
 
 .auth-modal {
   position: relative;
