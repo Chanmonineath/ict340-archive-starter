@@ -4,6 +4,7 @@ import React from "react";
 import EntryCard from "./EntryCard.js";
 import SearchFilter from "./SearchFilter.js";
 import BookView from "./BookView.js";
+import CornerOrnaments from "./CornerOrnaments.js";
 import useEntries from "../hooks/useEntries.js";
 import useLanguage from "../hooks/useLanguage.js";
 import { sortEntriesByLanguage } from "./entryContentLanguage.js";
@@ -51,7 +52,8 @@ export default function ArchiveSection() {
   }, [entries, filter, language]);
 
   return (
-    <div id="archive" style={{ backgroundColor: colors.paper }}>
+    <div id="archive" style={{ backgroundColor: colors.paper, position: "relative" }}>
+      <CornerOrnaments />
       <header className="archive-header">
         <p className="archive-eyebrow">{t.archive.eyebrow}</p>
         <h1 className="archive-khmer-title">បណ្ណាសារការអនុវត្តតាមផ្ទះ</h1>
