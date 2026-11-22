@@ -1,7 +1,6 @@
 "use client";
 
 import useLanguage from "../../hooks/useLanguage.js";
-import { UkFlag, CambodiaFlag } from "./FlagIcons.js";
 
 const colors = { teak: "#2E3B2A", gold: "#C49746", cream: "#FAF7F0" };
 
@@ -13,7 +12,7 @@ export default function LanguageToggle() {
     <div style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
       <span
         style={{
-          fontFamily: "var(--font-body), sans-serif",
+          fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
           fontSize: 13,
           fontWeight: 700,
           color: isKhmer ? colors.teak + "66" : colors.teak,
@@ -58,17 +57,19 @@ export default function LanguageToggle() {
             transition: "left 0.2s ease",
           }}
         >
-          {isKhmer ? (
-            <CambodiaFlag size={28} round />
-          ) : (
-            <UkFlag size={28} round />
-          )}
+          <img
+            src={isKhmer ? "/assets/flag-kh.webp" : "/assets/flag-uk.webp"}
+            alt=""
+            width={28}
+            height={28}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
         </span>
       </button>
 
       <span
         style={{
-          fontFamily: "var(--font-body), sans-serif",
+          fontFamily: "var(--font-body), var(--font-khmer), sans-serif",
           fontSize: 13,
           fontWeight: 700,
           color: isKhmer ? colors.teak : colors.teak + "66",
