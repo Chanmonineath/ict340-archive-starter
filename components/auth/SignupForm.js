@@ -9,6 +9,7 @@ import { UserIcon, MailIcon } from "./authIcons.js";
 import AuthField from "./AuthField.js";
 import AuthPasswordField from "./AuthPasswordField.js";
 import AuthHeader from "./AuthHeader.js";
+import CornerOrnaments from "../CornerOrnaments.js";
 import useLanguage from "../../hooks/useLanguage.js";
 
 export default function SignupForm() {
@@ -73,6 +74,7 @@ export default function SignupForm() {
   return (
     <div className="auth-page">
       <div className="auth-modal">
+        <CornerOrnaments />
         <AuthHeader mode="signup" />
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
