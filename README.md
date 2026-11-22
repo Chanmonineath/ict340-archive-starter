@@ -54,7 +54,7 @@ I used Claude (via the Claude Code CLI: Claude Sonnet 5) throughout the sprint �
 
 ## 6. Sources and credits
 
-Every entry's `source` field names who the knowledge came from. The contributors here are credited by relationship and place, not by name, because the family names are private. The current sources are: a family elder (Phnom Penh), a grandmother (Kampong Cham, two entries), a neighbour (Phnom Penh), a mother (Phnom Penh), a friend's mother (Phnom Penh), an aunt (Phnom Penh), an uncle (Pursat), and one entry credited to "achma" (Banteay Meanchey). UNSURE — confirm whether "achma" is a name or a title before submitting. Photos: UNSURE — confirm whether each photo was taken by the person who shared the remedy, and credit anyone else who took or supplied one.
+Every entry's `source` field names who the knowledge came from. The contributors here are credited by relationship and place, not by name, because the family names are private. The current sources are: a family elder (Phnom Penh), a neighbour (Phnom Penh), a mother (Phnom Penh), a friend's mother (Phnom Penh), an aunt (Phnom Penh), and an uncle (Pursat). Photos: UNSURE — confirm whether each photo was taken by the person who shared the remedy, and credit anyone else who took or supplied one.
 
 ## 7. Running it locally
 
@@ -79,10 +79,10 @@ The publishable key is a public, client-safe Supabase key by design — it's mea
 - Logged out, the API returns nothing pending or returned: yes, re-tested 2026-11-22
 - Contributors can edit and delete only their own entries: yes — `updateEntry`/`deleteEntry` both check that a row actually came back after the write, which is how a silent RLS block gets surfaced instead of a false "saved" message
 - No secrets anywhere in the repo history: yes, checked with `git log -p --all` for key/password patterns and confirmed `.env.local`/`.env` were never committed at any point in history
-- At least eight real entries, each with a credited source: yes, 8 published entries in the live database
+- At least eight real entries, each with a credited source: UNSURE — six real entries remain after the test rows are removed from the live database; two more are needed
 - Khmer renders on every screen a user meets, including the queue: yes — Khmer name/notes render on entry cards and My Entries, and the review queue's own chrome (headings, labels, buttons) now switches with the site-wide language toggle; UNSURE whether the ~150 AI-written Khmer strings the toggle uses are accurate — needs a native speaker's review before relying on them
 - Works at phone width: yes, built and tested mobile-first throughout, checked on an iPhone 12 Pro Max (428 px wide)
-- No test entries, lorem ipsum or TODO comments in shipped pages: yes — the placeholder-named test entry ("dwdwdw") used during this sprint's testing has been removed from the database
+- No test entries, lorem ipsum or TODO comments in shipped pages: UNSURE — the placeholder-named test entry ("dwdwdw") was removed earlier; five more test rows (three with the source "My grandmother", plus "achma" and "https://example.com") still need to be deleted from the live database
 - No console errors on the main pages: yes, checked 2026-11-22, clean DevTools console
 - jesseorndorff is a collaborator on this repo: yes
 - Supabase project restored and awake on: 2026-11-22
