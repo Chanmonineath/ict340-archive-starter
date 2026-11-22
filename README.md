@@ -81,7 +81,7 @@ The publishable key is a public, client-safe Supabase key by design — it's mea
 - No secrets anywhere in the repo history: yes, checked with `git log -p --all` for key/password patterns and confirmed `.env.local`/`.env` were never committed at any point in history
 - At least eight real entries, each with a credited source: yes, 8 published entries in the live database
 - Khmer renders on every screen a user meets, including the queue: yes — Khmer name/notes render on entry cards and My Entries, and the review queue's own chrome (headings, labels, buttons) now switches with the site-wide language toggle; UNSURE whether the ~150 AI-written Khmer strings the toggle uses are accurate — needs a native speaker's review before relying on them
-- Works at phone width: yes, built and tested mobile-first throughout my mobile
+- Works at phone width: yes, built and tested mobile-first throughout, checked on an iPhone 12 Pro Max (428 px wide)
 - No test entries, lorem ipsum or TODO comments in shipped pages: yes — the placeholder-named test entry ("dwdwdw") used during this sprint's testing has been removed from the database
 - No console errors on the main pages: yes, checked 2026-11-22, clean DevTools console
 - jesseorndorff is a collaborator on this repo: yes
