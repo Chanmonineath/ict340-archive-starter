@@ -54,7 +54,7 @@ I used Claude (via the Claude Code CLI: Claude Sonnet 5) throughout the sprint â
 
 ## 6. Sources and credits
 
-Every entry's `source` field names who the knowledge came from. The contributors here are credited by relationship and place, not by name, because the family names are private. The current sources are: a family elder (Phnom Penh), a grandmother (Kampong Cham, two entries), a mother (Phnom Penh), a friend's mother (Phnom Penh), an aunt (Phnom Penh), an uncle (Pursat), and a neighbour (Phnom Penh). Photos were taken from the internet, not by the contributors, and the original photographers are not identified. This is a known gap in credit, and the photos should be replaced with contributor photos in a later version.
+Every entry's `source` field names who the knowledge came from. The contributors here are credited by relationship and place, not by name, because the family names are private. The current sources are: a family elder (Phnom Penh), a grandmother (Kampong Cham, two entries), a mother (Phnom Penh), a friend's mother (Phnom Penh), an aunt (Phnom Penh), an uncle (Pursat), and a neighbour (Phnom Penh). Some photos were taken by the contributors. Others were taken from the internet, and their original photographers are not identified. This is a known gap in credit, and those photos should be replaced with contributor photos in a later version.
 
 ## 7. Running it locally
 
